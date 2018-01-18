@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('chemical/search', 'ChemicalController@find');
+Route::post('chemical/search', 'ChemicalController@search');

@@ -178,9 +178,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        //barryvdh/laravel-debugbar
+        // barryvdh/laravel-debugbar
         Barryvdh\Debugbar\ServiceProvider::class,
 
+        // laravelcollective/html
+        Collective\Html\HtmlServiceProvider::class,
     ],
 
     /*
@@ -230,9 +232,12 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-        //barryvdh/laravel-debugbar
+        // barryvdh/laravel-debugbar
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
+        // laravelcollective/html
+        'Form' => Collective\Html\FormFacade::class,  // 追加
+        'Html' => Collective\Html\HtmlFacade::class,
     ],
 
 ];

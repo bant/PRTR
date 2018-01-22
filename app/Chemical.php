@@ -58,5 +58,6 @@ class Chemical extends Model
         return $this->belongsTo('App\ChemicalType','old_chemical_type_id');
     }
 
+//    public function 
 
 }

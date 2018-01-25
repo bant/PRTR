@@ -31,8 +31,6 @@ class Chemical extends Model
         return mb_strimwidth($value, 0, 30, "..");
     }
 
-
-
    /**
      * Get the chemical's alias.
      *
@@ -58,6 +56,10 @@ class Chemical extends Model
         return $this->belongsTo('App\ChemicalType','old_chemical_type_id');
     }
 
-//    public function 
-
+    public function countFactory()
+    {
+        $chemical_count = \App\Discharge::where('chemical_id',$this->id)->count();
+        $regist_year_count = \App\RegistYear::all()->count();
+        return ceil($chemical_count/$regist_year_count);
+    }
 }

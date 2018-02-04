@@ -1,0 +1,360 @@
+@charset "utf-8";
+/* 
+	Theme Name: PRTRデータベース
+	Theme URI: https://prtr.toxwatch.net/
+	Description: PRTR制度によって、全国の事業所から届出された有害化学物質の排出データをデータベース化しました。
+	producers: Digital Aid & All Warkers;
+*/
+
+/* 全デバイス 共通
+---------------------------------------------*/
+* {
+  	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+	padding: 0;
+  	margin: 0;
+}
+body {
+  	background-color: #FFFFFF;
+	color: #333333;
+	font-size: 12px;
+  	line-height: 1.5;
+	margin: 0;
+	padding: 0;
+}
+img {
+  border: none;
+}
+
+a{
+  text-decoration: none;
+}
+a:link{
+  color: #099;
+}
+a:visited{
+  color: #66a394;
+}
+a:hover{
+  color: #999;
+  text-decoration: underline;
+}
+.center {
+	text-align: center;
+}
+
+/* --- ヘッダー --- */
+#header {
+	font-weight: bold;
+	text-align: center;
+}
+h1 {
+	background-color: #7F6706;
+	color: #FFFFFF;
+	font-size: 1.5em;
+	height: 3.75em;
+	line-height: 2.5;
+	margin: 0;
+	padding: 0;
+} 
+#author-area {
+	margin: 0 1em;
+	padding: 0 0.125em;
+	text-align: left;
+}
+#logo, #author, #author-e {
+	display: inline;
+}
+#author {
+	font-size: 1.25em;
+	line-height: 1.4;
+	padding-right: 1em;
+}
+#author-e {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1em;
+	line-height: 2;
+	text-align: right;
+}   			
+
+/* --- コンテンツ --- */
+#contents {
+	padding: 0;
+	text-align: left;
+}
+h2 {
+	background-image: url(../images/h2_midashi.gif);
+	background-repeat: no-repeat;
+	border-top: 0.15em solid #7F6706;
+	border-bottom: 0.15em solid #7F6706;
+	color: #7F6706;
+	font-size: 1.4em;
+	font-weight: bold;
+	height: 30px;
+	line-height: 1.78;
+	margin: 0;
+	padding-left: 3em; 
+}
+h3 {
+	border-left: 0.4em solid #cbcb7c;
+	font-size: 1.2em;
+	margin: 0.4em 0;
+	padding-left: 0.4em;	
+}
+
+/* パンくずリスト */
+ul#breadcrumbs{
+	background-color: #FFCC33;
+	margin: 0;
+	padding: 0.2em 1em 0;
+  	list-style: none;
+}
+#breadcrumbs li{
+  	display: inline;
+	line-height: 1.7;
+}
+
+#breadcrumbs li a{
+  	padding: 0 0.7em 0 0;
+}
+
+/* 検索メニュー */
+#menu {
+	margin: 1.5em 1em 1em;
+}
+#menu p {
+	margin: 0.5em 0;
+	padding: 0 1em;
+}
+#menu a, #menu a:hover {
+	text-decoration: none;
+}
+#caution {
+	 border: 0.3em double #CCCCCC;
+	 padding: 0.5em 1em;
+	 margin: 1em 1em 1.5em; 
+} 
+
+/* --- 検索フォーム --- */
+#search table tr th {
+	background: #F3F3F3;
+	border-left: 0.3em solid #CCCCCC;
+}
+#search table tr td input {
+	width: 12em;
+}
+#search table tr td input[type="checkbox"] {
+	width: auto;
+} 
+#search table tr td {
+	vertical-align: middle;
+}
+#choose {
+	margin-bottom: 0;
+}
+
+/* 区切り */
+hr.split {
+  border: 0.19em solid #CC0000;
+}
+
+/* ボタン */
+.display-switch {
+	position: relative;
+}
+.display {
+	background-color: #FFFFFF;
+	border: 0.1em solid #888888;
+	border-radius: 0.4em;
+	color: #888888;
+	font-size: 0.9em;
+	line-height: 1.54;
+	position: absolute;
+	left: 78%;
+	top: 0;
+	text-align: center;
+	width: 8em;
+}
+.display:hover {
+	background-color: #666666;
+	color: #FFFFFF;
+	cursor: pointer;
+}
+#totop {
+	position: fixed;
+	bottom: 0.5em;
+	right: 0.5em;
+	background-color: rgba(255,255,255,0.5);
+	border: 0.1em solid #888888;
+	border-radius: 0.4em;
+	color: #888888;
+	padding: 0.4em 0.1em;
+	text-align: center;
+}
+#totop:hover {
+	background-color: #666666;
+	color: #FFFFFF;
+}
+#totop a {
+	color: #888888;
+	display: block;
+	font-size: 0.9em;
+	text-decoration: none;
+}
+#totop a:hover {
+	color: #FFFFFF;
+}
+
+/* --- 検索結果リスト --- */
+.table {
+	margin-bottom: 1em;
+}
+.reportHistory caption, .chemicalReport caption {
+	caption-side: top;
+	font-size: 1em;
+	font-weight: bold;
+	padding: 0.1em 0;
+	text-align: left;
+}
+.plain {
+	font-size: 0.9em;
+	font-weight: normal;
+}
+.reportHistory td {
+	text-align: right;
+}
+.companyList caption, .factoryList caption, .chemicalList caption, .compareList caption {
+	caption-side: top;
+	text-align: right;
+}
+.companyList th, .factoryList th, .chemicalList th, .compareList th {
+	background-color: #666666;
+	color: #FFFFFF;
+}
+.companyList th, .companyList td, .factoryList th, .factoryList td, .chemicalList th, .chemicalList td, compareList th, compareList td, .chemicalReport th, .chemicalReport td {
+	height: 3.5em;
+	padding: 0.5em;
+}
+.chemicalReport td, .compareList td {
+	text-align: right;
+}
+.companyList td, .factoryList td, .chemicalList td:first-child, .chemicalReport td:first-child, .chemicalReport td:nth-child(10), .reportHistory td:first-child, .compareList td:first-child, .compareList td:nth-child(3) {
+	text-align: left;
+}
+.companyList th, .factoryList th, .chemicalList th, .chemicalList td, .chemicalReport th, .reportHistory th {
+	text-align: center;
+}
+.companyList td:last-child, .factoryList td:last-child, .factoryList td:nth-child(4), .chemicalList td:nth-child(5) {
+	text-align: right;
+}
+.tablesorter-bootstrap thead .tablesorter-headerAsc, .tablesorter-bootstrap thead .tablesorter-headerDesc {
+	background-color: #FFCC00;
+}
+
+/* 会社情報・工場情報・化学物質情報 */
+.companyTable caption, .chemicalTable caption {
+	background-color: #666666;
+	caption-side: top;
+	color: #FFFFFF;
+	font-weight: bold;
+	padding: 0.5em;
+	text-align: left;
+}
+.companyTable th, .chemicalTable th, .reportHistory th {
+	background-color: #DDDDDD;
+}
+
+/* 画像リンクの枠線を消す */
+img{
+  border: none;
+}
+
+/* --- フッター --- */
+#footer{
+	font-size: 0.9em;
+	margin: 1em 0 0;
+	text-align: center;
+}
+#address {
+	background-color: #EEEEEE;
+	padding: 0.5em 0;
+	margin-bottom: 0;
+}
+#footer-link {
+	margin: 0 0 0.5em;
+}
+
+/* ページネーション */
+#pagination{
+  padding-top: 0.5em;
+  padding-right: 0;
+  padding-bottom: 0.5em;
+  padding-left: 0;
+  text-align: left; /*Set to "right" to right align pagination interface*/
+  font-size: 115%;
+}
+
+#pagination a, #pagination a:visited{
+  padding: 0 5px;
+  border: 1px solid #CCCCCC;
+  font-weight: bold;
+  color: #000;
+  text-decoration: none;
+}
+
+#pagination a:hover, #pagination a:active{
+  border: 1px solid #CCCCCC;
+  color: #FFFFFF;
+  background-color: #666666;
+}
+
+#pagination a.currentpage{
+  border-color: #CCCCCC;
+  font-weight: bold;
+  color: #FFFFFF !important;
+  background-color: #CCCCCC;
+  cursor: default;
+}
+
+#pagination a.prevnext{
+  font-weight: bold;
+}
+
+#pagination a.firstlast{
+  font-weight: bold;
+}
+
+/* 中型ディスプレイ 768px以上 
+--------------------------------------------- */
+@media only screen and (min-width: 768px) {
+	#menu {
+		padding: 0 10em;
+	}
+	#caution {
+	 	margin: 1em 11em 1.5em;
+	}
+	#footer {
+		margin: auto 0 0;
+	}
+	h3 {
+		font-weight: bold;
+		margin: 0.4em 4.3em;
+	}
+	#search table, #choose {
+		margin: 0.4em 5em;
+		width: 80%;
+	}
+	#search table tr td input[type="text"] {
+		width: 90%;
+	}
+	.companyList, .factoryList, .chemicalList, .chemicalReport, .compareList, hr.split {
+		margin: 0 5% 1em;
+		width: 90%;
+	}
+	.companyTable, .chemicalTable, .reportHistory {
+		margin: 0.4em 5em 1em;
+		width: 80%;
+	}
+	h3.result, #pagination {
+		margin-left: 5%;
+	}
+}

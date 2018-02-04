@@ -6,6 +6,7 @@ use App\Chemical;
 use App\ChemicalType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon; // 日付操作
 
 class ChemicalController extends Controller
 {
@@ -30,8 +31,9 @@ class ChemicalController extends Controller
         $chemical_no = 0;
         $old_chemical_no = 0;
         $cas = 0;
+        $copyright_year = Carbon::now()->format('Y');
 
-        return view('chemical.find', compact('name','chemical_types','old_chemical_types','chemical_no','old_chemical_no','cas'));
+        return view('chemical.find', compact('name','chemical_types','old_chemical_types','chemical_no','old_chemical_no','cas','copyright_year'));
     }
 
     /**

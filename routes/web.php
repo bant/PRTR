@@ -18,3 +18,6 @@ Route::get('/', function () {
 Route::get('chemical', 'ChemicalController@index');
 Route::get('chemical/search', 'ChemicalController@find');
 Route::post('chemical/search', 'ChemicalController@search');
+
+Route::get('factory/search', 'FactoryController@find');
+Route::post('factory/search', 'FactoryController@search');

@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
-    <link href="http://localhost:8000/favicon.ico" type="image/x-icon" rel="shortcut icon">
+    <link href="{{url('/favicon.ico')}}" type="image/x-icon" rel="shortcut icon">
     <!-- <link rel="stylesheet" type="text/css" href="/css/app.css"> -->
     <style>
     body {font-size:16pt; color:#999; margin: 5px; }

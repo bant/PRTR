@@ -14,12 +14,7 @@
 <body>
     <!--- ここからヘッダ --->
     <header id="header">
-        <h1>PRTRデータベース</h1>
-        <div id="author-area">
-            <div id="logo"><img src="{{url('/images/logo.png')}}"></div>
-            <div id="author">Ｔウォッチ</div>
-            <div id="author-e">Toxic Watch Network</div>
-        </div>
+        @include('commons.header')
     </header>
  
     <!--- ここから本文 --->
@@ -29,7 +24,7 @@
 
     <!--- ここからフッタ --->
     <footer id="footer">
-      <address id="address">@yield('footer')</address>
+      <address id="address">@include('commons.footer',['year'=>Carbon\Carbon::now()->format('Y')])</address>
     </footer>
     
     <!-- 以下、jsの読み込み -->

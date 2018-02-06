@@ -3,7 +3,7 @@
 @section('title', '化学物質検索 | PRTRデータベース by Tウォッチ')
 
 @section('content')
-<ul id="breadcrumbs">
+      <ul id="breadcrumbs">
         <li><a href="/">PRTR 検索メニュー</a></li>
         <li>&gt; 化学物質検索</li>
       </ul><!-- /#breadcrumbs -->
@@ -53,8 +53,4 @@
         </section>
       </section>
     {!! Form::close() !!}
-@endsection
-
-@section('footer')
-&copy;2003-{{$copyright_year}} NPO法人 有害化学物質削減ネットワーク All Rights Reserved.
 @endsection

@@ -17,6 +17,7 @@
             <td>{{$factory->PostNoConvert()}}</td>
             <td>{{$factory->pref->name}}</td>
             <td>{{$factory->regist_year->name}}</td>
+            <td>{{$factory->factory_business_type}}</td>
         </tr>
     @endforeach
     </table>

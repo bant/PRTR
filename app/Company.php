@@ -19,6 +19,17 @@ class Company extends Model
      * @var array
      */
 
+     /**
+     * Get the Company's name.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getNameAttribute($value)
+    {
+        return mb_strimwidth($value, 0, 24, "..");
+    }
+
     public function pref()
     {
         return $this->belongsTo('App\Pref','pref_id');

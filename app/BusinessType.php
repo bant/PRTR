@@ -18,4 +18,16 @@ class BusinessType extends Model
      *
      * @var array
      */
+
+     /**
+     * Get the BusinessType's name.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getNameAttribute($value)
+    {
+        return mb_strimwidth($value, 0, 24, "..");
+    }
+
 }

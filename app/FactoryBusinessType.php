@@ -19,4 +19,9 @@ class FactoryBusinessType extends Model
      * @var array
      */
 
+         //timestamps利用しない
+    public $timestamps = false;
+
+    
+
 }

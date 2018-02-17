@@ -26,6 +26,10 @@
                 <td>{!! Form::checkbox('is_old_name') !!}</td>
               </tr>
               <tr>
+                <th>{!! Form::label('business_type', '業種') !!}</th>
+                <td>{!! Form::select('business_type_id', $business_types, 0, ['class' => 'form', 'id' => 'pref_id']) !!}</td>
+              </tr>
+              <tr>
                 <th>{!! Form::label('pref', '都道府県') !!}</th>
                 <td>{!! Form::select('pref_id', $prefs, 0, ['class' => 'form', 'id' => 'pref_id']) !!}</td>
               </tr>
@@ -50,8 +54,4 @@
         <!-- /検索フォーム -->
         </section>
       </section>
-@endsection
-
-@section('footer')
-&copy;2003-{{$copyright_year}} NPO法人 有害化学物質削減ネットワーク All Rights Reserved.
 @endsection

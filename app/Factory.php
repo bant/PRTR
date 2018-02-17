@@ -18,6 +18,32 @@ class Factory extends Model
      *
      * @var array
      */
+    //timestamps利用しない
+    public $timestamps = false;
 
+    public function company()
+    {
+        return $this->belongsTo('App\Company','company_id');
+    }
+
+    public function pref()
+    {
+        return $this->belongsTo('App\Pref','pref_id');
+    }
+
+    public function regist_year()
+    {
+        return $this->belongsTo('App\RegistYear','regist_year_id');
+    }
+
+    public function PostNoConvert()
+    {
+        return "〒".substr($this->post_no, 0, 3) . "-" . substr($this->post_no, 3, 4);
+    }
+
+//    public function regist_year()
+ //   {
+ //       return $this->belongsTo('App\RegistYear','regist_year_id');
+ //   }
 
 }

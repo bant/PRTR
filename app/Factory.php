@@ -49,7 +49,7 @@ class Factory extends Model
 
     public function factory_business_type()
     {
-        return $this->belongsTo('App\FactoryBusinessType','factory_id');
+        return $this->belongsTo('App\FactoryBusinessType','factory_id','factory_id');
     }
 
 

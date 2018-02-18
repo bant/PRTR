@@ -22,6 +22,9 @@ class FactoryBusinessType extends Model
          //timestamps利用しない
     public $timestamps = false;
 
-    
+    public function business_type()
+    {
+        return $this->belongsTo('App\BusinessType','business_type_id');
+    }    
 
 }

@@ -9,14 +9,12 @@
 
 @section('content')
     <table>
-    <tr><th会社名/工場名</th><th>業種</th><th>郵便番号/所在地</th></tr>
+    <tr><th>会社名/工場名</th><th>業種</th><th>郵便番号/所在地</th></tr>
     @foreach ($factorys as $factory)
         <tr>
             <td>{{$factory->company->name}}<br>{{$factory->name}}</td>
             <td>{{$factory->factory_business_type->business_type->name}}</td>
             <td>{{$factory->PostNoConvert()}}<br>{{$factory->pref->name}}{{$factory->address}}</td>
-            <td>{{$factory->regist_year->name}}</td>
-
         </tr>
     @endforeach
     </table>

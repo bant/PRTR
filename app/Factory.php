@@ -41,21 +41,58 @@ class Factory extends Model
     {
         return $this->belongsTo('App\Pref','pref_id');
     }
-
+/*
     public function regist_year()
     {
         return $this->belongsTo('App\RegistYear','regist_year_id');
     }
-
+*/
     public function factory_business_type()
     {
         return $this->belongsTo('App\FactoryBusinessType','factory_id','factory_id');
     }
+/*
+    public function factory_history()
+    {
+        return $this->belongsTo('App\FactoryHistory','factory_id','factory_id');
+    }
+*/
+/*
+    public function getAverageEmployee()
+    {
+        $factory_historys = \App\FactoryHistory::where('factory_id', $this->factory_id)->get();
+        $employee = 0;
+        $count = 0;
 
+        foreach($factory_historys as $factory_history)
+        {
+            $employee += $factory_history->employee;
+            $count +=1;     
+        }
+        
+        return round($employee/$count); 
+    }
 
+    public function getAverageReportCount()
+    {
+        $factory_historys = \App\FactoryHistory::where('factory_id', $this->factory_id)->get();
+        $report_count = 0;
+        $count = 0;
+
+        foreach($factory_historys as $factory_history)
+        {
+            $report_count += $factory_history->report_count;
+            $count +=1;     
+        }
+        
+        return round($report_count/$count);   
+    }
+*/
     public function PostNoConvert()
     {
         return "〒".substr($this->post_no, 0, 3) . "-" . substr($this->post_no, 3, 4);
     }
+
+
 
 }

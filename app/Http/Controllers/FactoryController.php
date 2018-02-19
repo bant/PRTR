@@ -35,12 +35,55 @@ class FactoryController extends Controller
         $inputs = $request->all();
         //dd($inputs);
         $name = $inputs['name'];
-        $is_old_name = isset($inputs['name']) ? $inputs['name'] : null;
+        $old_name = isset($inputs['is_old_name']) ? $inputs['name'] : null;
         $business_type_id = $inputs['business_type_id'];
         $pref_id = $inputs['pref_id'];
         $city = $inputs['city'];
         $address = $inputs['address'];
 
+        $query = Factory::query();
+        if ($business_type_id!='0')
+        {
+            $query->join('ja_factory_business_type', 'ja_factory.id', '=', 'ja_factory_business_type.factory_id');
+            $query->where('ja_factory_business_type.business_type_id', $business_type_id);   
+        }
+
+        $query->join('ja_factory_history', 'ja_factory.id', '=', 'ja_factory_history.factory_id');
+        if (!is_null($name))
+        {
+
+            if (!is_null($old_name))
+            {
+                $query->where('ja_factory_history.name','like', '%'.$old_name.'%');
+            }
+            else
+            {
+                $query->where('ja_factory.name','like', '%'.$name.'%');
+            }
+        }
+
+        if ($pref_id != '0')
+        {
+            $query->where('ja_factory.pref_id', $pref_id);
+        }
+
+        if (!is_null($city))
+        {
+            $query->where('ja_factory.city', 'like', '%'. $city. '%');
+        }
+
+        if (!is_null($address))
+        {
+            $query->where('ja_factory.address', 'like', '%'. $address. '%');
+        }
+        $query->distinct('*');
+        $query->orderBy('ja_factory.pref_id', 'asc');
+
+        $factorys = $query->paginate(10);
+
+        return view('factory.list', compact('inputs','factorys'));
+
+/*
         $factorys = Factory::select()
         ->when($business_type_id, function ($query) use ($business_type_id) {
             // inner join...
@@ -63,11 +106,14 @@ class FactoryController extends Controller
         ->when($address, function ($query) use ($address) {
             return $query->where('ja_factory.address','like', '%'.$address.'%');
         })
-        ->distinct()
+        ->distinct('ja_factory.id')
         ->orderBy('ja_factory.pref_id', 'asc')
-        ->paginate(10);
-
+        ->toSql();
+//        ->paginate(10);
+        dd($factorys);
         return view('factory.list', compact('inputs','factorys'));
+        */
+
     }
 
 }

@@ -32,32 +32,36 @@ class Factory extends Model
         return mb_strimwidth($value, 0, 24, "..");
     }
 
+    // 親会社は一社だけ
     public function company()
     {
         return $this->belongsTo('App\Company','company_id');
     }
 
+
     public function pref()
     {
         return $this->belongsTo('App\Pref','pref_id');
     }
-/*
+
+    
     public function regist_year()
     {
         return $this->belongsTo('App\RegistYear','regist_year_id');
     }
-*/
+
+
     public function factory_business_type()
     {
         return $this->belongsTo('App\FactoryBusinessType','factory_id','factory_id');
     }
-/*
+   
     public function factory_history()
     {
         return $this->belongsTo('App\FactoryHistory','factory_id','factory_id');
     }
-*/
-/*
+
+
     public function getAverageEmployee()
     {
         $factory_historys = \App\FactoryHistory::where('factory_id', $this->factory_id)->get();
@@ -87,12 +91,10 @@ class Factory extends Model
         
         return round($report_count/$count);   
     }
-*/
+
     public function PostNoConvert()
     {
         return "〒".substr($this->post_no, 0, 3) . "-" . substr($this->post_no, 3, 4);
     }
-
-
 
 }

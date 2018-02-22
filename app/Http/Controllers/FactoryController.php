@@ -42,6 +42,41 @@ class FactoryController extends Controller
         $address = $inputs['address'];
 
         $query = Factory::query();
+        $query->join('ja_factory_business_type', 'ja_factory.id', '=', 'ja_factory_business_type.factory_id');
+        if (!is_null($name))
+        {
+            $query->where('ja_factory.name','like', '%'.$name.'%');
+        }
+        
+        if ($business_type_id != '0')
+        {
+            $query->where('ja_factory_business_type.business_type_id', $business_type_id);
+        }
+
+        if ($pref_id != '0')
+        {
+            $query->where('ja_factory.pref_id', $pref_id);
+        }
+
+        if (!is_null($city))
+        {
+            $query->where('ja_factory.city', 'like', '%'. $city. '%');
+        }
+
+        if (!is_null($address))
+        {
+            $query->where('ja_factory.address', 'like', '%'. $address. '%');
+        }
+        $query->orderBy('ja_factory.pref_id', 'asc');
+        $query->distinct('ja_factory.name');
+        $factorys = $query->paginate(10);
+
+//        dd($factorys);
+        return view('factory.list', compact('inputs','factorys'));
+
+
+        /*
+        $query = Factory::query();
         if ($business_type_id!='0')
         {
             $query->join('ja_factory_business_type', 'ja_factory.id', '=', 'ja_factory_business_type.factory_id');
@@ -82,7 +117,7 @@ class FactoryController extends Controller
         $factorys = $query->paginate(10);
 
         return view('factory.list', compact('inputs','factorys'));
-
+*/
 /*
         $factorys = Factory::select()
         ->when($business_type_id, function ($query) use ($business_type_id) {
@@ -113,7 +148,5 @@ class FactoryController extends Controller
         dd($factorys);
         return view('factory.list', compact('inputs','factorys'));
         */
-
     }
-
 }

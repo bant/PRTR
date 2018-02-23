@@ -183,6 +183,9 @@ return [
 
         // laravelcollective/html
         Collective\Html\HtmlServiceProvider::class,
+
+        App\Providers\PrtrServiceProvider::class,
+
     ],
 
     /*

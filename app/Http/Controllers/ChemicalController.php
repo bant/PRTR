@@ -6,6 +6,7 @@ use App\Chemical;
 use App\ChemicalType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Validators\PrtrValidator;
 
 class ChemicalController extends Controller
 {
@@ -13,8 +14,8 @@ class ChemicalController extends Controller
 
     public function index(Request $request)
     {
-//        $items = Chemical::all();
-        $query_folder = '';
+        $items = Chemical::all();
+//        $query_folder = '';
         return view('chemical.index', ['items'=>$items]);
     }
 
@@ -43,20 +44,21 @@ class ChemicalController extends Controller
 
         // ルール
         $rules = [
-            'chemical_no' => 'numeric',
-            'old_chemical_no' => 'numeric',
-            'cas' => 'numeric',
+           'chemical_no' => 'numeric2',
+            'old_chemical_no' => 'numeric2',
+            'cas' => 'numeric2',
         ];
 
         //
         $messages = [
-            'chemical_no.numeric' => '化学物質番号は整数で入力してください。',
-            'old_chemical_no.numeric' => '旧化学物質番号は整数で入力してください。',
-            'cas.numeric' => 'CAS登録番号は整数で入力してください。',
+            'chemical_no.numeric2' => '化学物質番号は整数で入力してください。',
+            'old_chemical_no.numeric2' => '旧化学物質番号は整数で入力してください。',
+            'cas.numeric2' => 'CAS登録番号は整数で入力してください。',
         ];
 
         // バリデーション
-        $validation = \Validator::make($inputs, $rules, $messages);
+ //       $validation = \Validator::make($inputs, $rules, $messages);
+         $validation = \Validator::make($inputs, $rules, $messages);
         // エラーの時
 
         if($validation->fails())
@@ -93,61 +95,6 @@ class ChemicalController extends Controller
         ->paginate(10);
 
         return view('chemical.list', compact('inputs','chemicals'));
-/*
-        $name = $request->input('name');
-        $chemical_type_id = $request->input('chemical_type_id');
-        $old_chemical_type_id = $request->input('old_chemical_type_id');
-        $chemical_no = $request->input('chemical_no');
-        $old_chemical_no = $request->input('old_chemical_no');
-        $cas = $request->input('cas');
 
-        $chemicals = Chemical::select('*')
-        ->when($name, function ($query) use ($name) {
-            return $query->where('name','like', '%'.$name.'%');
-        })
-        ->when($chemical_type_id!=0, function ($query) use ($chemical_type_id) {
-            return $query->where('chemical_type_id', $chemical_type_id);
-        })
-        ->when($old_chemical_type_id!=0, function ($query) use ($old_chemical_type_id) {
-            return $query->where('old_chemical_type_id', $old_chemical_type_id);
-        })
-        ->when($chemical_no, function ($query) use ($chemical_no) {
-            return $query->where('chemical_no', $chemical_no);
-        })
-        ->when($old_chemical_no, function ($query) use ($old_chemical_no) {
-            return $query->where('old_chemical_no', $old_chemical_no);
-        })
-        ->when($cas, function ($query) use ($cas) {
-            return $query->orWhere('cas', $cas);
-        })
-        ->paginate(10);
-//        ->get();
-
-*/
-
-/*
-        $chemicals = DB::table( 'ja_chemical')
-                        ->when($name, function ($query) use ($name) {
-                            return $query->where('name','like', '%'.$name.'%');
-                        })
-                        ->when($chemical_type_id!=0, function ($query) use ($chemical_type_id) {
-                            return $query->where('chemical_type_id', $chemical_type_id);
-                        })
-                        ->when($old_chemical_type_id!=0, function ($query) use ($old_chemical_type_id) {
-                            return $query->where('old_chemical_type_id', $old_chemical_type_id);
-                        })
-                        ->when($chemical_no, function ($query) use ($chemical_no) {
-                            return $query->where('chemical_no', $chemical_no);
-                        })
-                        ->when($old_chemical_no, function ($query) use ($old_chemical_no) {
-                            return $query->where('old_chemical_no', $old_chemical_no);
-                        })
-                        ->when($cas, function ($query) use ($cas) {
-                            return $query->orWhere('cas', $cas);
-                        })
-                        ->get();
-
-        return view('chemical.list', compact('chemicals'));
-*/
     }
 }

@@ -45,6 +45,8 @@
     @endforeach
     </table>
 
+    sss
+
     {{ $chemicals->links() }}
 
 @endsection

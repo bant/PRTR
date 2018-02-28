@@ -21,10 +21,12 @@
                 <th>{!! Form::label('name', '事業所名') !!}</th>
                 <td>{!! Form::text('name', null, ['class' => 'form-control']) !!}</td>
               </tr>
+<!--
               <tr>
                 <th>{!! Form::label('is_old_name', '旧事業所名も検索に含める') !!}</label></th>
                 <td>{!! Form::checkbox('is_old_name') !!}</td>
               </tr>
+-->
               <tr>
                 <th>{!! Form::label('business_type', '業種') !!}</th>
                 <td>{!! Form::select('business_type_id', $business_types, 0, ['class' => 'form', 'id' => 'pref_id']) !!}</td>

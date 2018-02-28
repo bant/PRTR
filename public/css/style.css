@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* 
 	Theme Name: PRTRデータベース
 	Theme URI: https://prtr.toxwatch.net/
@@ -187,20 +187,12 @@ hr.split {
 	border: 0.1em solid #888888;
 	border-radius: 0.4em;
 	color: #888888;
+	font-size: 0.9em;
 	padding: 0.4em 0.1em;
 	text-align: center;
 }
 #totop:hover {
 	background-color: #666666;
-	color: #FFFFFF;
-}
-#totop a {
-	color: #888888;
-	display: block;
-	font-size: 0.9em;
-	text-decoration: none;
-}
-#totop a:hover {
 	color: #FFFFFF;
 }
 
@@ -261,6 +253,11 @@ hr.split {
 }
 .companyTable th, .chemicalTable th, .reportHistory th {
 	background-color: #DDDDDD;
+}
+
+/* エラー表示 */
+td.error {
+	border: 2px dashed #FF0000;
 }
 
 /* 画像リンクの枠線を消す */

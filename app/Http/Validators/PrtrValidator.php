@@ -5,6 +5,10 @@ use Illuminate\Validation\Validator;
 
 class PrtrValidator extends Validator
 {
+    /*
+    * 
+    *
+    */
     public function validateNumeric2($attribute, $value, $parameters)
     {
         if ($value=='')

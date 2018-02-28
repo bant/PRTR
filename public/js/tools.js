@@ -1,13 +1,13 @@
 jQuery( function( $ ) {
   // 表示/非表示
-  $(".display-switch .display").on("click", function() {
-  	var status = $(this).text();
+  $(".display-switch").on("click", function() {
+  	var status = $(".display", this).text();
   	if (status == "非表示にする") {
-  	  $(this).parent().next().hide();
-  	  $(this).text("表示する");
+  	  $(this).parent().find("table").hide();
+  	  $(".display", this).text("表示する");
     } else {
-      $(this).parent().next().show();
-  	  $(this).text("非表示にする");
+  	  $(this).parent().find("table").show();
+  	  $(".display", this).text("非表示にする");
     }
   });
 

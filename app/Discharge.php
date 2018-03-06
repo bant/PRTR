@@ -13,5 +13,9 @@ class Discharge extends Model
      */
     protected $table = 'ja_discharge';
 
+    public function regist_year()
+    {
+        return $this->belongsTo('App\RegistYear','regist_year_id');
+    }
 
 }

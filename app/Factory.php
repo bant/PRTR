@@ -61,6 +61,13 @@ class Factory extends Model
         return $this->belongsTo('App\FactoryHistory','factory_id','factory_id');
     }
 
+    public function getBusinessTypeName()
+    {
+        $factory_business_type = \App\FactoryBusinessType::where('factory_id', '=',$this->id)->first();
+        $business_type = \App\BusinessType::where('id', '=', $factory_business_type->business_type_id)->first();
+        return $business_type->name;
+    }
+
 
     public function getAverageEmployee()
     {

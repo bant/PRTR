@@ -5,6 +5,7 @@
 
 
 @section('content')
+<div id="contents">
   <!-- /#breadcrumbs -->
   <ul id="breadcrumbs">
     <li><a href="/">検索メニュー</a></li>
@@ -85,20 +86,18 @@
             <!-- tw_factory id is ({{$factory->id}}) -->
             <tr>
               <td>{{$factory->company->name}}<br>
-              {!! link_to('foo/bar', $title = null, $attributes = array(), $secure = null) !!}
-              <a href="/factory/ListByCompany/{{$factory->id}}">{{$factory->name}}
-              <a href="/factory/ListByCompany/{{$factory->id}}">{{$factory->name}}</td>
+              {{$factory->name}}</a></td>
               <td>{{$factory->factory_business_type->business_type->name}}</td>
               <td>{{$factory->PostNoConvert()}}<br>
               {{$factory->pref->name}}{{$factory->address}}</td>
               <td>{{$factory->getAverageEmployee()}}</td>
-              <td>{{$factory->getAverageReportCount()}}</td>
+              <td><a href="/report/ListByFactory/{{$factory->id}}">{{$factory->getAverageReportCount()}}</a></td>
             </tr>
             @endforeach
           </tbody>
         </table>
   <!-- /検索結果 -->
-  
+  </div><!--- /#contents --->
   
   <!-- ページネーション -->
     {{ $factorys->links() }}

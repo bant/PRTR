@@ -31,4 +31,9 @@ class FactoryHistory extends Model
     {
         return "〒".substr($this->post_no, 0, 3) . "-" . substr($this->post_no, 3, 4);
     }
+
+    public function regist_year()
+    {
+        return $this->belongsTo('App\RegistYear','regist_year_id');
+    }
 }

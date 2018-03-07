@@ -23,6 +23,9 @@ Route::post('chemical/search', 'ChemicalController@search');
 Route::get('factory/search', 'FactoryController@find');
 Route::post('factory/search', 'FactoryController@search');
 
+Route::get('company/search', 'CompanyController@find');
+Route::post('company/search', 'CompanyController@search');
+
 //Route::get('report/ListByFactory/{id?}', 'ReportController@ListByFactory');
 /*
 Route::get('report/ListByFactory/{id?}', function ($id) {

@@ -64,6 +64,7 @@
       </table>
     </section>
     <!-- /会社・工場情報 -->
+
     <!-- 届出履歴 -->
     <section>
       <hr class="split">
@@ -97,35 +98,21 @@
       <section>
         <hr class="split">
         <h3 class="result">化学物質届出情報</h3>
+
         <!-- 絞り込みフォーム -->
-        <form action="/report/ListByCompany" method="post" id="choose">
-          <label for="chemical_name">化学物質名</label>
-          <input name="chemical_name" id="chemical_name" value="" type="text">&nbsp;
-          <label>届出年度</label>
-          <select name="year_id" id="year_id"><option value="">全年度</option>
-            <option value="2014">2014年</option>
-            <option value="2013">2013年</option>
-            <option value="2012">2012年</option>
-            <option value="2011">2011年</option>
-            <option value="2010">2010年</option>
-            <option value="2009">2009年</option>
-            <option value="2008">2008年</option>
-            <option value="2007">2007年</option>
-            <option value="2006">2006年</option>
-            <option value="2005">2005年</option>
-            <option value="2004">2004年</option>
-            <option value="2003">2003年</option>
-            <option value="2002">2002年</option>
-            <option value="2001">2001年</option>
-          </select><input name="id" id="id" value="94404" type="hidden">&nbsp;
-          <input value="絞り込み" type="submit">
-        </form>
+        {!! Form::open(['id'=>'choose']) !!}
+          {!! Form::label('chemical_name', '化学物質名') !!}
+          {!! Form::text('chemical_name', null) !!}&nbsp;
+          {!! Form::label('year_id', '届出年度') !!}
+          {!! Form::select('year_id', $years, 0, ['class' => 'form', 'id' => 'year_id']) !!}         
+          {!! Form::hidden('id', $factory->id) !!}
+          {!! Form::submit('検 索', ['class' => 'btn btn-warning']) !!}
+        {{ Form::close() }}
         <!-- /絞り込みフォーム -->
-        
-        
+
         <!-- 化学物質届出情報 -->
         <table id="resultTable" class="tablesorter-green table-striped table-bordered chemicalReport">
-          <caption>該当件数: 187件</caption>
+          <caption>該当件数: {{$discharges_count}}</caption>
           <thead>
             <tr>
               <th>化学物質名<br>
@@ -152,119 +139,24 @@
          @foreach ($discharges as  $discharge)
         <!-- tw_discharge's id is {{$discharge->id}} -->
         <tr>
-             <td>
-              <a href="/images/pdf/00000-179-006.jpg" rel="prettyPhoto" title="ダイオキシン類の詳細PDFはこちら">
-          ダイオキシン類</a><br>
-          (mg-TEQ)  {{$discharge->chemical_id}} </td>
+          <td>
+           <a href="/images/pdf/{{$discharge->chemical->pdf}}" rel="prettyPhoto" title="{{$discharge->chemical->name}}の詳細PDFはこちら">{{$discharge->chemical->name}}</a></br>
+           [{{$discharge->chemical->unit->name}}]
+          </td>
              <td>{{$discharge->atmosphere}}</td>
              <td>{{$discharge->sea}}</td>
-             <td>0</td>
-             <td>0</td>
-             <td>1</td>
-             <td>6</td>
-             <td>3.2</td>
-             <td>7</td>
-             <td>淀川へ排出。<br>
-             淀川下水処理場へ移動。</td>
-             <td>2014年</td>
+             <td>{{$discharge->soil}}</td>
+             <td>{{$discharge->reclaimed}}</td>
+             <td>{{$discharge->sewer}}</td>
+             <td>{{$discharge->other}}</td>
+             <td>{{$discharge->sum_exhaust}}</td>
+             <td>{{$discharge->sum_movement}}</td>
+             <td>データベースには、このデータは登録されていない。<br>
+             表示は無理です。</td>
+             <td>{{$discharge->regist_year->name}}</td>
         </tr>
-
-
         <!--/ tw_discharge's id is {{$discharge->id}} -->
-         @endforeach
-
-
-         <!-- tw_discharge's id is 2854945 -->
-
-         <!--/ tw_discharge'id is 2854945 -->
-         <!-- tw_discharge's id is 2854956 -->
-           <tr>
-             <td>メチルナフタレン<br>
-             (kg)</td>
-             <td>59</td>
-             <td>0</td>
-             <td>0</td>
-             <td>0</td>
-             <td>0</td>
-             <td>40</td>
-             <td>59</td>
-             <td>40</td>
-             <td>焼却・溶融で処理。</td>
-             <td>2014年</td>
-           </tr>
-         <!--/ tw_discharge'id is 2854956 -->
-         <!-- tw_discharge's id is 2854939 -->
-           <tr>
-             <td>
-              <a href="/images/pdf/00000-003-006.jpg" rel="prettyPhoto" title="アクリル酸及びその水溶性塩の詳細PDFはこちら">
-          アクリル酸及びその水溶性塩</a><br>
-(kg)</td>
-             <td>0</td>
-             <td>0</td>
-             <td>0</td>
-             <td>0</td>
-             <td>6300</td>
-             <td>0</td>
-             <td>0</td>
-             <td>6300</td>
-             <td>汚泥あり。</td>
-             <td>2014年</td>
-           </tr>
-         <!--/ tw_discharge'id is 2854939 -->
-         <!-- tw_discharge's id is 2854940 -->
-           <tr>
-             <td>
-                <a href="/images/pdf/00000-011-006.jpg" rel="prettyPhoto" title="アセトアルデヒドの詳細PDFはこちら">
-          アセトアルデヒド</a></br>
-             (kg)</td>
-             <td>130</td>
-             <td>0</td>
-             <td>0</td>
-             <td>0</td>
-             <td>0</td>
-             <td>0</td>
-             <td>130</td>
-             <td>0</td>
-             <td></td>
-             <td>2014年</td>
-           </tr>
-         <!--/ tw_discharge'id is 2854940 -->
-         <!-- tw_discharge's id is 2854941 -->
-           <tr>
-             <td>
-                <a href="/images/pdf/00000-085-006.jpg" rel="prettyPhoto" title="クロロジフルオロメタンの詳細PDFはこちら">
-          クロロジフルオロメタン</a><br>
-(kg)</td>
-             <td>1600</td>
-             <td>0</td>
-             <td>0</td>
-             <td>0</td>
-             <td>0</td>
-             <td>0</td>
-             <td>1600</td>
-             <td>0</td>
-             <td></td>
-             <td>2014年</td>
-           </tr>
-         <!--/ tw_discharge'id is 2854941 -->
-         <!-- tw_discharge's id is 2854942 -->
-           <tr>
-             <td>
-                <a href="/images/pdf/00000-124-006.jpg" rel="prettyPhoto" title="２，２－ジクロロ－１，１，１－トリフルオロエタンの詳細PDFはこちら">
-          ２，２－ジクロロ－１，..      </a><br>
-(kg)</td>
-             <td>450</td>
-             <td>0</td>
-             <td>0</td>
-             <td>0</td>
-             <td>0</td>
-             <td>0</td>
-             <td>450</td>
-             <td>0</td>
-             <td></td>
-             <td>2014年</td>
-           </tr>
-         <!--/ tw_discharge'id is 2854942 -->
+        @endforeach
          </tbdoy>
        </table>
         <!-- /化学物質届出情報 -->

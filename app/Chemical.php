@@ -56,6 +56,11 @@ class Chemical extends Model
         return $this->belongsTo('App\ChemicalType','old_chemical_type_id');
     }
 
+    public function unit()
+    {
+        return $this->belongsTo('App\Unit','unit_id');
+    }
+
     public function countFactory()
     {
         $chemical_count = \App\Discharge::where('chemical_id',$this->id)->count();

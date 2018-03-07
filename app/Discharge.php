@@ -17,5 +17,10 @@ class Discharge extends Model
     {
         return $this->belongsTo('App\RegistYear','regist_year_id');
     }
+    
+    public function chemical()
+    {
+        return $this->belongsTo('App\Chemical','chemical_id');
+    }
 
 }

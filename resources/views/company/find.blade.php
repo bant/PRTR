@@ -27,7 +27,7 @@
 -->
               <tr>
                 <th>{!! Form::label('company_pref', '都道府県') !!}</th>
-                <td>{!! Form::select('company_pref_id', $prefs, 0, ['class' => 'form', 'id' => 'pref_id']) !!}</td>
+                <td>{!! Form::select('company_pref_id', $company_prefs, 0, ['class' => 'form', 'id' => 'pref_id']) !!}</td>
               </tr>
               <tr>
                 <th>{!! Form::label('company_city', '市区町村') !!}</th>

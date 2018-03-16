@@ -43,7 +43,6 @@ class DischargeController extends Controller
         $chemical_name = isset($inputs['chemical_name']) ? $inputs['chemical_name'] : null;
         $regist_year_id = isset($inputs['regist_year_id']) ? $inputs['regist_year_id'] : 0;
 
-
         $prefs = Pref::all()->pluck('name','id');
         $prefs->prepend('全都道府県', 0);    // 最初に追加
         $regist_years = RegistYear::all()->pluck('name', 'id');

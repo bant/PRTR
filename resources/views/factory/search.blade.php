@@ -1,10 +1,8 @@
 @extends('layouts.prtr')
-
 @section('title', '事業所検索 | PRTRデータベース by Tウォッチ')
-
 @section('content')
       <ul id="breadcrumbs">
-        <li><a href="/">PRTR 検索メニュー</a></li>
+        <li><a href="{{url('/')}}">PRTR 検索メニュー</a></li>
         <li>&gt; 事業所検索</li>
       </ul>
       <!-- /#breadcrumbs -->
@@ -14,7 +12,7 @@
         <section>
         <h3>検索条件</h3>
         <!-- 検索フォーム -->
-        {!! Form::open(['id'=>'search']) !!}
+        {!! Form::open(['url' => 'factory/list', 'id'=>'search']) !!}
             <table class="table table-bordered">
             <tbody>
               <tr>

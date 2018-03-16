@@ -40,10 +40,27 @@ class Company extends Model
         return $this->belongsTo('App\RegistYear','regist_year_id');
     }
 
+    public function company_history()
+    {
+        return $this->hasMany('App\CompanyHistory','company_id');
+    }
+
     public function PostNoConvert()
     {
         return "〒".substr($this->post_no, 0, 3) . "-" . substr($this->post_no, 3, 4);
     }
 
+    public function getFactoryCount()
+    {
+        $factory_count = \App\Factory::where('company_id',$this->id)->count();
 
+        return $factory_count;
+    }
+
+    public function getOldName()
+    {
+        $company_history = \App\CompanyHistory::where('company_id', $this->id)->orderBy('regist_year_id', 'desc')->first();
+
+        return ($company_history->name != $this->name) ? $company_history->name : "-";
+    }
 }

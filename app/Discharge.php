@@ -23,4 +23,8 @@ class Discharge extends Model
         return $this->belongsTo('App\Chemical','chemical_id');
     }
 
+    public function factory()
+    {
+        return $this->belongsTo('App\Factory','factory_id');
+    }
 }

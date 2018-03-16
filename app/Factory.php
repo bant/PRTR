@@ -53,17 +53,17 @@ class Factory extends Model
 
     public function factory_business_type()
     {
-        return $this->belongsTo('App\FactoryBusinessType','factory_id','factory_id');
+        return $this->belongsTo('App\FactoryBusinessType', 'id', 'factory_id');
     }
    
     public function factory_history()
     {
-        return $this->belongsTo('App\FactoryHistory','factory_id','factory_id');
+        return $this->belongsTo('App\FactoryHistory','factory_id','id');
     }
 
     public function getBusinessTypeName()
     {
-        $factory_business_type = \App\FactoryBusinessType::where('factory_id', '=',$this->id)->first();
+        $factory_business_type = \App\FactoryBusinessType::where('factory_id', '=', $this->id)->first();
         $business_type = \App\BusinessType::where('id', '=', $factory_business_type->business_type_id)->first();
         return $business_type->name;
     }
@@ -71,7 +71,7 @@ class Factory extends Model
 
     public function getAverageEmployee()
     {
-        $factory_historys = \App\FactoryHistory::where('factory_id', $this->factory_id)->get();
+        $factory_historys = \App\FactoryHistory::where('factory_id', '=',$this->id)->get();
         $employee = 0;
         $count = 0;
 
@@ -86,7 +86,7 @@ class Factory extends Model
 
     public function getAverageReportCount()
     {
-        $factory_historys = \App\FactoryHistory::where('factory_id', $this->factory_id)->get();
+        $factory_historys = \App\FactoryHistory::where('factory_id', '=',$this->id)->get();
         $report_count = 0;
         $count = 0;
 
@@ -104,4 +104,10 @@ class Factory extends Model
         return "〒".substr($this->post_no, 0, 3) . "-" . substr($this->post_no, 3, 4);
     }
 
+    public function getOldName()
+    {
+        $factory_history = \App\FactoryHistory::where('factory_id', $this->id)->orderBy('regist_year_id', 'desc')->first();
+
+        return ($factory_history->name != $this->name) ? $factory_history->name : "-";
+    }
 }

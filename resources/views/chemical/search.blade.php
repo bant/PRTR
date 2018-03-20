@@ -1,5 +1,5 @@
 @extends('layouts.prtr')
-@section('title', '化学物質リスト | PRTRデータベース by Tウォッチ')
+@section('title', '化学物質検索 | PRTRデータベース by Tウォッチ')
 @section('content')
       <!-- #breadcrumbs -->
       <ul id="breadcrumbs">
@@ -7,15 +7,10 @@
         <li>&gt; 化学物質検索</li>
       </ul>
       <!-- /#breadcrumbs -->
-
       <section>
-        <h2>化学物質リスト</h2>
+        <h2>化学物質検索</h2>
         <section>
-          <div class="display-switch">
-            <h3>検索条件</h3>
-            <div class="display">非表示にする</div>
-          </div>
-          <!-- 検索フォーム -->
+          <h3>検索条件</h3>
           <!-- 検索フォーム -->
           {!! Form::open(['url' => 'chemical/list', 'id'=>'search']) !!}
             <table class="table table-bordered">
@@ -72,83 +67,5 @@
           </form>
           <!-- /検索フォーム -->
         </section>
-
-
-        <!-- 検索結果 -->
-        <section>
-          <hr class="split">
-          <h3 class="result">検索結果:化学物質リスト</h3>
-          <table id="resultTable" class="table table-striped table-bordered chemicalList">
-            <caption>該当件数: {{$all_count}}件</caption>
-            <thead>
-              <tr>
-                <th>化学物質名<br>(別名)</th>
-                <th>種別<br>(旧種別)</th>
-                <th>化学物質番号<br>(旧番号)</th>
-                <th>CAS登録番号</th>
-                <th>年平均<br>届出事業所数</th>
-                <th>都道府県別<br>集計</th>
-              </tr>
-            </thead>
-            <tbody>
-            @foreach ($chemicals as $chemical)  
-            <!-- tw_chemical id is {{$chemical->id}} -->
-              <tr>
-                <td>
-                  <a href="/images/pdf/{{$chemical->pdf}}" rel="prettyPhoto" title="{{$chemical->name}}の詳細PDFはこちら">
-                  <a href="/factory/ListByCompany/182">
-                  {{$chemical->name}}</a>
-                  <br>
-                  @if(!empty($chemical->alias))
-                    ({{$chemical->alias}})
-                  @else 
-                    (-)
-                  @endif                    
-                </td>
-                <td>
-                  @if(!empty($chemical->chemical_type->name))
-                    {{$chemical->chemical_type->name}}
-                  @else 
-                    -
-                  @endif
-                  <br>        
-                  @if(!empty($chemical->old_chemical_type->name))
-                    ({{$chemical->old_chemical_type->name}})
-                  @else 
-                    (-)
-                  @endif                  
-                </td>
-                <td>{{$chemical->chemical_no}}
-                  <br>
-                  @if(!empty($chemical->old_chemical_no))
-                    ({{$chemical->old_chemical_no}})
-                  @else 
-                    (-)
-                  @endif                      
-                </td>
-                <td>
-                @if(!empty($chemical->cas))
-                  {{$chemical->cas}}
-                @else 
-                  -
-                @endif 
-                </td>
-                <td>
-                  <a href="#" title="工場別へ">{{$chemical->countFactory()}}</a>
-                </td>
-                <td>
-                  <a href="#" title="都道府県別集計">都道府県別へ
-                  </a>
-                </td>
-              </tr>
-            @endforeach
-            </tbody>
-          </table>
-        </section>
-        <!-- /検索結果 -->
-
-  
-  <!-- ページネーション -->
-  {{ $chemicals->appends($pagement_params)->links() }}
-  <!-- /ページネーション -->
+      </section>
 @endsection

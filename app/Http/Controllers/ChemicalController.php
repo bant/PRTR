@@ -10,34 +10,22 @@ use App\Http\Validators\PrtrValidator;
 
 class ChemicalController extends Controller
 {
-    //
-
-    public function index(Request $request)
-    {
-        $items = Chemical::all();
-//        $query_folder = '';
-        return view('chemical.index', ['items'=>$items]);
-    }
-
-    /**
-     * 
-     */
-    public function find(Request $request)
-    {
-        $name = '';
-        $chemical_types = ChemicalType::all()->pluck('name', 'id');
-        $chemical_types->prepend('選択してください', 0);    // 最初に追加
-        $old_chemical_types = $chemical_types;
-        $chemical_no = 0;
-        $old_chemical_no = 0;
-        $cas = 0;
-        return view('chemical.find', compact('chemical_types'));
-    }
-
     /**
      * 
      */
     public function search(Request $request)
+    {
+        $chemical_types = ChemicalType::all()->pluck('name', 'id');
+        $chemical_types->prepend('選択してください', 0);    // 最初に追加
+        $old_chemical_types = $chemical_types;
+
+        return view('chemical.search', compact('chemical_types', 'old_chemical_types'));
+    }
+
+    /**
+     * 
+     */
+    public function list(Request $request)
     {
         // inputs
         $inputs = $request->all();
@@ -57,14 +45,63 @@ class ChemicalController extends Controller
         ];
 
         // バリデーション
- //       $validation = \Validator::make($inputs, $rules, $messages);
-         $validation = \Validator::make($inputs, $rules, $messages);
-        // エラーの時
 
+        $validation = \Validator::make($inputs, $rules, $messages);
+
+        // エラーの時
         if($validation->fails())
         {
             return redirect()->back()->withErrors($validation->errors())->withInput();
         }
+       
+        $name = isset($inputs['name']) ? $inputs['name'] : null;
+        $chemical_type_id = isset($inputs['chemical_type_id']) ? $inputs['chemical_type_id'] : 0;
+        $old_chemical_type_id = isset($inputs['old_chemical_type_id']) ? $inputs['old_chemical_type_id'] : 0;
+        $chemical_no = isset($inputs['chemical_no']) ? $inputs['chemical_no'] : null;
+        $old_chemical_no = isset($inputs['old_chemical_no']) ? $inputs['old_chemical_no'] : null;
+        $cas = isset($inputs['cas']) ? $inputs['cas'] : null;
+
+        // 問い合わせSQLを構築
+        $query = Chemical::query();
+        if (!is_null($name))
+        {
+            $query->where('name','like', "%$name%");
+        }
+        if ($chemical_type_id != 0)
+        {
+            $query->where('chemical_type_id', '=', $chemical_type_id);
+        }
+        if ($old_chemical_type_id != 0)
+        {
+            $query->where('old_chemical_type_id', '=', $old_chemical_type_id);
+        }
+        if (!is_null($chemical_no))
+        {
+            $query->where('chemical_no','=', $chemical_no);
+        }
+        if (!is_null($old_chemical_no))
+        {
+            $query->where('old_chemical_no','=', $old_chemical_no);
+        }        
+        if (!is_null($cas))
+        {
+            $query->where('cas','=', $cas);
+        }
+        $query->orderBy('id', 'asc');
+        $query->distinct('name');
+        $all_count = $query->count();
+        $chemicals = $query->paginate(10);
+
+        $pagement_params =  $inputs;
+        unset($pagement_params['_token']);
+
+        $chemical_types = ChemicalType::all()->pluck('name', 'id');
+        $chemical_types->prepend('選択してください', 0);    // 最初に追加
+        $old_chemical_types = $chemical_types;
+
+        return view('chemical.list', compact('chemical_types', 'old_chemical_types', 'inputs', 'chemicals','all_count','pagement_params'));
+
+        /*
 
         $name = $inputs['name'];
         $chemical_type_id = $inputs['chemical_type_id'];
@@ -94,7 +131,8 @@ class ChemicalController extends Controller
         })
         ->paginate(10);
 
-        return view('chemical.list', compact('inputs','chemicals'));
 
+        return view('chemical.list', compact('inputs','chemicals'));
+*/
     }
 }

@@ -81,7 +81,12 @@ class Factory extends Model
             $count +=1;     
         }
         
-        return round($employee/$count); 
+        if ($count != 0) {
+            return round($employee/$count);
+        }
+        else {
+            return 0;
+        } 
     }
 
     public function getAverageReportCount()
@@ -96,7 +101,12 @@ class Factory extends Model
             $count +=1;     
         }
         
-        return round($report_count/$count);   
+        if ($count!=0) {
+            return round($report_count/$count);
+        }
+        else {
+            return 0;
+        }
     }
 
     public function PostNoConvert()

@@ -32,6 +32,11 @@
         <td>{!! Form::text('address', null, ['class' => 'form-control']) !!}</td>
       </tr>
       <tr>
+        <th>{!! Form::label('name', '事業所名') !!}</th>
+        <td>{!! Form::text('name', null, ['class' => 'form-control']) !!}</td>
+      </tr>
+<!--
+      <tr>
         <th>{!! Form::label('name1', '事業所名 (その1)') !!}</th>
         <td>{!! Form::text('name1', null, ['class' => 'form-control']) !!}</td>
       </tr>
@@ -51,6 +56,7 @@
         <th>{!! Form::label('name5', '事業所名 (その5)') !!}</th>
         <td>{!! Form::text('name5', null, ['class' => 'form-control']) !!}</td>
       </tr>
+-->
       <tr>
         <th>{!! Form::label('chemical_name', '化学物質名') !!}</th>
         <td>{!! Form::text('chemical_name', null, ['class' => 'form-control']) !!}</td>
@@ -87,45 +93,22 @@
           </tr>
         </thead>
         <tbody>
+        @foreach ($factories as $factory)            
+        <!-- tw_factory is ({{$factory->id}}) -->
           <tr>
-          <td>日本ゼオン株式会社
-            <br>徳山工場
-          </td>
-          <td>420</td>
+            <td>{{$factory->company->name}}<br>{{$factory->name}}</td>
+            <td>{{$factory->getAverageEmployee()}}</td>
           <td>
-            <a href="/images/pdf/00000-002-006.pdf" rel="prettyPhoto" title="アクリルアミドの詳細PDFはこちら" target="_blank">アクリルアミド</a>
+            <a href="/images/pdf/00000-002-006.pdf" rel="prettyPhoto" title="アクリルアミドの詳細PDFはこちら" target="_blank">
+              {{$factory->discharge}}
+            アクリルアミド</a>
             <br>(kg)
           </td>
           <td>4400</td>
           <td>0</td>
           <td>2010年</td>
           </tr>
-          <td>日本ゼオン株式会社
-            <br>徳山工場
-          </td>
-          <td>420</td>
-          <td>
-            <a href="/images/pdf/00000-016-006.pdf" rel="prettyPhoto" title="２－アミノエタノールの詳細PDFはこちら" target="_blank">２－アミノエタノール</a>
-            <br>(kg)
-          </td>
-          <td>20</td>
-          <td>0</td>
-          <td>2010年</td>
-          </tr>
-          <tr>
-          <td>株式会社三井化学分析センター
-            <br>南陽工場
-          </td>
-          <td>299</td>
-          <td>
-            <a href="/images/pdf/00000-016-006.pdf" rel="prettyPhoto" title="２－アミノエタノールの詳細PDFはこちら" target="_blank">２－アミノエタノール</a>
-            <br>(kg)
-          </td>
-          <td>0</td>
-          <td>32</td>
-          <td>2010年</td>
-          </tr>
-          <!-- 10件/ページ リストアップする -->
+        @endforeach
         </tbody>
       </table>
       </section>

@@ -28,12 +28,11 @@ Route::post('company/list', 'CompanyController@list');
 Route::get('company/factories/{id?}', 'CompanyController@factories');
 Route::get('company/report/{id?}', 'CompanyController@report');
 
-Route::get('chemical', 'ChemicalController@index');
-Route::get('chemical/search', 'ChemicalController@find');
-Route::post('chemical/search', 'ChemicalController@search');
+Route::get('chemical/search', 'ChemicalController@search');
+Route::get('chemical/list', 'ChemicalController@list');
+Route::post('chemical/list', 'ChemicalController@list');
 
 Route::get('discharge/search', 'DischargeController@search');
 Route::get('discharge/compare', 'DischargeController@compare');
-
-Route::get('report/ListByFactory/{id?}', 'ReportController@ListByFactory');
+Route::post('discharge/compare', 'DischargeController@compare');
 

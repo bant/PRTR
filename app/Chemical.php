@@ -67,4 +67,6 @@ class Chemical extends Model
         $regist_year_count = \App\RegistYear::all()->count();
         return ceil($chemical_count/$regist_year_count);
     }
+
+    
 }

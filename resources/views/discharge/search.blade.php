@@ -28,6 +28,12 @@
         <td>{!! Form::text('address', null, ['class' => 'form-control']) !!}</td>
       </tr>
       <tr>
+        <th>{!! Form::label('name', '事業所名') !!}</th>
+        <td>{!! Form::text('name', null, ['class' => 'form-control']) !!}</td>
+      </tr>
+
+<!--
+      <tr>
         <th>{!! Form::label('name1', '事業所名 (その1)') !!}</th>
         <td>{!! Form::text('name1', null, ['class' => 'form-control']) !!}</td>
       </tr>
@@ -47,13 +53,14 @@
         <th>{!! Form::label('name5', '事業所名 (その5)') !!}</th>
         <td>{!! Form::text('name5', null, ['class' => 'form-control']) !!}</td>
       </tr>
+-->
       <tr>
         <th>{!! Form::label('chemical_name', '化学物質名') !!}</th>
         <td>{!! Form::text('chemical_name', null, ['class' => 'form-control']) !!}</td>
       </tr>
       <tr>
         <th>{!! Form::label('regist_year', '届出年度') !!}</th>
-        <td>{!! Form::select('regist_year_id', $regist_years, 0, ['class' => 'form', 'id' => 'regist_year_id']) !!}</td>
+        <td>{!! Form::select('regist_year_id', $regist_years, 1, ['class' => 'form', 'id' => 'regist_year_id']) !!}</td>
       </tr>
       </tbody>
       <tfoot>

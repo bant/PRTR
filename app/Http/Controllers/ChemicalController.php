@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Chemical;
 use App\ChemicalType;
+use App\Discharge;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Validators\PrtrValidator;
@@ -11,7 +13,7 @@ use App\Http\Validators\PrtrValidator;
 class ChemicalController extends Controller
 {
     /**
-     * 
+     * 化学物質検索
      */
     public function search(Request $request)
     {
@@ -23,7 +25,7 @@ class ChemicalController extends Controller
     }
 
     /**
-     * 
+     * 化学物質検索結果
      */
     public function list(Request $request)
     {
@@ -100,39 +102,21 @@ class ChemicalController extends Controller
         $old_chemical_types = $chemical_types;
 
         return view('chemical.list', compact('chemical_types', 'old_chemical_types', 'inputs', 'chemicals','all_count','pagement_params'));
+    }
 
-        /*
+    /**
+     * 
+     */
+    public function factories($id)
+    {
+        $chemical = Chemical::find($id);
+        if($chemical == null)
+        {
+            abort('404');
+        }
 
-        $name = $inputs['name'];
-        $chemical_type_id = $inputs['chemical_type_id'];
-        $old_chemical_type_id = $inputs['old_chemical_type_id'];
-        $chemical_no = $inputs['chemical_no'];
-        $old_chemical_no = $inputs['old_chemical_no'];
-        $cas = $inputs['cas'];
+        $discharges = Discharge::where('chemical_id', '=', $chemical->id)->groupBy('regist_year_id')->get();
 
-        $chemicals = Chemical::select('*')
-        ->when($name, function ($query) use ($name) {
-            return $query->where('name','like', '%'.$name.'%');
-        })
-        ->when($chemical_type_id!=0, function ($query) use ($chemical_type_id) {
-            return $query->where('chemical_type_id', $chemical_type_id);
-        })
-        ->when($old_chemical_type_id!=0, function ($query) use ($old_chemical_type_id) {
-            return $query->where('old_chemical_type_id', $old_chemical_type_id);
-        })
-        ->when($chemical_no, function ($query) use ($chemical_no) {
-            return $query->where('chemical_no', $chemical_no);
-        })
-        ->when($old_chemical_no, function ($query) use ($old_chemical_no) {
-            return $query->where('old_chemical_no', $old_chemical_no);
-        })
-        ->when($cas, function ($query) use ($cas) {
-            return $query->Where('cas', $cas);
-        })
-        ->paginate(10);
-
-
-        return view('chemical.list', compact('inputs','chemicals'));
-*/
+        return view('chemical.factories', compact('chemical'));
     }
 }

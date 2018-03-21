@@ -24,7 +24,6 @@ body {
 img {
   border: none;
 }
-
 a{
   text-decoration: none;
 }
@@ -51,7 +50,7 @@ h1 {
 	background-color: #7F6706;
 	color: #FFFFFF;
 	font-size: 1.5em;
-	height: 3.75em;
+	height: 2.75em;
 	line-height: 2.5;
 	margin: 0;
 	padding: 0;
@@ -179,21 +178,29 @@ hr.split {
 	color: #FFFFFF;
 	cursor: pointer;
 }
-#totop {
+
+/* リンクメニュー */
+#menus {
 	position: fixed;
-	bottom: 0.5em;
-	right: 0.5em;
-	background-color: rgba(255,255,255,0.5);
-	border: 0.1em solid #888888;
-	border-radius: 0.4em;
-	color: #888888;
-	font-size: 0.9em;
-	padding: 0.4em 0.1em;
-	text-align: center;
+	bottom: 0.1rem;
+	right: 1rem;
 }
-#totop:hover {
-	background-color: #666666;
-	color: #FFFFFF;
+#arrow {
+	position: absolute;
+	cursor: pointer;
+	color: #CCCCCC;
+	z-index: 1000;
+}
+#linkMenus {
+	font-size: 0.9em;
+	margin: 3rem 0.1rem 0 3rem;
+	overflow: hidden;
+}
+#linkMenus button {
+	background-color: rgba(250,255,255,0.7);
+}
+#linkMenus button:hover {
+	background-color: rgba(135,140,140,0.7);
 }
 
 /* --- 検索結果リスト --- */

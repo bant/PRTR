@@ -31,6 +31,7 @@ Route::get('company/report/{id?}', 'CompanyController@report');
 Route::get('chemical/search', 'ChemicalController@search');
 Route::get('chemical/list', 'ChemicalController@list');
 Route::post('chemical/list', 'ChemicalController@list');
+Route::get('chemical/factories/{id?}', 'ChemicalController@factories');
 
 Route::get('discharge/search', 'DischargeController@search');
 Route::get('discharge/compare', 'DischargeController@compare');

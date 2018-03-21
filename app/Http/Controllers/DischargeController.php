@@ -17,7 +17,7 @@ class DischargeController extends Controller
     public function search(Request $request)
     {
         $prefs = Pref::all()->pluck('name','id');
-        $prefs->prepend('全都道府県', 0);    // 最初に追加
+//        $prefs->prepend('全都道府県', 0);    // 最初に追加
         $regist_years = RegistYear::all()->pluck('name', 'id');
  //       $regist_years->prepend('全年度', 0);
 
@@ -46,7 +46,7 @@ class DischargeController extends Controller
         $regist_year_id = isset($inputs['regist_year_id']) ? $inputs['regist_year_id'] : 0;
 
         $prefs = Pref::all()->pluck('name','id');
-        $prefs->prepend('全都道府県', 0);    // 最初に追加
+//        $prefs->prepend('全都道府県', 0);    // 最初に追加
 
         $regist_years = RegistYear::all()->pluck('name', 'id');
  //       $regist_years->prepend('全年度', 0);

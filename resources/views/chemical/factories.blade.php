@@ -97,12 +97,12 @@
               </tr>
             </thead>
             <tbody>
-            @foreach ($discharges as $discharge)                
+            @foreach ($chemical_infos as $chemical_info)                
             <tr>
-              <td>{{$discharge->regist_year}}</td>
-              <td>18</td>
-              <td>173</td>
-              <td>180</td>
+              <td>{{$chemical_info['YEAR']}}</td>
+              <td>{{$chemical_info['COUNT']}}</td>
+              <td>{{$chemical_info['SUM_EXHAUST']}}</td>
+              <td>{{$chemical_info['SUM_MOVEMENT']}}</td>
             </tr>
             @endforeach
             </tbody>

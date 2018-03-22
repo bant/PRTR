@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Chemical;
 use App\ChemicalType;
 use App\Discharge;
+use App\RegistYear;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -115,8 +116,28 @@ class ChemicalController extends Controller
             abort('404');
         }
 
-        $discharges = Discharge::where('chemical_id', '=', $chemical->id)->groupBy('regist_year_id')->get();
+        // 取扱工場情報を取得
+        $years = RegistYear::all();      
 
-        return view('chemical.factories', compact('chemical'));
+        $chemical_infos = array();
+        $sum_exhaust_infos = array();
+        $sum_movement_infos = array();
+        foreach ($years as $year)
+        {
+            $count = Discharge::where('regist_year_id', '=', $year->id)->count();
+            $all_sum_exhaust = Discharge::sum('sum_exhaust')->where('regist_year_id', '=', $year->id)->get();
+            $all_sum_movement = Discharge::sum('sum_movement')->where('regist_year_id', '=', $year->id)->get();
+
+            $chemical_infos[] = array(
+                'YEAR' => $year->name,
+                'COUNT' => $count,
+                'SUM_EXHAUST' => $all_sum_exhaust,
+                'SUM_MOVEMENT' => $all_sum_movement );
+            
+            $sum_exhaust_infos[$year->id] = $all_sum_exhaust;
+            $sum_movement_infos[$year->id] = $all_sum_movement;
+        }
+
+        return view('chemical.factories', compact('chemical', 'years', 'chemical_infos', 'sum_exhaust_infos', 'sum_movement_infos'));
     }
 }

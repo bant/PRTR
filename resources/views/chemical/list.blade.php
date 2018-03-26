@@ -137,7 +137,7 @@
                   <a href="/chemical/factories/{{$chemical->id}}" title="工場別へ">{{$chemical->countFactory()}}</a>
                 </td>
                 <td>
-                  <a href="#" title="都道府県別集計">都道府県別へ
+                  <a href="/chemical/prefectures/{{$chemical->id}}" title="都道府県別集計">都道府県別へ
                   </a>
                 </td>
               </tr>

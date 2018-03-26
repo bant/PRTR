@@ -1,12 +1,12 @@
 @extends('layouts.prtr')
-@section('title', '化学物質別届出情報 | PRTRデータベース by Tウォッチ')
+@section('title', '都道府県別集計 | PRTRデータベース by Tウォッチ')
 @section('content')
       <!-- #breadcrumbs -->
       <ul id="breadcrumbs">
         <li><a href="{{url('/')}}">PRTR 検索メニュー</a></li>
         <li><a href="{{url('/chemical/search')}}">&gt; 化学物質検索<a></li>
         <li><a href="{{url('/chemical/list')}}">&gt; 化学物質リスト</a></li>
-        <li>&gt; 化学物質別届出情報</li>
+        <li>&gt; 化学物質別都道府県集計</li>
       </ul>
       <!-- /#breadcrumbs -->
 
@@ -115,10 +115,7 @@
           <hr class="split">
           <h3 class="result">化学物質届出情報</h3>
           <!-- 絞り込みフォーム -->
-          {!! Form::open(['url' => "chemical/factories/$chemical->id", 'id'=>'choose']) !!}
-<!--
           <form action="/report/ListByChemicalFactory" method="post" id="choose">
--->
             <label for="sort">並び替え</label>
             <select name="sort" id="sort">
               <option value="" selected="selected">並び順の選択</option>
@@ -127,10 +124,24 @@
               <option value="MOVEMENT_DESC">移動量(降順)</option>
               <option value="MOVEMENT_ASC">移動量(昇順)</option>
             </select>
-
-            {!! Form::label('regist_year', '届出年度') !!}
-            {!! Form::select('regist_year_id', $regist_years, 1, ['class' => 'form', 'id' => 'regist_year_id']) !!}
-
+            <label>届出年度</label>
+            <select name="year_id" id="year_id">
+              <option value="">全年度</option>
+              <option value="2014">2014年</option>
+              <option value="2013">2013年</option>
+              <option value="2012">2012年</option>
+              <option value="2011">2011年</option>
+              <option value="2010">2010年</option>
+              <option value="2009">2009年</option>
+              <option value="2008">2008年</option>
+              <option value="2007">2007年</option>
+              <option value="2006">2006年</option>
+              <option value="2005">2005年</option>
+              <option value="2004">2004年</option>
+              <option value="2003">2003年</option>
+              <option value="2002">2002年</option>
+              <option value="2001">2001年</option>
+            </select>
             <input name="id" id="id" value="94404" type="hidden">&nbsp; 
             <input value="絞り込み" type="submit">
           </form>
@@ -138,12 +149,12 @@
           <!-- 化学物質別届出情報 -->
           <table id="resultTable" class="tablesorter-green table-striped table-bordered chemicalReport">
             <caption>{{$chemical->name}}
-              <span class="plain">(({{$chemical->unit->name}})) | 該当件数: {{$discharge_count}}件
+              <span class="plain">({{$chemical->unit->name}}) | 該当件数: {{$discharge_count}}件
               </span>
             </caption>
             <thead>
               <tr>
-                <th>事業者名<br>事業所名(都道府県)</th>
+                <th>都道府県</th>
                 <th>大気<br>[排出]</th>
                 <th>水域<br>[排出]</th>
                 <th>土壌<br>[排出]</th>
@@ -159,21 +170,18 @@
             <tbody>
             @foreach ($discharges as $discharge)       
             <tr>
-              <td>{{$discharge->factory->company->name}}<br>{{$discharge->factory->name}} ({{$discharge->factory->pref->name}})</td>
-              <td>{{$discharge->atmosphere}}</td>
-              <td>{{$discharge->sea}}</td>
-              <td>{{$discharge->soil}}</td>
-              <td>{{$discharge->reclaimed}}</td>
-              <td>{{$discharge->sewer}}</td>
-              <td>{{$discharge->other}}</td>
-              <td>{{$discharge->sum_exhaust}}</td>
-              <td>{{$discharge->sum_movement}}</td>
+              <td>{{$discharge->pref_id}}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>{{$discharge->total_sum_exhaust}}</td>
+              <td>{{$discharge->total_sum_movement}}</td>
               <td>
-                @if(!empty($discharge->area_name))
-                  河川・海域エリアは、{{$discharge->area_name}}
-                @endif
               </td>
-              <td>{{$discharge->regist_year->name}}</td>
+              <td></td>
             </tr>
             @endforeach
             </tbdoy>

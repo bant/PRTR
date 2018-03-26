@@ -108,7 +108,7 @@ class ChemicalController extends Controller
     /**
      * 
      */
-    public function factories($id)
+    public function factories($id, $select_year=null)
     {
         $chemical = Chemical::find($id);
         if($chemical == null)
@@ -117,27 +117,114 @@ class ChemicalController extends Controller
         }
 
         // 取扱工場情報を取得
-        $years = RegistYear::all();      
+        $years = RegistYear::all();
 
         $chemical_infos = array();
         $sum_exhaust_infos = array();
         $sum_movement_infos = array();
         foreach ($years as $year)
         {
-            $count = Discharge::where('regist_year_id', '=', $year->id)->count();
-            $all_sum_exhaust = Discharge::sum('sum_exhaust')->where('regist_year_id', '=', $year->id)->get();
-            $all_sum_movement = Discharge::sum('sum_movement')->where('regist_year_id', '=', $year->id)->get();
+            $count = Discharge::where('chemical_id', '=', $id)->where('regist_year_id', '=', $year->id)->count();
+            $totals = Discharge::select(DB::raw('SUM(sum_exhaust) AS total_sum_exhaust,SUM(sum_movement) AS total_sum_movement'))
+                                ->where('chemical_id', '=', $id)->where('regist_year_id', '=', $year->id)->get();
+
+            $total_sum_exhaust = round($totals[0]['total_sum_exhaust'], 1);
+            $total_sum_movement = round($totals[0]['total_sum_movement'], 1);
 
             $chemical_infos[] = array(
                 'YEAR' => $year->name,
                 'COUNT' => $count,
-                'SUM_EXHAUST' => $all_sum_exhaust,
-                'SUM_MOVEMENT' => $all_sum_movement );
+                'TOTAL_SUM_EXHAUST' => $total_sum_exhaust,
+                'TOTAL_SUM_MOVEMENT' => $total_sum_movement 
+            );
             
-            $sum_exhaust_infos[$year->id] = $all_sum_exhaust;
-            $sum_movement_infos[$year->id] = $all_sum_movement;
+            $total_exhaust_infos[$year->id] = $total_sum_exhaust;
+            $total_movement_infos[$year->id] = $total_sum_movement;
+        }
+        
+        $discharge_count = Discharge::where('chemical_id', '=', $id)
+            ->when($select_year, function ($query) use ($select_year) {
+                return $query->where('regist_year_id', '=', $select_year);
+            })       
+            ->count();
+        $discharges = Discharge::where('chemical_id', '=', $id)
+            ->when($select_year, function ($query) use ($select_year) {
+                return $query->where('regist_year_id', '=', $select_year);
+            })  
+            ->orderBy('regist_year_id', 'asc')
+            ->paginate(10);
+
+        // 検索用のデータを作成
+        $select_years = RegistYear::all()->pluck('name','id');
+        $select_years->prepend('全年度', 0);    // 最初に追加
+
+
+        return view('chemical.factories', compact('chemical', 'years', 'chemical_infos', 'total_exhaust_infos', 'total_movement_infos', 'select_year', 'discharges', 'discharge_count'));
+    }
+
+    /**
+     * 都道府県別化学物質レポート
+     */
+    public function prefectures($id, $select_year=null)
+    {
+        $chemical = Chemical::find($id);
+        if($chemical == null)
+        {
+            abort('404');
         }
 
-        return view('chemical.factories', compact('chemical', 'years', 'chemical_infos', 'sum_exhaust_infos', 'sum_movement_infos'));
+        // 取扱工場情報を取得
+        $years = RegistYear::all();
+        
+        $chemical_infos = array();
+        $sum_exhaust_infos = array();
+        $sum_movement_infos = array();
+        foreach ($years as $year)
+        {
+            $count = Discharge::select()
+                ->join('ja_factory','ja_factory.id','=','ja_discharge.factory_id')
+                ->where('ja_factory.pref_id', '=', $id)->where('ja_discharge.regist_year_id', '=', $year->id)->count();
+            $totals = Discharge::select(DB::raw('SUM(sum_exhaust) AS total_sum_exhaust,SUM(sum_movement) AS total_sum_movement'))
+                ->join('ja_factory','ja_factory.id','=','ja_discharge.factory_id')
+                ->where('ja_factory.pref_id', '=', $id)->where('ja_discharge.regist_year_id', '=', $year->id)->get();
+
+//            dd($count);
+//            dd($totals);
+
+            $total_sum_exhaust = round($totals[0]['total_sum_exhaust'], 1);
+            $total_sum_movement = round($totals[0]['total_sum_movement'], 1);
+
+            $chemical_infos[] = array(
+                'YEAR' => $year->name,
+                'COUNT' => $count,
+                'TOTAL_SUM_EXHAUST' => $total_sum_exhaust,
+                'TOTAL_SUM_MOVEMENT' => $total_sum_movement 
+            );
+            
+            $total_exhaust_infos[$year->id] = $total_sum_exhaust;
+            $total_movement_infos[$year->id] = $total_sum_movement;
+        }
+
+        $discharge_count = Discharge::select()
+            ->join('ja_factory','ja_factory.id','=','ja_discharge.factory_id')        
+            ->where('ja_discharge.chemical_id', '=', $id)
+            ->when($select_year, function ($query) use ($select_year) {
+                return $query->where('ja_discharge.regist_year_id', '=', $select_year);
+            })       
+            ->count();
+
+        $discharges = Discharge::select(DB::raw('ja_factory.pref_id AS pref_id, SUM(sum_exhaust) AS total_sum_exhaust,SUM(sum_movement) AS total_sum_movement'))
+            ->join('ja_factory','ja_factory.id','=','ja_discharge.factory_id') 
+            ->where('ja_discharge.chemical_id', '=', $id)
+            ->when($select_year, function ($query) use ($select_year) {
+                return $query->where('ja_discharge.regist_year_id', '=', $select_year);
+            })  
+            ->groupBy('ja_factory.pref_id', 'ja_discharge.id')
+ //           ->orderBy('ja_discharge.regist_year_id', 'asc')
+            ->paginate(10);
+
+
+        return view('chemical.prefectures', compact('chemical', 'years', 'chemical_infos', 'total_exhaust_infos', 'total_movement_infos', 'select_year', 'discharges', 'discharge_count'));
     }
+
 }

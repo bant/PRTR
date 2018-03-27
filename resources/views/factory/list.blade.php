@@ -1,7 +1,5 @@
 @extends('layouts.prtr')
-
 @section('title', '事業者リスト | PRTRデータベース by Tウォッチ')
-
 @section('content')
 <div id="contents">
   <!-- /#breadcrumbs -->
@@ -25,24 +23,24 @@
       <table class="table table-bordered">
         <tbody>
           <tr>
-            <th>{!! Form::label('name', '事業者名') !!}</th>
-            <td>{!! Form::text('name', null, ['class' => 'form-control']) !!}</td>
+            <th>{!! Form::label('factory_name', '事業者名') !!}</th>
+            <td>{!! Form::text('factory_name', null, ['class' => 'form-control']) !!}</td>
           </tr>
           <tr>
-            <th>{!! Form::label('business_type', '業種') !!}</th>
-            <td>{!! Form::select('business_type_id', $business_types, 0, ['class' => 'form', 'id' => 'pref_id']) !!}</td>
+            <th>{!! Form::label('factory_business_type', '業種') !!}</th>
+            <td>{!! Form::select('factory_business_type_id', $factory_business_types, 0, ['class' => 'form', 'id' => 'factory_business_type_id']) !!}</td>
           </tr>
           <tr>
-            <th>{!! Form::label('pref', '都道府県') !!}</th>
-            <td>{!! Form::select('pref_id', $prefs, 0, ['class' => 'form', 'id' => 'company_pref_id']) !!}</td>
+            <th>{!! Form::label('factory_pref', '都道府県') !!}</th>
+            <td>{!! Form::select('factory_pref_id', $factory_prefs, 0, ['class' => 'form', 'id' => 'factory_pref_id']) !!}</td>
           </tr>
           <tr>
-            <th>{!! Form::label('city', '市区町村') !!}</th>
-            <td>{!! Form::text('city', null, ['class' => 'form-control']) !!}</td>
+            <th>{!! Form::label('factory_city', '市区町村') !!}</th>
+            <td>{!! Form::text('factory_city', null, ['class' => 'form-control']) !!}</td>
           </tr>
           <tr>
-            <th>{!! Form::label('address', '町域') !!}</th>
-            <td>{!! Form::text('address', null, ['class' => 'form-control']) !!}</td>
+            <th>{!! Form::label('factory_address', '町域') !!}</th>
+            <td>{!! Form::text('factory_address', null, ['class' => 'form-control']) !!}</td>
           </tr>
         </tbody>
         <tfoot>
@@ -78,7 +76,7 @@
             <!-- tw_factory id is ({{$factory->id}}) -->
             <tr>
               <td>{{$factory->company->name}}<br>
-              {{$factory->name}}</a></td>
+              {{$factory->name}}</td>
               <td>{{$factory->factory_business_type->business_type->name}}</td>
               <td>{{$factory->PostNoConvert()}}<br>
               {{$factory->pref->name}}{{$factory->address}}</td>

@@ -21,12 +21,12 @@ class FactoryController extends Controller
      */
     public function search(Request $request)
     {
-        $business_types = BusinessType::all()->pluck('name','id');
-        $business_types->prepend('全業種', 0);    // 最初に追加
-        $prefs = Pref::all()->pluck('name','id');
-        $prefs->prepend('全都道府県', 0);    // 最初に追加
+        $factory_business_types = BusinessType::all()->pluck('name','id');
+        $factory_business_types->prepend('全業種', 0);    // 最初に追加
+        $factory_prefs = Pref::all()->pluck('name','id');
+        $factory_prefs->prepend('全都道府県', 0);    // 最初に追加
     
-        return view('factory.search', compact('business_types','prefs'));
+        return view('factory.search', compact('factory_business_types','factory_prefs'));
     }
 
 
@@ -38,41 +38,42 @@ class FactoryController extends Controller
         // inputs
         $inputs = $request->all();
        
-        $name = isset($inputs['name']) ? $inputs['name'] : null;
-        $business_type_id = isset($inputs['business_type_id']) ? $inputs['business_type_id'] : 0;
-        $pref_id = isset($inputs['pref_id']) ? $inputs['pref_id'] : 0;
-        $city = isset($inputs['city']) ? $inputs['city'] : null;
-        $address = isset($inputs['address']) ? $inputs['address'] : null;
+        $factory_name = isset($inputs['factory_name']) ? $inputs['factory_name'] : null;
+        $factory_business_type_id = isset($inputs['factory_business_type_id']) ? $inputs['factory_business_type_id'] : 0;
+        $factory_pref_id = isset($inputs['factory_pref_id']) ? $inputs['factory_pref_id'] : 0;
+        $factory_city = isset($inputs['factory_city']) ? $inputs['factory_city'] : null;
+        $factory_address = isset($inputs['factory_address']) ? $inputs['factory_address'] : null;
 
-        $business_types = BusinessType::all()->pluck('name','id');
-        $business_types->prepend('全業種', 0);    // 最初に追加
-        $prefs = Pref::all()->pluck('name','id');
-        $prefs->prepend('全都道府県', 0);    // 最初に追加
+        $factory_business_types = BusinessType::all()->pluck('name','id');
+        $factory_business_types->prepend('全業種', 0);      // 最初に追加
+        $factory_prefs = Pref::all()->pluck('name','id');
+        $factory_prefs->prepend('全都道府県', 0);           // 最初に追加
 
         $query = Factory::query();
-        if (!is_null($name))
+        if (!is_null($factory_name))
         {
-            $query->where('name','like', "%$name%");
+            $query->where('name','like', "%$factory_name%");
         }
         
-        if ($business_type_id != '0')
+        if ($factory_business_type_id != '0')
         {
-            $query->where('business_type_id', '=',$business_type_id);
+            $query->join('ja_factory_business_type','ja_factory_business_type.factory_id','=','ja_factory.id');
+            $query->where('business_type_id', '=',$factory_business_type_id);
         }
 
-        if ($pref_id != '0')
+        if ($factory_pref_id != '0')
         {
-            $query->where('pref_id', '=',$pref_id);
+            $query->where('pref_id', '=',$factory_pref_id);
         }
 
-        if (!is_null($city))
+        if (!is_null($factory_city))
         {
-            $query->where('city', 'like', "%$city%");
+            $query->where('city', 'like', "%$factory_city%");
         }
 
-        if (!is_null($address))
+        if (!is_null($factory_address))
         {
-            $query->where('address', 'like', "%$address%");
+            $query->where('address', 'like', "%$factory_address%");
         }
         $query->orderBy('pref_id', 'asc');
         $query->distinct('name');
@@ -82,7 +83,7 @@ class FactoryController extends Controller
         $pagement_params =  $inputs;
         unset($pagement_params['_token']);
 
-        return view('factory.list', compact('business_types', 'prefs', 'factories', 'all_count', 'pagement_params'));
+        return view('factory.list', compact('factory_business_types', 'factory_prefs', 'factories', 'all_count', 'pagement_params'));
     }
 
     /**

@@ -149,7 +149,7 @@
           <!-- 化学物質別届出情報 -->
           <table id="resultTable" class="tablesorter-green table-striped table-bordered chemicalReport">
             <caption>{{$chemical->name}}
-              <span class="plain">({{$chemical->unit->name}}) | 該当件数: {{$discharge_count}}件
+              <span class="plain">({{$chemical->unit->name}}) | 該当件数: {{$pref_discharges_count}}件
               </span>
             </caption>
             <thead>
@@ -163,25 +163,22 @@
                 <th>下水以外<br>[移動]</th>
                 <th>総排出量</th>
                 <th>総移動量</th>
-                <th>備考</th>
                 <th>届出年度</th>
               </tr>
             </thead>
             <tbody>
-            @foreach ($discharges as $discharge)       
+            @foreach ($pref_discharges as $pref_discharge)       
             <tr>
-              <td>{{$discharge->pref_id}}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>{{$discharge->total_sum_exhaust}}</td>
-              <td>{{$discharge->total_sum_movement}}</td>
-              <td>
-              </td>
-              <td></td>
+              <td>{{$pref_discharge['PREF']}}</td>
+              <td>{{$pref_discharge['TOTAL_ATMOSPHERE']}}</td>
+              <td>{{$pref_discharge['TOTAL_SEA']}}</td>
+              <td>{{$pref_discharge['TOTAL_SOIL']}}</td>
+              <td>{{$pref_discharge['TOTAL_RECLAIMED']}}</td>
+              <td>{{$pref_discharge['TOTAL_SEWER']}}</td>
+              <td>{{$pref_discharge['TOTAL_OTHER']}}</td>
+              <td>{{$pref_discharge['TOTAL_EXHAUST']}}</td>
+              <td>{{$pref_discharge['TOTAL_SUM_MOVEMENT']}}</td>
+              <td>{{$pref_discharge['REGIST_YEAR']}}</td>
             </tr>
             @endforeach
             </tbdoy>

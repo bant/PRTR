@@ -19,7 +19,7 @@ Route::get('/', function () {
 Route::get('factory/search', 'FactoryController@search');
 Route::get('factory/list', 'FactoryController@list');
 Route::post('factory/list', 'FactoryController@list');
-Route::get('factory/report/{id?}', 'FactoryController@report');    // 以前の report/ListByFactory
+Route::get('factory/report/{id}', 'FactoryController@report');    // 以前の report/ListByFactory
 
 // 事業者(会社)検索
 Route::get('company/search', 'CompanyController@search');

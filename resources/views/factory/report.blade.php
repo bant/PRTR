@@ -100,7 +100,7 @@
         <h3 class="result">化学物質届出情報</h3>
 
         <!-- 絞り込みフォーム -->
-        {!! Form::open(['id'=>'choose']) !!}
+        {!! Form::open(['url' => 'factory/report', 'method'=>'get','id'=>'choose']) !!}
           {!! Form::label('chemical_name', '化学物質名') !!}
           {!! Form::text('chemical_name', null) !!}&nbsp;
           {!! Form::label('year_id', '届出年度') !!}
@@ -151,8 +151,11 @@
              <td>{{$discharge->other}}</td>
              <td>{{$discharge->sum_exhaust}}</td>
              <td>{{$discharge->sum_movement}}</td>
-             <td>データベースには、このデータは登録されていない。<br>
-             表示は無理です。</td>
+             <td>
+             @if(!empty($discharge->area_name))
+                  河川・海域エリアは、{{$discharge->area_name}}
+             @endif
+             </td>
              <td>{{$discharge->regist_year->name}}</td>
         </tr>
         <!--/ tw_discharge's id is {{$discharge->id}} -->

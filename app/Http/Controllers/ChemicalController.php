@@ -107,10 +107,22 @@ class ChemicalController extends Controller
     }
 
     /**
-     * 
+     * 化学物質工場情報
      */
-    public function factories($id, $sort_op, $select_year=null)
+    public function factories(Request $request)
     {
+        // inputs
+        $inputs = $request->all();
+
+        $id = isset($inputs['id']) ? $inputs['id'] : 0;     // 化学物質番号
+        $sort = isset($inputs['sort']) ? $inputs['sort'] : 1;
+        $regist_year = isset($inputs['regist_year']) ? $inputs['regist_year'] : 0;
+
+        // 化学物質idが設定されてない場合アボート
+        if ($id == 0)
+        {
+            abort('404');
+        }
         $chemical = Chemical::find($id);
         if($chemical == null)
         {
@@ -143,37 +155,72 @@ class ChemicalController extends Controller
             $total_movement_infos[$year->id] = $total_sum_movement;
         }
         
-        $discharge_count = Discharge::where('chemical_id', '=', $id)
-            ->when($select_year, function ($query) use ($select_year) {
-                return $query->where('regist_year_id', '=', $select_year);
-            })       
-            ->count();
-        $discharges = Discharge::where('chemical_id', '=', $id)
-            ->when($select_year, function ($query) use ($select_year) {
-                return $query->where('regist_year_id', '=', $select_year);
-            })
-            
-            ->orderBy('regist_year_id', 'asc')
-            ->paginate(10);
+        $query = Discharge::query();
+        $query->where('chemical_id', '=', $id);
+        if ($regist_year!=0) 
+        {
+            $query->where('regist_year_id', '=', $regist_year);
+        }
+
+        $discharge_count = $query->count();
+
+        switch($sort)
+        {
+            case 1:
+                $query->orderBy('sum_exhaust', 'DESC');
+                break;
+            case 2:
+                $query->orderBy('sum_exhaust', 'ASC');
+                break;
+            case 3:
+                $query->orderBy('sum_movement', 'DESC');
+                break;
+            case 4:
+                $query->orderBy('sum_movement', 'ASC');
+                break;
+        }
+        $query->orderBy('regist_year_id', 'asc');
+
+        $discharges = $query->paginate(10);
 
         // 検索用のデータを作成
-        $select_years = RegistYear::all()->pluck('name','id');
-        $select_years->prepend('全年度', 0);    // 最初に追加
+        $regist_years = RegistYear::all()->pluck('name','id');
+        $regist_years->prepend('全年度', 0);    // 最初に追加
 
+        $pagement_params =  $inputs;
+        unset($pagement_params['_token']);
 
-        return view('chemical.factories', compact('chemical', 'years', 'chemical_infos', 'total_exhaust_infos', 'total_movement_infos', 'select_year', 'discharges', 'discharge_count'));
+        return view('chemical.factories', compact('chemical', 'years', 'chemical_infos', 'total_exhaust_infos', 'total_movement_infos', 'regist_years', 'discharges', 'discharge_count', 'pagement_params'));
     }
 
     /**
      * 都道府県別化学物質レポート
      */
-    public function prefectures($id, $sort_op, $select_year=null)
+    public function prefectures(Request $request)
     {
+        // inputs
+        $inputs = $request->all();
+
+        $id = isset($inputs['id']) ? $inputs['id'] : 0;     // 化学物質番号
+        $sort = isset($inputs['sort']) ? $inputs['sort'] : 1;
+        $regist_year = isset($inputs['regist_year']) ? $inputs['regist_year'] : 0;
+
+        // 化学物質idが設定されてない場合アボート
+        if ($id == 0)
+        {
+            abort('404');
+        }
         $chemical = Chemical::find($id);
         if($chemical == null)
         {
             abort('404');
         }
+
+        if ($regist_year==0)
+        {
+            $regist_year = RegistYear::max('id');
+        }
+
 
         // 取扱工場情報を取得
         $years = RegistYear::all();
@@ -207,8 +254,8 @@ class ChemicalController extends Controller
         $discharge_count = Discharge::select()
             ->join('ja_factory','ja_factory.id','=','ja_discharge.factory_id')        
             ->where('ja_discharge.chemical_id', '=', $id)
-            ->when($select_year, function ($query) use ($select_year) {
-                return $query->where('ja_discharge.regist_year_id', '=', $select_year);
+            ->when($regist_year, function ($query) use ($regist_year) {
+                return $query->where('ja_discharge.regist_year_id', '=', $regist_year);
             })       
             ->count();
 
@@ -227,12 +274,22 @@ class ChemicalController extends Controller
                 "))
             ->join('ja_factory','ja_factory.id','=','ja_discharge.factory_id') 
             ->where('ja_discharge.chemical_id', '=', $id)
-            ->when($select_year, function ($query) use ($select_year) {
-                return $query->where('ja_discharge.regist_year_id', '=', $select_year);
+            ->when($regist_year, function ($query) use ($regist_year) {
+                return $query->where('ja_discharge.regist_year_id', '=', $regist_year);
             })  
             ->groupBy('ja_factory.pref_id', 'ja_discharge.regist_year_id')
-            ->orderBy('total_sum_movement', 'desc')
-//            ->orderBy('ja_discharge.regist_year_id', 'asc')
+            ->when($sort==1, function ($query) use ($sort) {
+                return $query->orderBy('total_sum_exhaust', 'DESC');
+            })
+            ->when($sort==2, function ($query) use ($sort) {
+                return $query->orderBy('total_sum_exhaust', 'ASC');
+            })              
+            ->when($sort==3, function ($query) use ($sort) {
+                return $query->orderBy('total_sum_movement', 'DESC');
+            })
+            ->when($sort==4, function ($query) use ($sort) {
+                return $query->orderBy('total_sum_movement', 'ASC');
+            })
             ->get();
 
         $pref_discharges = array();
@@ -252,17 +309,6 @@ class ChemicalController extends Controller
             $total_sum_exhaust = round($table_total['total_sum_exhaust'], 1);
             $total_sum_movement = round($table_total['total_sum_movement'], 1);
 
-
-/*
-            $total_atmosphere = (double)$table_total['total_atmosphere'];
-            $total_sea = (double)$table_total['total_sea'];
-            $total_soil = (double)$table_total['total_soil'];
-            $total_reclaimed = (double)$table_total['total_reclaimed'];
-            $total_sewer = (double)$table_total['total_sewer'];
-            $total_other = (double)$table_total['total_other'];
-            $total_sum_exhaust = (double)$table_total['total_sum_exhaust'];
-            $total_sum_movement = (double)$table_total['total_sum_movement'];
-*/
             if ($total_atmosphere == 0.0 
                 and $total_sea == 0.0 
                 and $total_soil == 0.0 
@@ -289,7 +335,11 @@ class ChemicalController extends Controller
             $pref_discharges_count += 1;
         }
 
-        return view('chemical.prefectures', compact('chemical', 'years', 'chemical_infos', 'total_exhaust_infos', 'total_movement_infos', 'select_year', 'pref_discharges', 'pref_discharges_count'));
+        // 検索用のデータを作成
+        $regist_years = RegistYear::all()->pluck('name','id');
+        $regist_years->prepend('最新年度', 0);    // 最初に追加
+
+        return view('chemical.prefectures', compact('chemical', 'years', 'chemical_infos', 'total_exhaust_infos', 'total_movement_infos', 'regist_years', 'pref_discharges', 'pref_discharges_count'));
     }
 
 }

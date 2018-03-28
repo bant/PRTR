@@ -115,36 +115,18 @@
           <hr class="split">
           <h3 class="result">化学物質届出情報</h3>
           <!-- 絞り込みフォーム -->
-          <form action="/report/ListByChemicalFactory" method="post" id="choose">
-            <label for="sort">並び替え</label>
-            <select name="sort" id="sort">
-              <option value="" selected="selected">並び順の選択</option>
-              <option value="EXHAUST_DESC">排出量(降順)</option>
-              <option value="EXHAUST_ASC">排出量(昇順)</option>
-              <option value="MOVEMENT_DESC">移動量(降順)</option>
-              <option value="MOVEMENT_ASC">移動量(昇順)</option>
-            </select>
-            <label>届出年度</label>
-            <select name="year_id" id="year_id">
-              <option value="">全年度</option>
-              <option value="2014">2014年</option>
-              <option value="2013">2013年</option>
-              <option value="2012">2012年</option>
-              <option value="2011">2011年</option>
-              <option value="2010">2010年</option>
-              <option value="2009">2009年</option>
-              <option value="2008">2008年</option>
-              <option value="2007">2007年</option>
-              <option value="2006">2006年</option>
-              <option value="2005">2005年</option>
-              <option value="2004">2004年</option>
-              <option value="2003">2003年</option>
-              <option value="2002">2002年</option>
-              <option value="2001">2001年</option>
-            </select>
-            <input name="id" id="id" value="94404" type="hidden">&nbsp; 
-            <input value="絞り込み" type="submit">
-          </form>
+          {!! Form::open(['url' => "chemical/prefectures", 'method'=>'get', 'id'=>'choose']) !!}
+            {!! Form::hidden('id', $chemical->id) !!}
+            {!! Form::label('sort', '並び替え') !!}
+            {!! Form::select('sort', [ 
+                  '1' => '排出量(降順)',
+                  '2' => '排出量(昇順)',
+                  '3' => '移動量(降順)',
+                  '4' => '移動量(昇順)'], 1) !!}
+            {!! Form::label('regist_year', '届出年度') !!}
+            {!! Form::select('regist_year', $regist_years, 1, ['class' => 'form', 'id' => 'regist_year']) !!}
+            {!! Form::submit('検 索', ['class' => 'btn btn-warning']) !!}
+          {{ Form::close() }}
           <!-- /絞り込みフォーム -->
           <!-- 化学物質別届出情報 -->
           <table id="resultTable" class="tablesorter-green table-striped table-bordered chemicalReport">

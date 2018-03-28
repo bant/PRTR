@@ -95,9 +95,7 @@
             <!-- tw_chemical id is {{$chemical->id}} -->
               <tr>
                 <td>
-                  <a href="/images/pdf/{{$chemical->pdf}}" rel="prettyPhoto" title="{{$chemical->name}}の詳細PDFはこちら">
-                  <a href="/factory/ListByCompany/182">
-                  {{$chemical->name}}</a>
+                  <a href="/images/pdf/{{$chemical->pdf}}" rel="prettyPhoto" title="{{$chemical->name}}の詳細PDFはこちら">{{$chemical->name}}</a>
                   <br>
                   @if(!empty($chemical->alias))
                     ({{$chemical->alias}})
@@ -134,10 +132,10 @@
                 @endif 
                 </td>
                 <td>
-                  <a href="/chemical/factories/{{$chemical->id}}" title="工場別へ">{{$chemical->countFactory()}}</a>
+                  <a href="/chemical/factories?id={{$chemical->id}}&sort=1" title="工場別へ">{{$chemical->countFactory()}}</a>
                 </td>
                 <td>
-                  <a href="/chemical/prefectures/{{$chemical->id}}/MOVEMENT_DESC" title="都道府県別集計">都道府県別へ
+                  <a href="/chemical/prefectures?id={{$chemical->id}}&sort=1" title="都道府県別集計">都道府県別へ
                   </a>
                 </td>
               </tr>

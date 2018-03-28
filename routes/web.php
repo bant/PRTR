@@ -33,8 +33,10 @@ Route::get('company/factory_report', 'CompanyController@factory_report');
 Route::get('chemical/search', 'ChemicalController@search');
 Route::get('chemical/list', 'ChemicalController@list');
 Route::post('chemical/list', 'ChemicalController@list');
-Route::get('chemical/factories/{id}/{select_year?}', 'ChemicalController@factories');
-Route::get('chemical/prefectures/{id}/{select_year?}', 'ChemicalController@prefectures');
+Route::get('chemical/factories', 'ChemicalController@factories');
+Route::get('chemical/prefectures', 'ChemicalController@prefectures');
+//Route::get('chemical/factories/{id}/{select_year?}', 'ChemicalController@factories');
+//Route::get('chemical/prefectures/{id}/{select_year?}', 'ChemicalController@prefectures');
 
 Route::get('discharge/search', 'DischargeController@search');
 Route::get('discharge/compare', 'DischargeController@compare');

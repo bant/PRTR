@@ -20,50 +20,28 @@
       <table class="table table-bordered">
       <tbody>
       <tr>
-        <th>{!! Form::label('pref', '都道府県') !!}</th>
-        <td>{!! Form::select('pref_id', $prefs, 0, ['class' => 'form', 'id' => 'pref_id']) !!}</td>
+        <th>{!! Form::label('discharge_pref', '都道府県') !!}</th>
+        <td>{!! Form::select('discharge_pref_id', $prefs, 0, ['class' => 'form', 'id' => 'discharge_pref_id']) !!}</td>
       </tr>
       <tr>
-        <th>{!! Form::label('city', '市区町村') !!}</th>
-        <td>{!! Form::text('city', null, ['class' => 'form-control']) !!}</td>
+        <th>{!! Form::label('discharge_city', '市区町村') !!}</th>
+        <td>{!! Form::text('discharge_city', null, ['class' => 'form-control']) !!}</td>
       </tr>
       <tr>
-        <th>{!! Form::label('address', '町域') !!}</th>
-        <td>{!! Form::text('address', null, ['class' => 'form-control']) !!}</td>
+        <th>{!! Form::label('discharge_address', '町域') !!}</th>
+        <td>{!! Form::text('discharge_address', null, ['class' => 'form-control']) !!}</td>
       </tr>
       <tr>
-        <th>{!! Form::label('name', '事業所名') !!}</th>
-        <td>{!! Form::text('name', null, ['class' => 'form-control']) !!}</td>
+        <th>{!! Form::label('discharge_factory_name', '事業所名') !!}</th>
+        <td>{!! Form::text('discharge_factory_name', null, ['class' => 'form-control']) !!}</td>
       </tr>
-<!--
-      <tr>
-        <th>{!! Form::label('name1', '事業所名 (その1)') !!}</th>
-        <td>{!! Form::text('name1', null, ['class' => 'form-control']) !!}</td>
-      </tr>
-      <tr>
-        <th>{!! Form::label('name2', '事業所名 (その2)') !!}</th>
-        <td>{!! Form::text('name2', null, ['class' => 'form-control']) !!}</td>
-      </tr>
-      <tr>
-        <th>{!! Form::label('name3', '事業所名 (その3)') !!}</th>
-        <td>{!! Form::text('name3', null, ['class' => 'form-control']) !!}</td>
-      </tr>
-      <tr>
-        <th>{!! Form::label('name4', '事業所名 (その4)') !!}</th>
-        <td>{!! Form::text('name4', null, ['class' => 'form-control']) !!}</td>
-      </tr>
-      <tr>
-        <th>{!! Form::label('name5', '事業所名 (その5)') !!}</th>
-        <td>{!! Form::text('name5', null, ['class' => 'form-control']) !!}</td>
-      </tr>
--->
       <tr>
         <th>{!! Form::label('chemical_name', '化学物質名') !!}</th>
         <td>{!! Form::text('chemical_name', null, ['class' => 'form-control']) !!}</td>
       </tr>
       <tr>
         <th>{!! Form::label('regist_year', '届出年度') !!}</th>
-        <td>{!! Form::select('regist_year_id', $regist_years, 0, ['class' => 'form', 'id' => 'regist_year_id']) !!}</td>
+        <td>{!! Form::select('regist_year_id', $regist_years, 1, ['class' => 'form', 'id' => 'regist_year_id']) !!}</td>
       </tr>
       </tbody>
       <tfoot>
@@ -76,12 +54,12 @@
     </table>
     {{ Form::close() }}
     <!-- /検索フォーム -->
-      <!-- 工場検索結果 -->
+    <!-- 工場検索結果 -->
       <section>
       <hr class="split">
       <h3 class="result">比較結果リスト</h3>
       <table id="resultTable" class="table table-striped table-bordered compareList">
-        <caption>該当件数: ToDo 件</caption>
+        <caption>該当件数: {{$factory_count}} 件</caption>
         <thead>
           <tr>
           <th>事業者名<br>事業所名</th>
@@ -114,4 +92,9 @@
       </section>
       <!-- /工場検索結果 -->
   </section>
+
+  
+  <!-- ページネーション -->
+  {{ $factories->appends($pagement_params)->links() }}
+  <!-- /ページネーション -->
 @endsection

@@ -17,9 +17,9 @@ class DischargeController extends Controller
     public function search(Request $request)
     {
         $prefs = Pref::all()->pluck('name','id');
-//        $prefs->prepend('全都道府県', 0);    // 最初に追加
+        $prefs->prepend('全都道府県', 0);    // 最初に追加
         $regist_years = RegistYear::all()->pluck('name', 'id');
- //       $regist_years->prepend('全年度', 0);
+        $regist_years->prepend('最新年度', 0);
 
         return view('discharge.search', compact('prefs', 'regist_years'));
     }
@@ -32,26 +32,23 @@ class DischargeController extends Controller
         // inputs
         $inputs = $request->all();
 
-        $pref_id = isset($inputs['pref_id']) ? $inputs['pref_id'] : 0;
-        $city = isset($inputs['city']) ? $inputs['city'] : null;
-        $address = isset($inputs['address']) ? $inputs['address'] : null;
-        $name = isset($inputs['name']) ? $inputs['name'] : null;
-/*
-        $name2 = isset($inputs['name2']) ? $inputs['name2'] : null;
-        $name3 = isset($inputs['name3']) ? $inputs['name3'] : null;
-        $name4 = isset($inputs['name4']) ? $inputs['name4'] : null;
-        $name5 = isset($inputs['name5']) ? $inputs['name5'] : null;
-*/
+        $pref_id = isset($inputs['discharge_pref_id']) ? $inputs['discharge_pref_id'] : 0;
+        $city = isset($inputs['discharge_city']) ? $inputs['discharge_city'] : null;
+        $address = isset($inputs['discharge_address']) ? $inputs['discharge_address'] : null;
+        $name = isset($inputs['discharge_factroy_name']) ? $inputs['discharge_factory_name'] : null;
         $chemical_name = isset($inputs['chemical_name']) ? $inputs['chemical_name'] : null;
         $regist_year_id = isset($inputs['regist_year_id']) ? $inputs['regist_year_id'] : 0;
 
         $prefs = Pref::all()->pluck('name','id');
-//        $prefs->prepend('全都道府県', 0);    // 最初に追加
-
+        $prefs->prepend('全都道府県', 0);    // 最初に追加
         $regist_years = RegistYear::all()->pluck('name', 'id');
- //       $regist_years->prepend('全年度', 0);
+        $regist_years->prepend('最新年度', 0);
 
         $query = Factory::join('ja_discharge','ja_factory.id','=','ja_discharge.factory_id')
+        ->when(!is_null($chemical_name), function ($query) use ($chemical_name) {
+            $query->join('ja_chemical','ja_chemical.id','=','ja_discharge.chemical_id');
+            return $query->where('ja_chemical.name','like', "%$chemical_name%");
+        })
         ->when(!is_null($name), function ($query) use ($name) {
             return $query->where('ja_factory.name','like', "%$name%");
         })
@@ -64,41 +61,17 @@ class DischargeController extends Controller
         ->when(!is_null($address), function ($query) use ($address) {
             return $query->where('ja_factory.address','like', "'%$address%");
         })
-        ->orderBy('ja_discharge.regist_year_id', 'asc')
-        ->distinct('ja_factory.name');
+        ->when($regist_year_id != '0', function ($query) use ($regist_year_id) {
+            return $query->where('ja_factory.regist_year_id', '=', $regist_year_id);
+        });
         
-        $all_count = $query->count();
-        $factories = $query->paginate(10);
+        $factory_count = $query->count();
 
+        $factories = $query->orderBy('ja_discharge.regist_year_id', 'asc')->distinct('ja_factory.name')->paginate(10);
 
+        $pagement_params =  $inputs;
+        unset($pagement_params['_token']);
 
- /*
-        $query = Factory::query();
-        if (!is_null($name))
-        {
-            $query->where('name','like', "%$name%");
-        }
-
-        if ($pref_id != '0')
-        {
-            $query->where('pref_id', '=',$pref_id);
-        }
-
-        if (!is_null($city))
-        {
-            $query->where('city', 'like', "%$city%");
-        }
-
-        if (!is_null($address))
-        {
-            $query->where('address', 'like', "%$address%");
-        }
-        $query->orderBy('pref_id', 'asc');
-        $query->distinct('name');
-        $all_count = $query->count();
-        $factories = $query->paginate(10);
-*/
-
-        return view('discharge.compare', compact('prefs', 'regist_years', 'factories'));
+        return view('discharge.compare', compact('prefs', 'regist_years', 'factory_count', 'factories', 'pagement_params'));
     }
 }

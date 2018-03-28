@@ -12,24 +12,24 @@
         <section>
         <h3>検索条件</h3>
         <!-- 検索フォーム -->
-        {!! Form::open(['url' => 'company/list', 'id'=>'search']) !!}
+        {!! Form::open(['url' => 'company/list', 'method'=>'post', 'id'=>'search']) !!}
             <table class="table table-bordered">
             <tbody>
               <tr>
-                <th>{!! Form::label('name', '事業者名') !!}</th>
-                <td>{!! Form::text('name', null, ['class' => 'form-control']) !!}</td>
+                <th>{!! Form::label('company_name', '事業者名') !!}</th>
+                <td>{!! Form::text('company_name', null, ['class' => 'form-control']) !!}</td>
               </tr>
               <tr>
-                <th>{!! Form::label('pref', '都道府県') !!}</th>
-                <td>{!! Form::select('pref_id', $prefs, 0, ['class' => 'form', 'id' => 'pref_id']) !!}</td>
+                <th>{!! Form::label('company_pref', '都道府県') !!}</th>
+                <td>{!! Form::select('company_pref_id', $company_prefs, 0, ['class' => 'form', 'id' => 'company_pref_id']) !!}</td>
               </tr>
               <tr>
-                <th>{!! Form::label('city', '市区町村') !!}</th>
-                <td>{!! Form::text('city', null, ['class' => 'form-control']) !!}</td>
+                <th>{!! Form::label('company_city', '市区町村') !!}</th>
+                <td>{!! Form::text('company_city', null, ['class' => 'form-control']) !!}</td>
               </tr>
               <tr>
-                <th>{!! Form::label('address', '町域') !!}</th>
-                <td>{!! Form::text('address', null, ['class' => 'form-control']) !!}</td>
+                <th>{!! Form::label('company_address', '町域') !!}</th>
+                <td>{!! Form::text('company_address', null, ['class' => 'form-control']) !!}</td>
               </tr>
             </tbody>
             <tfoot>

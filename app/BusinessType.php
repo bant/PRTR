@@ -27,7 +27,7 @@ class BusinessType extends Model
      */
     public function getNameAttribute($value)
     {
-        return mb_strimwidth($value, 0, 24, "..");
+        return mb_strimwidth($value, 0, 36, "..");
     }
 
 }

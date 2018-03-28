@@ -101,11 +101,11 @@
 
         <!-- 絞り込みフォーム -->
         {!! Form::open(['url' => 'factory/report', 'method'=>'get','id'=>'choose']) !!}
+          {!! Form::hidden('id', $factory->id) !!}
           {!! Form::label('chemical_name', '化学物質名') !!}
           {!! Form::text('chemical_name', null) !!}&nbsp;
-          {!! Form::label('year_id', '届出年度') !!}
-          {!! Form::select('year_id', $years, 0, ['class' => 'form', 'id' => 'year_id']) !!}         
-          {!! Form::hidden('id', $factory->id) !!}
+          {!! Form::label('regist_year', '届出年度') !!}
+          {!! Form::select('regist_year', $years, 0, ['class' => 'form', 'id' => 'regist_year']) !!}         
           {!! Form::submit('検 索', ['class' => 'btn btn-warning']) !!}
         {{ Form::close() }}
         <!-- /絞り込みフォーム -->
@@ -115,20 +115,13 @@
           <caption>該当件数: {{$discharges_count}}</caption>
           <thead>
             <tr>
-              <th>化学物質名<br>
-              [単位]</th>
-              <th>大気<br>
-              [排出]</th>
-              <th>水域<br>
-              [排出]</th>
-              <th>土壌<br>
-              [排出]</th>
-              <th>埋立<br>
-              [排出]</th>
-              <th>下水<br>
-              [移動]</th>
-              <th>下水以外<br>
-              [移動]</th>
+              <th>化学物質名<br>[単位]</th>
+              <th>大気<br>[排出]</th>
+              <th>水域<br>[排出]</th>
+              <th>土壌<br>[排出]</th>
+              <th>埋立<br>[排出]</th>
+              <th>下水<br>[移動]</th>
+              <th>下水以外<br>[移動]</th>
               <th>総排出量</th>
               <th>総移動量</th>
               <th>備考</th>
@@ -171,5 +164,9 @@
 
 
 </div><!--- /#contents --->
+
+  <!-- ページネーション -->
+  {{ $discharges->appends($pagement_params)->links() }}
+  <!-- /ページネーション -->
 @endsection
 

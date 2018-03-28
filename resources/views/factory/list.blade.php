@@ -63,8 +63,7 @@
         <caption>該当件数: {{$all_count}}件</caption>
         <thead>
           <tr>
-            <th>事業者名<br>
-                事業所名(旧事業所名)</th>
+            <th>事業者名<br>事業所名(旧事業所名)</th>
             <th>業種</th>
             <th>所在地</th>
             <th>従業員数</th>
@@ -81,7 +80,7 @@
               <td>{{$factory->PostNoConvert()}}<br>
               {{$factory->pref->name}}{{$factory->address}}</td>
               <td>{{$factory->getAverageEmployee()}}</td>
-              <td><a href="/factory/report/{{$factory->id}}">{{$factory->getAverageReportCount()}}</a></td>
+              <td><a href="/factory/report?id={{$factory->id}}">{{$factory->getAverageReportCount()}}</a></td>
             </tr>
             @endforeach
           </tbody>

@@ -95,18 +95,18 @@
       <hr class="split">
       <h3 class="result">化学物質届出情報</h3>
       <!-- 絞り込みフォーム -->
-      {!! Form::open(['url' => 'company/report', 'id'=>'choose']) !!}
+      {!! Form::open(['url' => 'company/factory_report', 'method'=>'get','id'=>'choose']) !!}
+        {!! Form::hidden('id', $factory->id) !!}
         {!! Form::label('chemical_name', '化学物質名') !!}
         {!! Form::text('chemical_name', null) !!}&nbsp;
-        {!! Form::label('year_id', '届出年度') !!}
-        {!! Form::select('year_id', $years, 0, ['class' => 'form', 'id' => 'year_id']) !!}         
-        {!! Form::hidden('id', $factory->id) !!}
+        {!! Form::label('regist_year', '届出年度') !!}
+        {!! Form::select('regist_year', $years, 0, ['class' => 'form', 'id' => 'regist_year']) !!}         
         {!! Form::submit('検 索', ['class' => 'btn btn-warning']) !!}
       {{ Form::close() }}
       <!-- /絞り込みフォーム -->
       <!-- 化学物質届出情報 -->
       <table id="resultTable" class="tablesorter-green table-striped table-bordered chemicalReport">
-        <caption>該当件数: ToDO件</caption>
+        <caption>該当件数: {{$discharge_count}}件</caption>
         <thead>
           <tr>
             <th>化学物質名<br>[単位]</th>
@@ -126,9 +126,9 @@
         @foreach ($discharges as $discharge) 
         <!-- tw_discharge's id is 2854945 -->
             <tr>
-              <td>{{$discharge->chemical->name}}<br>({{$discharge->chemical->unit->name}})
-                <a href="/images/pdf/00000-179-006.jpg" rel="prettyPhoto" title="ダイオキシン類の詳細PDFはこちら">ダイオキシン類</a>
-                <br>(mg-TEQ)
+              <td>
+              <a href="/images/pdf/{{$discharge->chemical->pdf}}" rel="prettyPhoto" title="{{$discharge->chemical->name}}の詳細PDFはこちら">
+              {{$discharge->chemical->name}}</a><br>({{$discharge->chemical->unit->name}})
               </td>
               <td>{{$discharge->atmosphere}}</td>
               <td>{{$discharge->sea}}</td>
@@ -138,8 +138,10 @@
               <td>{{$discharge->other}}</td>
               <td>{{$discharge->sum_exhaust}}</td>
               <td>{{$discharge->sum_movement}}</td>
-              <td>データがないので出せない
-                <br>処理中にデータを落としている!!!
+              <td>
+              @if(!empty($discharge->area_name))
+                河川・海域エリアは、{{$discharge->area_name}}
+              @endif
               </td>
               <td>{{$discharge->regist_year->name}}</td>
             </tr>
@@ -152,5 +154,6 @@
   </section>
   
   <!-- ページネーション -->
+    {{ $discharges->appends($pagement_params)->links() }}
   <!-- /ページネーション -->
 @endsection

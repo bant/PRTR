@@ -44,7 +44,7 @@
       <hr class="split">
       <h3 class="result">検索結果:事業所リスト</h3>
       <table id="resultTable" class="table table-bordered table-striped factoryList" summary="所属工場リスト">
-      <caption>該当件数: 16件</caption>
+      <caption>該当件数: {{$factories_count}}件</caption>
       <thead>
       <tr>
         <th>事業所名<br>旧事業所名</th>
@@ -58,7 +58,7 @@
       @foreach ($factories as  $factory)
       <!-- tw_factory's id is {{$factory->id}} -->
         <tr>
-          <td><a href="/company/report/{{$factory->id}}">{{$factory->name}}</a><br>{{$factory->getOldName()}}</td>
+          <td><a href="/company/factory_report?id={{$factory->id}}">{{$factory->name}}</a><br>({{$factory->getOldName()}})</td>
           <td>{{$factory->getBusinessTypeName()}}</td>
           <td>{{$factory->PostNoConvert()}}<br>{{$factory->pref->name}}{{$factory->city}}{{$factory->address}}</td>
           <td>{{$factory->getAverageEmployee()}}</td>

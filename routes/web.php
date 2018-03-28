@@ -19,14 +19,16 @@ Route::get('/', function () {
 Route::get('factory/search', 'FactoryController@search');
 Route::get('factory/list', 'FactoryController@list');
 Route::post('factory/list', 'FactoryController@list');
-Route::get('factory/report/{id}', 'FactoryController@report');    // 以前の report/ListByFactory
+Route::get('factory/report', 'FactoryController@report');    // 以前の report/ListByFactory
 
 // 事業者(会社)検索
 Route::get('company/search', 'CompanyController@search');
 Route::get('company/list', 'CompanyController@list');
 Route::post('company/list', 'CompanyController@list');
-Route::get('company/factories/{id}', 'CompanyController@factories');
-Route::get('company/report/{id}', 'CompanyController@report');
+Route::get('company/factories', 'CompanyController@factories');
+Route::get('company/factory_report', 'CompanyController@factory_report');
+//Route::get('company/factories/{id}', 'CompanyController@factories');
+//Route::get('company/report/{id}', 'CompanyController@report');
 
 Route::get('chemical/search', 'ChemicalController@search');
 Route::get('chemical/list', 'ChemicalController@list');

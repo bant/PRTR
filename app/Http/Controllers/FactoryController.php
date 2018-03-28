@@ -87,10 +87,23 @@ class FactoryController extends Controller
     }
 
     /**
-     * 工場届出情報の表示
+     * 工場届出情報の表示(GETオンリー)
      */
-    public function report($id)
+    public function report(Request $request)
     {
+        // inputs
+        $inputs = $request->all();
+
+        $id = isset($inputs['id']) ? $inputs['id'] : 0;     // factory id
+        $chemical_name = isset($inputs['chemical_name']) ? $inputs['chemical_name'] : null;
+        $regist_year = isset($inputs['regist_year']) ? $inputs['regist_year'] : 0;
+
+        // factory_idが設定されてない場合アボート
+        if ($id == 0)
+        {
+            abort('404');
+        }
+
         $factory = Factory::find($id);
         if($factory == null)
         {
@@ -103,9 +116,26 @@ class FactoryController extends Controller
 
         $factory_count = Factory::where('company_id', '=', $factory->company_id)->count();
         $factory_histories = FactoryHistory::where('factory_id','=', $id)->orderBy('regist_year_id', 'asc')->get();
-        $discharges_count = Discharge::where('factory_id', '=', $id)->count();
-        $discharges = Discharge::where('factory_id', '=', $id)->orderBy('regist_year_id', 'asc')->get();
 
-        return view('factory.report', compact('years','factory','factory_count', 'factory_histories','discharges', 'discharges_count'));
+        // 排出化学物質情報データの作成
+        $query = Discharge::query();
+        $query->where('factory_id', '=', $id);
+        if (!is_null($chemical_name))
+        {
+            $query->join('ja_chemical','ja_chemical.id','=','ja_discharge.chemical_id');
+            $query->where('ja_chemical.name','like', "%$chemical_name%");
+        }
+        if ($regist_year != 0)
+        {
+            $query->where('ja_discharge.regist_year_id', '=', $regist_year);
+        }
+
+        $discharges_count = $query->count();
+        $discharges = $query->orderBy('ja_discharge.chemical_id', 'asc')->orderBy('ja_discharge.regist_year_id', 'asc')->paginate(10);
+
+        $pagement_params =  $inputs;
+        unset($pagement_params['_token']);
+
+        return view('factory.report', compact('years','factory','factory_count', 'factory_histories','discharges', 'discharges_count', 'pagement_params'));
     }
 }

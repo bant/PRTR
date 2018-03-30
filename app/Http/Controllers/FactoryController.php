@@ -9,6 +9,7 @@ use App\FactoryHistory;
 use App\FactoryBusinessType;
 use App\Pref;
 use App\RegistYear;
+use App\PrtrCo2;
 
 use Carbon\Carbon; // 日付操作
 use Illuminate\Http\Request;
@@ -117,6 +118,8 @@ class FactoryController extends Controller
         $factory_count = Factory::where('company_id', '=', $factory->company_id)->count();
         $factory_histories = FactoryHistory::where('factory_id','=', $id)->orderBy('regist_year_id', 'asc')->get();
 
+        $prtr_co2 = PrtrCo2::where('prtr_company_id', '=', $factory->company_id)->first();
+
         // 排出化学物質情報データの作成
         $query = Discharge::query();
         $query->where('factory_id', '=', $id);
@@ -133,9 +136,9 @@ class FactoryController extends Controller
         $discharges_count = $query->count();
         $discharges = $query->orderBy('ja_discharge.chemical_id', 'asc')->orderBy('ja_discharge.regist_year_id', 'asc')->paginate(10);
 
-        $pagement_params =  $inputs;
+         $pagement_params =  $inputs;
         unset($pagement_params['_token']);
 
-        return view('factory.report', compact('years','factory','factory_count', 'factory_histories','discharges', 'discharges_count', 'pagement_params'));
+        return view('factory.report', compact('years','factory','factory_count', 'prtr_co2','factory_histories','discharges', 'discharges_count', 'pagement_params'));
     }
 }

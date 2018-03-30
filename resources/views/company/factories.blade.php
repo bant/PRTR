@@ -34,6 +34,16 @@
         <th>事業所数</th>
         <td>{{$factories_count}}</td>
       </tr>
+      <tr>
+          <th>温室効果ガス届出</th>
+          <td>
+            @if(!empty($prtr_co2))
+              <a href="http://wwww.xxx.cne.jp/company?id={{$prtr_co2->co2_company_id}}">温室効果ガスの該当URL</a>
+            @else
+              なし
+            @endif
+          </td>
+        </tr>
       </tbody>
       </table>
     </section>

@@ -9,6 +9,7 @@ use App\Factory;
 use App\FactoryHistory;
 use App\Pref;
 use App\RegistYear;
+use App\PrtrCo2;
 
 use Carbon\Carbon; // 日付操作
 use Illuminate\Http\Request;
@@ -50,7 +51,7 @@ class CompanyController extends Controller
         $query = Company::query();
         if (!is_null($company_name))
         {
-            $query->where('name','like', "'%$company_name%");
+            $query->where('name','like', "%$company_name%");
         }
         if ($company_pref_id != '0')
         {
@@ -100,7 +101,9 @@ class CompanyController extends Controller
         $factories_count = Factory::where('company_id', $id)->count();
         $factories = Factory::where('company_id', $id)->get();
 
-        return view('company.factories', compact('company','factories_count','factories'));
+        $prtr_co2 = PrtrCo2::where('prtr_company_id', '=', $id)->first();
+
+        return view('company.factories', compact('company','factories_count','factories', 'prtr_co2'));
     }
 
     /**

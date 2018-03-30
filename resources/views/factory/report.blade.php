@@ -1,14 +1,12 @@
 @extends('layouts.prtr')
-
 @section('title', '化学物質届出情報 | PRTRデータベース by Tウォッチ')
-
 @section('content')
 <div id="contents">
   <!-- /#breadcrumbs -->
-  <ul id="breadcrumbs">
-    <li><a href="/">検索メニュー</a></li>
-    <li>&gt; <a href="/factory/search">事業所検索</a></li>
-    <li>&gt; <a href="/factory/list">事業所リスト</a></li>
+    <ul id="breadcrumbs">
+    <li><a href="{{url('/')}}">検索メニュー</a></li>
+    <li>&gt; <a href="{{url('/company/search')}}">事業者検索</a></li>
+    <li>&gt; <a href="{{url('/')}}/factory/search">事業所リスト</a></li>
     <li>&gt; 届出情報</li>
   </ul>
   <!-- /#breadcrumbs -->
@@ -39,7 +37,13 @@
         </tr>
         <tr>
           <th>温室効果ガス届出</th>
-          <td>urlを記載/ない場合は「なし」</td>
+          <td>
+            @if(!empty($prtr_co2))
+              <a href="http://wwww.xxx.cne.jp/company?id={{$prtr_co2->co2_company_id}}">温室効果ガスの該当URL</a>
+            @else
+              なし
+            @endif
+          </td>
         </tr>
       </tbody>
       </table>

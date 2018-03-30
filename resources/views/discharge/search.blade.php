@@ -16,20 +16,24 @@
       <table class="table table-bordered">
       <tbody>
       <tr>
-        <th>{!! Form::label('discharge_pref', '都道府県') !!}</th>
-        <td>{!! Form::select('discharge_pref_id', $prefs, 0, ['class' => 'form', 'id' => 'discharge_pref_id']) !!}</td>
+        <th>{!! Form::label('factory_pref', '都道府県') !!}</th>
+        <td>{!! Form::select('factory_pref_id', $prefs, 0, ['class' => 'form', 'id' => 'factory_pref_id']) !!}</td>
       </tr>
       <tr>
-        <th>{!! Form::label('discharge_city', '市区町村') !!}</th>
-        <td>{!! Form::text('discharge_city', null, ['class' => 'form-control']) !!}</td>
+        <th>{!! Form::label('factory_city', '市区町村') !!}</th>
+        <td>{!! Form::text('factory_city', null, ['class' => 'form-control']) !!}</td>
       </tr>
       <tr>
-        <th>{!! Form::label('discharge_address', '町域') !!}</th>
-        <td>{!! Form::text('discharge_address', null, ['class' => 'form-control']) !!}</td>
+        <th>{!! Form::label('factory_address', '町域') !!}</th>
+        <td>{!! Form::text('factory_address', null, ['class' => 'form-control']) !!}</td>
       </tr>
       <tr>
-        <th>{!! Form::label('discharge_factory_name', '事業所名') !!}</th>
-        <td>{!! Form::text('discharge_factory_name', null, ['class' => 'form-control']) !!}</td>
+        <th>{!! Form::label('factory_name1', '事業所名(その1)') !!}</th>
+        <td>{!! Form::text('factory_name1', null, ['class' => 'form-control']) !!}</td>
+      </tr>
+      <tr>
+        <th>{!! Form::label('factory_name2', '事業所名(その2)') !!}</th>
+        <td>{!! Form::text('factory_name2', null, ['class' => 'form-control']) !!}</td>
       </tr>
       <tr>
         <th>{!! Form::label('chemical_name', '化学物質名') !!}</th>
@@ -37,7 +41,7 @@
       </tr>
       <tr>
         <th>{!! Form::label('regist_year', '届出年度') !!}</th>
-        <td>{!! Form::select('regist_year_id', $regist_years, 1, ['class' => 'form', 'id' => 'regist_year_id']) !!}</td>
+        <td>{!! Form::select('regist_year', $regist_years, 1, ['class' => 'form', 'id' => 'regist_year']) !!}</td>
       </tr>
       </tbody>
       <tfoot>

@@ -20,20 +20,24 @@
       <table class="table table-bordered">
       <tbody>
       <tr>
-        <th>{!! Form::label('discharge_pref', '都道府県') !!}</th>
-        <td>{!! Form::select('discharge_pref_id', $prefs, 0, ['class' => 'form', 'id' => 'discharge_pref_id']) !!}</td>
+        <th>{!! Form::label('factory_pref', '都道府県') !!}</th>
+        <td>{!! Form::select('factory_pref_id', $prefs, 0, ['class' => 'form', 'id' => 'factory_pref_id']) !!}</td>
       </tr>
       <tr>
-        <th>{!! Form::label('discharge_city', '市区町村') !!}</th>
-        <td>{!! Form::text('discharge_city', null, ['class' => 'form-control']) !!}</td>
+        <th>{!! Form::label('factory_city', '市区町村') !!}</th>
+        <td>{!! Form::text('factory_city', null, ['class' => 'form-control']) !!}</td>
       </tr>
       <tr>
-        <th>{!! Form::label('discharge_address', '町域') !!}</th>
-        <td>{!! Form::text('discharge_address', null, ['class' => 'form-control']) !!}</td>
+        <th>{!! Form::label('factory_address', '町域') !!}</th>
+        <td>{!! Form::text('factory_address', null, ['class' => 'form-control']) !!}</td>
       </tr>
       <tr>
-        <th>{!! Form::label('discharge_factory_name', '事業所名') !!}</th>
-        <td>{!! Form::text('discharge_factory_name', null, ['class' => 'form-control']) !!}</td>
+        <th>{!! Form::label('factory_name1', '事業所名(その1)') !!}</th>
+        <td>{!! Form::text('factory_name1', null, ['class' => 'form-control']) !!}</td>
+      </tr>
+      <tr>
+        <th>{!! Form::label('factory_name2', '事業所名(その2)') !!}</th>
+        <td>{!! Form::text('factory_name2', null, ['class' => 'form-control']) !!}</td>
       </tr>
       <tr>
         <th>{!! Form::label('chemical_name', '化学物質名') !!}</th>
@@ -41,7 +45,7 @@
       </tr>
       <tr>
         <th>{!! Form::label('regist_year', '届出年度') !!}</th>
-        <td>{!! Form::select('regist_year_id', $regist_years, 1, ['class' => 'form', 'id' => 'regist_year_id']) !!}</td>
+        <td>{!! Form::select('regist_year', $regist_years, 1, ['class' => 'form', 'id' => 'regist_year']) !!}</td>
       </tr>
       </tbody>
       <tfoot>
@@ -59,11 +63,11 @@
       <hr class="split">
       <h3 class="result">比較結果リスト</h3>
       <table id="resultTable" class="table table-striped table-bordered compareList">
-        <caption>該当件数: {{$factory_count}} 件</caption>
+        <caption>該当件数: {{$discharge_count}} 件</caption>
         <thead>
           <tr>
           <th>事業者名<br>事業所名</th>
-          <th>従業員数</th>
+          <th>住所</th>
           <th>化学物質名<br>(単位)</th>
           <th>総排出量</th>
           <th>総移動量</th>
@@ -71,20 +75,20 @@
           </tr>
         </thead>
         <tbody>
-        @foreach ($factories as $factory)            
-        <!-- tw_factory is ({{$factory->id}}) -->
+        @foreach ($discharges as $discharge)            
+        <!-- tw_discharge is ({{$discharge->id}}) -->
           <tr>
-            <td>{{$factory->company->name}}<br>{{$factory->name}}</td>
-            <td>{{$factory->getAverageEmployee()}}</td>
+            <td>
+              {{$discharge->factory->company->name}}<br>{{$discharge->factory->name}}</td>
+            <td>{{$discharge->factory->PostNoConvert()}}<br>{{$discharge->factory->pref->name}}{{$discharge->factory->city}}{{$discharge->factory->address}}</td>
           <td>
-            <a href="/images/pdf/00000-002-006.pdf" rel="prettyPhoto" title="アクリルアミドの詳細PDFはこちら" target="_blank">
-              {{$factory->discharge}}
-            アクリルアミド</a>
-            <br>(kg)
+            <a href="/images/pdf/{{$discharge->chemical->pdf}}" rel="prettyPhoto" title="{{$discharge->chemical->name}}の詳細PDFはこちら" target="_blank">
+              {{$discharge->chemical->name}}</a>
+            <br>({{$discharge->chemical->unit->name}})
           </td>
-          <td>4400</td>
-          <td>0</td>
-          <td>2010年</td>
+          <td>{{$discharge->sum_exhaust}}</td>
+          <td>{{$discharge->sum_movement}}</td>
+          <td>{{$discharge->regist_year->name}}</td>
           </tr>
         @endforeach
         </tbody>
@@ -95,6 +99,6 @@
 
   
   <!-- ページネーション -->
-  {{ $factories->appends($pagement_params)->links() }}
+  {{ $discharges->appends($pagement_params)->links() }}
   <!-- /ページネーション -->
 @endsection

@@ -5,7 +5,8 @@
   <!-- #breadcrumbs -->
   <ul id="breadcrumbs">
     <li><a href="{{url('/')}}">PRTR 検索メニュー</a></li>
-    <li>&gt; 事業所比較</li>
+    <li>&gt; <a href="{{url('/discharge/search')}}">事業所比較検索</a></li>
+    <li>&gt; 比較結果リスト</li>
   </ul>
   <!-- /#breadcrumbs -->
   <section>
@@ -88,7 +89,7 @@
           </td>
           <td>{{$discharge->sum_exhaust}}</td>
           <td>{{$discharge->sum_movement}}</td>
-          <td>{{$discharge->regist_year->name}}</td>
+          <td>{{$discharge->report_regist_year_id}}年</td>
           </tr>
         @endforeach
         </tbody>

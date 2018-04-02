@@ -25,10 +25,10 @@
     <!--- ここからフッタ --->
     <footer id="footer">
         <div id="footer-link">
-        <a href="https://www.toxwatch.net">
+        <a href="http://www.toxwatch.net">
           <i class="fa fa-external-link" aria-hidden="true"></i>Tウォッチホームページ
         </a>| 
-        <a href="https://co2.toxwatch.net">
+        <a href="http://co2.toxwatch.net">
           <i class="fa fa-external-link" aria-hidden="true"></i>温室効果ガスデータベース
         </a>
       </div>

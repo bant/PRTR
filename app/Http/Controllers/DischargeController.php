@@ -48,6 +48,7 @@ class DischargeController extends Controller
         $regist_years->prepend('最新年度', 0);
 
         $query = Discharge::query();
+        $query->select([ '*', 'ja_discharge.regist_year_id as report_regist_year_id']);
         $query->join('ja_factory','ja_factory.id','=','ja_discharge.factory_id');
         $query->join('ja_chemical','ja_chemical.id','=','ja_discharge.chemical_id');
         if ($factory_pref_id != 0)

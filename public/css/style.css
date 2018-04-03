@@ -2,7 +2,7 @@
 /* 
 	Theme Name: PRTRデータベース
 	Theme URI: https://prtr.toxwatch.net/
-	Description: PRTR制度によって、全国の事業所から届出された有害化学物質の排出データをデータベース化しました。
+	Description: PRTR制度によって全国の事業所から届出された有害化学物質の排出データをデータベース化しました。
 	producers: Digital Aid & All Warkers;
 */
 
@@ -14,12 +14,15 @@
   	margin: 0;
 }
 body {
-  	background-color: #FFFFFF;
+  	background-color: #fceeb6;
 	color: #333333;
 	font-size: 12px;
   	line-height: 1.5;
 	margin: 0;
 	padding: 0;
+}
+.screen {
+	background-color: #ffffff;
 }
 img {
   border: none;
@@ -48,7 +51,7 @@ a:hover{
 }
 h1 {
 	background-color: #7F6706;
-	color: #FFFFFF;
+	color: #ffffff;
 	font-size: 1.5em;
 	height: 2.75em;
 	line-height: 2.5;
@@ -288,13 +291,12 @@ img{
 }
 
 /* ページネーション */
-#pagination{
+#pagination, ul.pagination {
   padding-top: 0.5em;
   padding-right: 0;
   padding-bottom: 0.5em;
   padding-left: 0;
-  text-align: left; /*Set to "right" to right align pagination interface*/
-  font-size: 115%;
+  text-align: left;
 }
 
 #pagination a, #pagination a:visited{
@@ -327,7 +329,7 @@ img{
   font-weight: bold;
 }
 
-/* 中型ディスプレイ 768px以上 
+/* 中型ディスプレイ 768px - 1199以上 
 --------------------------------------------- */
 @media only screen and (min-width: 768px) {
 	#menu {
@@ -358,7 +360,17 @@ img{
 		margin: 0.4em 5em 1em;
 		width: 80%;
 	}
-	h3.result, #pagination {
+	h3.result, #pagination, ul.pagination {
 		margin-left: 5%;
+	}
+}
+
+/* 大型ディスプレイ 1201px以上 
+--------------------------------------------- */
+@media only screen and (min-width: 1200px) {
+	.screen {
+		margin: 0 auto;
+		max-width: 1200px;
+		width: 1200px;
 	}
 }

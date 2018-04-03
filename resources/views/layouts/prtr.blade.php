@@ -12,8 +12,9 @@
     <link href="{{url('/css/style.css')}}" type="text/css" rel="stylesheet">
 </head>
 <body>
+<div class="screen"><!----【screen 追加分】----->
     <!--- ここからヘッダ --->
-    <header id="header">
+    <header>
         @include('commons.header')
     </header>
  
@@ -34,9 +35,11 @@
       </div>
       <address id="address">@include('commons.footer',['year'=>Carbon\Carbon::now()->format('Y')])</address>
     </footer>
-    
+
+</div><!-----【screen 追加分】----->
     <!-- 以下、jsの読み込み -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="/js/tools.js"></script>
 </body>
 </html>

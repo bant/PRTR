@@ -4,7 +4,8 @@
       <!-- #breadcrumbs -->
       <ul id="breadcrumbs">
         <li><a href="{{url('/')}}">PRTR 検索メニュー</a></li>
-        <li>&gt; 化学物質検索</li>
+        <li>&gt; <a href="{{url('/chemical/search')}}">化学物質検索</a></li>
+        <li>&gt; 化学物質リスト</li>
       </ul>
       <!-- /#breadcrumbs -->
 
@@ -86,7 +87,7 @@
                 <th>種別<br>(旧種別)</th>
                 <th>化学物質番号<br>(旧番号)</th>
                 <th>CAS登録番号</th>
-                <th>年平均<br>届出事業所数</th>
+                <th>平均<br>届出事業所数</th>
                 <th>都道府県別<br>集計</th>
               </tr>
             </thead>

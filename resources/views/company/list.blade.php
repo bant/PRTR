@@ -5,8 +5,8 @@
   <!-- /#breadcrumbs -->
   <ul id="breadcrumbs">
     <li><a href="{{url('/')}}">検索メニュー</a></li>
-    <li>&gt; <a href="{{url('/company/search')}}">事業者検索</a></li>
-    <li>&gt; 事業者リスト</li>
+    <li>&gt; <a href="{{url('/company/search')}}">事業者(会社)検索</a></li>
+    <li>&gt; 事業者(会社)リスト</li>
   </ul>
   <!-- /#breadcrumbs -->
   <section>
@@ -60,10 +60,11 @@
       @foreach ($companies as $company)            
         <!-- tw_company is ({{$company->id}}) -->
         <tr>
-          <td>{{$company->name}}<br>({{$company->getOldName()}})</td>
+          <td><a href="/company/factories?id={{$company->id}}" title="{{$company->name}}の所属事業所(工場)リストはこちら">{{$company->name}}</a>
+          <br>({{$company->getOldName()}})</td>
           <td>{{$company->PostNoConvert()}}<br>
             {{$company->pref->name}}{{$company->city}}{{$company->address}}</td>
-          <td><a href="/company/factories?id={{$company->id}}">{{$company->getFactoryCount()}}</a></td>
+          <td>{{$company->getFactoryCount()}}</td>
         </tr>
       @endforeach
       </tbody>

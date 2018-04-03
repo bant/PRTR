@@ -44,7 +44,7 @@ class CompanyController extends Controller
         $company_prefs->prepend('全都道府県', 0);    // 最初に追加
 
         // 検索用のデータを作成
-        $years = RegistYear::all()->pluck('name','id');
+        $years = RegistYear::select()->orderBy('id', 'desc')->pluck('name','id');
         $years->prepend('全年度', 0);    // 最初に追加
 
         // 問い合わせSQLを構築
@@ -111,13 +111,14 @@ class CompanyController extends Controller
      */
     public function factory_report(Request $request)
     {
-
         // inputs
         $inputs = $request->all();
 
         $id = isset($inputs['id']) ? $inputs['id'] : 0;     // factory id
         $chemical_name = isset($inputs['chemical_name']) ? $inputs['chemical_name'] : null;
         $regist_year = isset($inputs['regist_year']) ? $inputs['regist_year'] : 0;
+
+        $prtr_co2 = PrtrCo2::where('prtr_company_id', '=', $id)->first();
 
         // factory_idが設定されてない場合アボート
         if ($id == 0)
@@ -137,7 +138,7 @@ class CompanyController extends Controller
         }
 
         $factories_count = Factory::where('company_id', '=',$id)->count();
-        $factory_histories = FactoryHistory::where('factory_id', '=', $id)->orderBy('regist_year_id', 'asc')->get();
+        $factory_histories = FactoryHistory::where('factory_id', '=', $id)->orderBy('regist_year_id', 'desc')->get();
 
         $query = Discharge::query();
         $query->where('factory_id', '=', $id);
@@ -152,15 +153,15 @@ class CompanyController extends Controller
         }
 
         $discharge_count = $query->count();
-        $discharges = $query->orderBy('regist_year_id', 'asc')->paginate(10);
+        $discharges = $query->orderBy('regist_year_id', 'desc')->paginate(10);
 
         // 検索用のデータを作成
-        $years = RegistYear::all()->pluck('name','id');
+        $years = RegistYear::select()->orderBy('id', 'desc')->pluck('name','id');
         $years->prepend('全年度', 0);    // 最初に追加
 
         $pagement_params =  $inputs;
         unset($pagement_params['_token']);
 
-        return view('company.factory_report', compact('company', 'factory', 'factories_count', 'factory_histories', 'discharge_count','discharges', 'years', 'pagement_params'));
+        return view('company.factory_report', compact('company', 'factory', 'factories_count', 'factory_histories', 'discharge_count', 'discharges', 'years', 'pagement_params',  'prtr_co2'));
     }
 }

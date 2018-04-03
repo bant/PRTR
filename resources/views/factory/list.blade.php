@@ -5,13 +5,13 @@
   <!-- /#breadcrumbs -->
   <ul id="breadcrumbs">
     <li><a href="{{url('/')}}">検索メニュー</a></li>
-    <li>&gt; <a href="{{url('/company/search')}}">事業者検索</a></li>
-    <li>&gt; 事業者リスト</li>
+    <li>&gt; <a href="{{url('/company/search')}}">事業者(工場)検索</a></li>
+    <li>&gt; 事業者(工場)リスト</li>
   </ul>
   <!-- /#breadcrumbs -->
   
 <section>
-  <h2>事業者(会社)リスト</h2>
+  <h2>事業者(工場)リスト</h2>
   <!-- 検索フォーム -->
   <section>
   	<div class="display-switch">
@@ -63,7 +63,7 @@
         <caption>該当件数: {{$all_count}}件</caption>
         <thead>
           <tr>
-            <th>事業者名<br>事業所名(旧事業所名)</th>
+            <th>事業者名<br>事業所名</th>
             <th>業種</th>
             <th>所在地</th>
             <th>従業員数</th>
@@ -75,12 +75,12 @@
             <!-- tw_factory id is ({{$factory->id}}) -->
             <tr>
               <td>{{$factory->company->name}}<br>
-              {{$factory->name}}</td>
+              <a href="/factory/report?id={{$factory->id}}" title="{{$factory->name}}の届出情報の詳細はこちら">{{$factory->name}}</a></td>
               <td>{{$factory->factory_business_type->business_type->name}}</td>
               <td>{{$factory->PostNoConvert()}}<br>
               {{$factory->pref->name}}{{$factory->address}}</td>
               <td>{{$factory->getAverageEmployee()}}</td>
-              <td><a href="/factory/report?id={{$factory->id}}">{{$factory->getAverageReportCount()}}</a></td>
+              <td>{{$factory->getAverageReportCount()}}</td>
             </tr>
             @endforeach
           </tbody>

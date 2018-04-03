@@ -28,7 +28,7 @@ class Chemical extends Model
      */
     public function getNameAttribute($value)
     {
-        return mb_strimwidth($value, 0, 30, "..");
+        return mb_strimwidth($value, 0, 128, "..");
     }
 
    /**
@@ -39,7 +39,7 @@ class Chemical extends Model
      */
     public function getAliasAttribute($value)
     {
-        return mb_strimwidth($value, 0, 30, "..");
+        return mb_strimwidth($value, 0, 128, "..");
     }
 
 

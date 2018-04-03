@@ -5,9 +5,9 @@
   <!-- #breadcrumbs -->
   <ul id="breadcrumbs">
     <li><a href="{{url('/')}}">検索メニュー</a></li>
-    <li>&gt; <a href="{{url('/company/search')}}">事業者検索</a></li>
-    <li>&gt; <a href="{{url('/company/list')}}">事業者リスト</a></li>
-    <li>&gt; 事業所リスト</li>
+    <li>&gt; <a href="{{url('/company/search')}}">事業者(会社)検索</a></li>
+    <li>&gt; <a href="{{url('/company/list')}}">事業者(会社)リスト</a></li>
+    <li>&gt; 所属事業所(工場)リスト</li>
   </ul>
   <!-- /#breadcrumbs -->
 
@@ -38,7 +38,7 @@
           <th>温室効果ガス届出</th>
           <td>
             @if(!empty($prtr_co2))
-              <a href="http://wwww.xxx.cne.jp/company?id={{$prtr_co2->co2_company_id}}">温室効果ガスの該当URL</a>
+              <a href="http://wwww.xxx.cne.jp/company?id={{$prtr_co2->co2_company_id}}">温室効果ガスの該当URL</a>　<!-- ■ToDo -->
             @else
               なし
             @endif
@@ -68,7 +68,7 @@
       @foreach ($factories as  $factory)
       <!-- tw_factory's id is {{$factory->id}} -->
         <tr>
-          <td><a href="/company/factory_report?id={{$factory->id}}">{{$factory->name}}</a><br>({{$factory->getOldName()}})</td>
+          <td><a href="/company/factory_report?id={{$factory->id}}" title="{{$factory->name}}の届出情報詳細はこちら">{{$factory->name}}</a><br>({{$factory->getOldName()}})</td>
           <td>{{$factory->getBusinessTypeName()}}</td>
           <td>{{$factory->PostNoConvert()}}<br>{{$factory->pref->name}}{{$factory->city}}{{$factory->address}}</td>
           <td>{{$factory->getAverageEmployee()}}</td>

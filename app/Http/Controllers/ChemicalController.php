@@ -130,8 +130,8 @@ class ChemicalController extends Controller
         }
 
         // 取扱工場情報を取得
-        $years = RegistYear::all();
-
+        $years = RegistYear::select()->orderBy('id', 'desc')->get();
+        
         $chemical_infos = array();
         $sum_exhaust_infos = array();
         $sum_movement_infos = array();
@@ -179,12 +179,12 @@ class ChemicalController extends Controller
                 $query->orderBy('sum_movement', 'ASC');
                 break;
         }
-        $query->orderBy('regist_year_id', 'asc');
+        $query->orderBy('regist_year_id', 'desc');
 
         $discharges = $query->paginate(10);
 
         // 検索用のデータを作成
-        $regist_years = RegistYear::all()->pluck('name','id');
+        $regist_years = RegistYear::select()->orderBy('id', 'desc')->pluck('name','id');
         $regist_years->prepend('全年度', 0);    // 最初に追加
 
         $pagement_params =  $inputs;
@@ -223,7 +223,7 @@ class ChemicalController extends Controller
 
 
         // 取扱工場情報を取得
-        $years = RegistYear::all();
+        $years = RegistYear::select()->orderBy('id', 'desc')->get();
         
         $chemical_infos = array();
         $sum_exhaust_infos = array();
@@ -336,7 +336,7 @@ class ChemicalController extends Controller
         }
 
         // 検索用のデータを作成
-        $regist_years = RegistYear::all()->pluck('name','id');
+        $regist_years = RegistYear::select()->orderBy('id', 'desc')->pluck('name','id');
         $regist_years->prepend('最新年度', 0);    // 最初に追加
 
         return view('chemical.prefectures', compact('chemical', 'years', 'chemical_infos', 'total_exhaust_infos', 'total_movement_infos', 'regist_years', 'pref_discharges', 'pref_discharges_count'));

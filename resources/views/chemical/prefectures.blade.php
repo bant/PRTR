@@ -4,14 +4,14 @@
       <!-- #breadcrumbs -->
       <ul id="breadcrumbs">
         <li><a href="{{url('/')}}">PRTR 検索メニュー</a></li>
-        <li><a href="{{url('/chemical/search')}}">&gt; 化学物質検索<a></li>
-        <li><a href="{{url('/chemical/list')}}">&gt; 化学物質リスト</a></li>
-        <li>&gt; 化学物質別都道府県集計</li>
+        <li>&gt; <a href="{{url('/chemical/search')}}">化学物質検索<a></li>
+        <li>&gt; <a href="{{url('/chemical/list')}}">化学物質リスト</a></li>
+        <li>&gt; 都道府県別集計</li>
       </ul>
       <!-- /#breadcrumbs -->
 
       <section>
-      <h2>化学物質別届出情報</h2>
+      <h2>都道府県別情報</h2>
         <!-- 化学物質情報 -->
         <section>
           <div class="display-switch">

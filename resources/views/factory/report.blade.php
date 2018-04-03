@@ -39,7 +39,7 @@
           <th>温室効果ガス届出</th>
           <td>
             @if(!empty($prtr_co2))
-              <a href="http://wwww.xxx.cne.jp/company?id={{$prtr_co2->co2_company_id}}">温室効果ガスの該当URL</a>
+              <a href="http://wwww.xxx.cne.jp/company?id={{$prtr_co2->co2_company_id}}">温室効果ガス届出あり</a>
             @else
               なし
             @endif

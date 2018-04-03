@@ -25,14 +25,6 @@
 
     <!--- ここからフッタ --->
     <footer id="footer">
-        <div id="footer-link">
-        <a href="http://www.toxwatch.net">
-          <i class="fa fa-external-link" aria-hidden="true"></i>Tウォッチホームページ
-        </a>| 
-        <a href="http://co2.toxwatch.net">
-          <i class="fa fa-external-link" aria-hidden="true"></i>温室効果ガスデータベース
-        </a>
-      </div>
       <address id="address">@include('commons.footer',['year'=>Carbon\Carbon::now()->format('Y')])</address>
     </footer>
 

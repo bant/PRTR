@@ -5,9 +5,9 @@
   <!-- #breadcrumbs -->
   <ul id="breadcrumbs">
     <li><a href="{{url('/')}}">検索メニュー</a></li>
-    <li>&gt; <a href="{{url('/company/search')}}">事業者検索</a></li>
-    <li>&gt; <a href="{{url('/company/list')}}">事業者リスト</a></li>
-    <li>&gt; <a href="{{url('/company/factories')}}">事業所リスト</a></li>
+    <li>&gt; <a href="{{url('/company/search')}}">事業者(会社)検索</a></li>
+    <li>&gt; <a href="{{url('/company/list')}}">事業者(会社)リスト</a></li>
+    <li>&gt; <a href="{{url('/company/factories')}}">所属事業所(工場)リスト</a></li>
     <li>&gt; 届出情報</li>
   </ul>
   <!-- /#breadcrumbs -->
@@ -36,7 +36,13 @@
         </tr>
         <tr>
           <th>温室効果ガス届出</th>
-          <td>urlを記載/ない場合は「なし」</td>
+          <td>
+          @if(!empty($prtr_co2))
+              <a href="http://wwww.xxx.cne.jp/company?id={{$prtr_co2->co2_company_id}}">温室効果ガスの該当URL</a>　<!-- ■ToDo -->
+          @else
+              なし
+          @endif
+          </td>
         </tr>
       </tbody>
       </table>

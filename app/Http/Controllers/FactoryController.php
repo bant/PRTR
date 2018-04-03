@@ -112,11 +112,11 @@ class FactoryController extends Controller
         }
 
         // 検索用のデータを作成
-        $years = RegistYear::all()->pluck('name','id');
+        $years = RegistYear::select()->orderBy('id', 'desc')->pluck('name','id');
         $years->prepend('全年度', 0);    // 最初に追加
 
         $factory_count = Factory::where('company_id', '=', $factory->company_id)->count();
-        $factory_histories = FactoryHistory::where('factory_id','=', $id)->orderBy('regist_year_id', 'asc')->get();
+        $factory_histories = FactoryHistory::where('factory_id','=', $id)->orderBy('regist_year_id', 'desc')->get();
 
         $prtr_co2 = PrtrCo2::where('prtr_company_id', '=', $factory->company_id)->first();
 
@@ -134,7 +134,7 @@ class FactoryController extends Controller
         }
 
         $discharges_count = $query->count();
-        $discharges = $query->orderBy('ja_discharge.chemical_id', 'asc')->orderBy('ja_discharge.regist_year_id', 'asc')->paginate(10);
+        $discharges = $query->orderBy('ja_discharge.chemical_id', 'asc')->orderBy('ja_discharge.regist_year_id', 'desc')->paginate(10);
 
          $pagement_params =  $inputs;
         unset($pagement_params['_token']);

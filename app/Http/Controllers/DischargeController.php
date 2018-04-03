@@ -20,7 +20,7 @@ class DischargeController extends Controller
     {
         $prefs = Pref::all()->pluck('name','id');
         $prefs->prepend('全都道府県', 0);    // 最初に追加
-        $regist_years = RegistYear::all()->pluck('name', 'id');
+        $regist_years = RegistYear::select()->orderBy('id', 'desc')->pluck('name', 'id');
         $regist_years->prepend('最新年度', 0);
 
         return view('discharge.search', compact('prefs', 'regist_years'));
@@ -44,7 +44,7 @@ class DischargeController extends Controller
 
         $prefs = Pref::all()->pluck('name','id');
         $prefs->prepend('全都道府県', 0);    // 最初に追加
-        $regist_years = RegistYear::all()->pluck('name', 'id');
+        $regist_years = RegistYear::select()->orderBy('id', 'desc')->pluck('name','id');
         $regist_years->prepend('最新年度', 0);
 
         $query = Discharge::query();
@@ -82,7 +82,7 @@ class DischargeController extends Controller
         $query->where('ja_discharge.regist_year_id', '=', $regist_year);
 
         $discharge_count = $query->count();
-        $discharges = $query->paginate(10);
+        $discharges = $query->orderBy('ja_discharge.regist_year_id', 'desc')->paginate(10);
 
         $pagement_params =  $inputs;
         unset($pagement_params['_token']);

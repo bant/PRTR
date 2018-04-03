@@ -75,10 +75,11 @@ class DischargeController extends Controller
         {
             $query->where('ja_chemical.name','like', "%$chemical_name%"); 
         }
-        if ($regist_year != 0)
+        if ($regist_year==0)
         {
-            $query->where('ja_discharge.regist_year_id', '=', $regist_year);
+            $regist_year = RegistYear::max('id');
         }
+        $query->where('ja_discharge.regist_year_id', '=', $regist_year);
 
         $discharge_count = $query->count();
         $discharges = $query->paginate(10);

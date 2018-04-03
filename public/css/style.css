@@ -239,7 +239,7 @@ hr.split {
 .chemicalReport td, .compareList td {
 	text-align: right;
 }
-.companyList td, .factoryList td, .chemicalList td:first-child, .chemicalReport td:first-child, .chemicalReport td:nth-child(10), .reportHistory td:first-child, .compareList td:first-child, .compareList td:nth-child(3) {
+.companyList td, .factoryList td, .chemicalList td:first-child, .chemicalReport td:first-child, .chemicalReport td:nth-child(10), .reportHistory td:first-child, .compareList td:first-child, .compareList td:nth-child(2), .compareList td:nth-child(3) {
 	text-align: left;
 }
 .companyList th, .factoryList th, .chemicalList th, .chemicalList td, .chemicalReport th, .reportHistory th {
@@ -329,7 +329,7 @@ img{
   font-weight: bold;
 }
 
-/* 中型ディスプレイ 768px - 1199以上 
+/* 中型ディスプレイ 768px - 1199px以上 
 --------------------------------------------- */
 @media only screen and (min-width: 768px) {
 	#menu {
@@ -365,7 +365,7 @@ img{
 	}
 }
 
-/* 大型ディスプレイ 1201px以上 
+/* 大型ディスプレイ 1200px以上 
 --------------------------------------------- */
 @media only screen and (min-width: 1200px) {
 	.screen {

@@ -16,7 +16,7 @@
     <!-- 会社情報 -->
     <section>
       <div class="display-switch">
-        <h3>事業者(会社)情報</h3>
+        <h3>事業者情報</h3>
         <div class="display">非表示にする</div>
       </div>
       <table id="companyTable" class="table table-bordered companyTable" summary="会社情報">

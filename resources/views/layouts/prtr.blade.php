@@ -24,6 +24,7 @@
         @yield('content')
     </div>
 
+    <div id="menus"></div><!----【追加分】----->
     <!--- ここからフッタ --->
     <footer id="footer">
         @yield('add_footer')

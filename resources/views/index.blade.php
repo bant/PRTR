@@ -15,13 +15,13 @@
               <i class="fa fa-industry" aria-hidden="true"></i>事業所検索
             </button>
           </a>
-          <p>事業所(工場)名・住所・業種から検索します。</p>
+          <p>事業所名・住所・業種から検索します。</p>
           <a href="{{url('company/search')}}">
             <button class="btn btn-warning btn-block btn-lg">
               <i class="fa fa-building" aria-hidden="true"></i>事業者検索
             </button>
           </a>
-          <p>事業者(会社)名・住所から検索します。</p>
+          <p>事業者名・住所から検索します。</p>
           <a href="{{url('chemical/search')}}">
             <button class="btn btn-warning btn-block btn-lg">
               <i class="fa fa-flask" aria-hidden="true"></i>化学物質検索

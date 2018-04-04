@@ -15,13 +15,13 @@ Route::get('/', function () {
     return view('index');
 });
 
-// 事業所(工場)検索
+// 事業所検索
 Route::get('factory/search', 'FactoryController@search');
 Route::get('factory/list', 'FactoryController@list');
 Route::post('factory/list', 'FactoryController@list');
 Route::get('factory/report', 'FactoryController@report');    // 以前の report/ListByFactory
 
-// 事業者(会社)検索
+// 事業者検索
 Route::get('company/search', 'CompanyController@search');
 Route::get('company/list', 'CompanyController@list');
 Route::post('company/list', 'CompanyController@list');

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Storage;
 class DischargeController extends Controller
 {
     /**
-     * 事業所(工場)比較
+     * 事業所比較
      */
     public function search(Request $request)
     {
@@ -27,7 +27,7 @@ class DischargeController extends Controller
     }
 
     /**
-     * 事業所(工場)比較結果
+     * 事業所比較結果
      */
     public function compare(Request $request)
     {

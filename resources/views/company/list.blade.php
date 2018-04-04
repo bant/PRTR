@@ -60,7 +60,7 @@
       @foreach ($companies as $company)            
         <!-- tw_company is ({{$company->id}}) -->
         <tr>
-          <td><a href="/company/factories?id={{$company->id}}" title="{{$company->name}}の所属事業所(工場)リストはこちら">{{$company->name}}</a>
+          <td><a href="/company/factories?id={{$company->id}}" title="{{$company->name}}の所属事業所リストはこちら">{{$company->name}}</a>
           <br>({{$company->getOldName()}})</td>
           <td>{{$company->PostNoConvert()}}<br>
             {{$company->pref->name}}{{$company->city}}{{$company->address}}</td>

@@ -15,7 +15,7 @@
     <!-- 会社・工場情報 -->
     <section>
       <div class="display-switch">
-        <h3>事業者(会社)・事業所(工場)情報</h3>
+        <h3>事業者・事業所情報</h3>
         <div class="display">非表示にする</div>
       </div>
 

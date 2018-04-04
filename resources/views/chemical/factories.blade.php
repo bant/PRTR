@@ -3,7 +3,7 @@
 @section('content')
       <!-- #breadcrumbs -->
       <ul id="breadcrumbs">
-        <li><a href="{{url('/')}}">PRTR 検索メニュー</a></li>
+        <li><a href="{{url('/')}}">検索メニュー</a></li>
         <li><a href="{{url('/chemical/search')}}">&gt; 化学物質検索<a></li>
         <li><a href="{{url('/chemical/list')}}">&gt; 化学物質リスト</a></li>
         <li>&gt; 化学物質別届出情報</li>
@@ -113,7 +113,7 @@
         <!-- 届出情報 -->
         <section>
           <hr class="split">
-          <h3 class="result">化学物質届出情報</h3>
+          <h3 class="result">届出情報</h3>
           <!-- 絞り込みフォーム -->
           {!! Form::open(['url' => "chemical/factories", 'method'=>'get', 'id'=>'choose']) !!}
             {!! Form::hidden('id', $chemical->id) !!}

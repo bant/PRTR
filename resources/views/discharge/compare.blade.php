@@ -4,7 +4,7 @@
 <div id="contents">
   <!-- #breadcrumbs -->
   <ul id="breadcrumbs">
-    <li><a href="{{url('/')}}">PRTR 検索メニュー</a></li>
+    <li><a href="{{url('/')}}">検索メニュー</a></li>
     <li>&gt; <a href="{{url('/discharge/search')}}">事業所比較検索</a></li>
     <li>&gt; 比較結果リスト</li>
   </ul>
@@ -83,8 +83,11 @@
               {{$discharge->factory->company->name}}<br>{{$discharge->factory->name}}</td>
             <td>{{$discharge->factory->PostNoConvert()}}<br>{{$discharge->factory->pref->name}}{{$discharge->factory->city}}{{$discharge->factory->address}}</td>
           <td>
-            <a href="/images/pdf/{{$discharge->chemical->pdf}}" rel="prettyPhoto" title="{{$discharge->chemical->name}}の詳細PDFはこちら" target="_blank">
-              {{$discharge->chemical->name}}</a>
+            @if(!empty($discharge->chemical->pdf))
+              <a href="/images/pdf/{{$discharge->chemical->pdf}}" target=”_blank”rel="prettyPhoto" title="{{$discharge->chemical->name}}の詳細PDFはこちら">{{$discharge->chemical->name}}</a>
+            @else 
+              {{$discharge->chemical->name}}
+            @endif
             <br>({{$discharge->chemical->unit->name}})
           </td>
           <td>{{$discharge->sum_exhaust}}</td>

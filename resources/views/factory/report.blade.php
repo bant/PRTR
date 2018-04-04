@@ -5,13 +5,13 @@
   <!-- /#breadcrumbs -->
     <ul id="breadcrumbs">
     <li><a href="{{url('/')}}">検索メニュー</a></li>
-    <li>&gt; <a href="{{url('/company/search')}}">事業者検索</a></li>
-    <li>&gt; <a href="{{url('/')}}/factory/search">事業所リスト</a></li>
-    <li>&gt; 化学物質届出情報</li>
+    <li>&gt; <a href="{{url('/company/search')}}">事業所検索</a></li>
+    <li>&gt; <a href="{{url('/')}}/factory/list">事業所リスト</a></li>
+    <li>&gt; 事業所届出情報</li>
   </ul>
   <!-- /#breadcrumbs -->
   <section>
-    <h2>化学物質届出情報</h2>
+    <h2>事業所届出情報</h2>
     <!-- 会社・工場情報 -->
     <section>
       <div class="display-switch">
@@ -101,7 +101,7 @@
       <!-- 届出情報 -->
       <section>
         <hr class="split">
-        <h3 class="result">化学物質届出情報</h3>
+        <h3 class="result">届出情報</h3>
 
         <!-- 絞り込みフォーム -->
         {!! Form::open(['url' => 'factory/report', 'method'=>'get','id'=>'choose']) !!}
@@ -137,8 +137,12 @@
         <!-- tw_discharge's id is {{$discharge->id}} -->
         <tr>
           <td>
-           <a href="/images/pdf/{{$discharge->chemical->pdf}}" rel="prettyPhoto" title="{{$discharge->chemical->name}}の詳細PDFはこちら">{{$discharge->chemical->name}}</a></br>
-           [{{$discharge->chemical->unit->name}}]
+            @if(!empty($discharge->chemical->pdf))
+              <a href="/images/pdf/{{$discharge->chemical->pdf}}" target=”_blank”rel="prettyPhoto" title="{{$discharge->chemical->name}}の詳細PDFはこちら">{{$discharge->chemical->name}}</a>
+            @else 
+              {{$discharge->chemical->name}}
+            @endif
+            <br>({{$discharge->chemical->unit->name}})
           </td>
              <td>{{$discharge->atmosphere}}</td>
              <td>{{$discharge->sea}}</td>

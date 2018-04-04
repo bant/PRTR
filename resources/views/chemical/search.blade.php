@@ -3,7 +3,7 @@
 @section('content')
       <!-- #breadcrumbs -->
       <ul id="breadcrumbs">
-        <li><a href="{{url('/')}}">PRTR 検索メニュー</a></li>
+        <li><a href="{{url('/')}}">検索メニュー</a></li>
         <li>&gt; 化学物質検索</li>
       </ul>
       <!-- /#breadcrumbs -->

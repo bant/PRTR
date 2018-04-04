@@ -1,17 +1,17 @@
 @extends('layouts.prtr')
-@section('title', '事業者リスト | PRTRデータベース by Tウォッチ')
+@section('title', '事業所リスト | PRTRデータベース by Tウォッチ')
 @section('content')
 <div id="contents">
   <!-- /#breadcrumbs -->
   <ul id="breadcrumbs">
     <li><a href="{{url('/')}}">検索メニュー</a></li>
-    <li>&gt; <a href="{{url('/company/search')}}">事業者検索</a></li>
-    <li>&gt; 事業者リスト</li>
+    <li>&gt; <a href="{{url('/company/search')}}">事業所検索</a></li>
+    <li>&gt; 事業所リスト</li>
   </ul>
   <!-- /#breadcrumbs -->
   
 <section>
-  <h2>事業者リスト</h2>
+  <h2>事業所リスト</h2>
   <!-- 検索フォーム -->
   <section>
   	<div class="display-switch">

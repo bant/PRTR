@@ -3,7 +3,7 @@
 @section('content')
       <!-- #breadcrumbs -->
       <ul id="breadcrumbs">
-        <li><a href="{{url('/')}}">PRTR 検索メニュー</a></li>
+        <li><a href="{{url('/')}}">検索メニュー</a></li>
         <li>&gt; <a href="{{url('/chemical/search')}}">化学物質検索</a></li>
         <li>&gt; 化学物質リスト</li>
       </ul>
@@ -96,8 +96,8 @@
             <!-- tw_chemical id is {{$chemical->id}} -->
               <tr>
                 <td>
-                  @if(!empty($chemical->pdf) and !empty($chemical->image_file))
-                    <a href="/images/pdf/{{$chemical->pdf}}" rel="prettyPhoto" title="{{$chemical->name}}の詳細PDFはこちら">{{$chemical->name}}</a>
+                  @if(!empty($chemical->pdf))
+                    <a href="/images/pdf/{{$chemical->pdf}}" target=”_blank”rel="prettyPhoto" title="{{$chemical->name}}の詳細PDFはこちら">{{$chemical->name}}</a>
                   @else 
                     {{$chemical->name}}
                   @endif

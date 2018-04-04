@@ -5,14 +5,14 @@
   <!-- #breadcrumbs -->
   <ul id="breadcrumbs">
     <li><a href="{{url('/')}}">検索メニュー</a></li>
-    <li>&gt; <a href="{{url('/company/search')}}">事業者(会社)検索</a></li>
-    <li>&gt; <a href="{{url('/company/list')}}">事業者(会社)リスト</a></li>
-    <li>&gt; 所属事業所(工場)リスト</li>
+    <li>&gt; <a href="{{url('/company/search')}}">事業者検索</a></li>
+    <li>&gt; <a href="{{url('/company/list')}}">事業者リスト</a></li>
+    <li>&gt; 所属事業所リスト</li>
   </ul>
   <!-- /#breadcrumbs -->
 
   <section>
-    <h2>所属事業所(工場)リスト</h2>
+    <h2>所属事業所リスト</h2>
     <!-- 会社情報 -->
     <section>
       <div class="display-switch">

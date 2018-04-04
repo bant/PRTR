@@ -5,13 +5,13 @@
   <!-- /#breadcrumbs -->
   <ul id="breadcrumbs">
     <li><a href="{{url('/')}}">検索メニュー</a></li>
-    <li>&gt; <a href="{{url('/company/search')}}">事業者(工場)検索</a></li>
-    <li>&gt; 事業者(工場)リスト</li>
+    <li>&gt; <a href="{{url('/company/search')}}">事業者検索</a></li>
+    <li>&gt; 事業者リスト</li>
   </ul>
   <!-- /#breadcrumbs -->
   
 <section>
-  <h2>事業者(工場)リスト</h2>
+  <h2>事業者リスト</h2>
   <!-- 検索フォーム -->
   <section>
   	<div class="display-switch">

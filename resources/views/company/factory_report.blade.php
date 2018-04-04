@@ -5,18 +5,18 @@
   <!-- #breadcrumbs -->
   <ul id="breadcrumbs">
     <li><a href="{{url('/')}}">検索メニュー</a></li>
-    <li>&gt; <a href="{{url('/company/search')}}">事業者(会社)検索</a></li>
-    <li>&gt; <a href="{{url('/company/list')}}">事業者(会社)リスト</a></li>
-    <li>&gt; <a href="{{url('/company/factories')}}">所属事業所(工場)リスト</a></li>
-    <li>&gt; 届出情報</li>
+    <li>&gt; <a href="{{url('/company/search')}}">事業者検索</a></li>
+    <li>&gt; <a href="{{url('/company/list')}}">事業者リスト</a></li>
+    <li>&gt; <a href="{{url('/company/factories')}}">所属事業所リスト</a></li>
+    <li>&gt; 化学物質届出情報</li>
   </ul>
   <!-- /#breadcrumbs -->
   <section>
-    <h2>届出情報</h2>
+    <h2>化学物質届出情報</h2>
     <!-- 会社・工場情報 -->
     <section>
       <div class="display-switch">
-        <h3>事業者(会社)・事業所(工場)情報</h3>
+        <h3>事業者・事業所情報</h3>
         <div class="display">非表示にする</div>
       </div>
       <table id="companyTable" class="table table-bordered companyTable" summary="会社情報">

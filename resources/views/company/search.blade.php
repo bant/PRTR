@@ -3,12 +3,12 @@
 @section('content')
       <ul id="breadcrumbs">
         <li><a href="{{url('/')}}">PRTR 検索メニュー</a></li>
-        <li>&gt; 事業者(会社)検索</li>
+        <li>&gt; 事業者検索</li>
       </ul>
       <!-- /#breadcrumbs -->
 
       <section>
-      <h2>事業者(会社)検索</h2>
+      <h2>事業者検索</h2>
         <section>
         <h3>検索条件</h3>
         <!-- 検索フォーム -->

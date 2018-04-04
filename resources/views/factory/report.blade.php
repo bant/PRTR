@@ -7,11 +7,11 @@
     <li><a href="{{url('/')}}">検索メニュー</a></li>
     <li>&gt; <a href="{{url('/company/search')}}">事業者検索</a></li>
     <li>&gt; <a href="{{url('/')}}/factory/search">事業所リスト</a></li>
-    <li>&gt; 届出情報</li>
+    <li>&gt; 化学物質届出情報</li>
   </ul>
   <!-- /#breadcrumbs -->
   <section>
-    <h2>届出情報</h2>
+    <h2>化学物質届出情報</h2>
     <!-- 会社・工場情報 -->
     <section>
       <div class="display-switch">

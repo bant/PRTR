@@ -5,12 +5,12 @@
   <!-- /#breadcrumbs -->
   <ul id="breadcrumbs">
     <li><a href="{{url('/')}}">検索メニュー</a></li>
-    <li>&gt; <a href="{{url('/company/search')}}">事業者(会社)検索</a></li>
-    <li>&gt; 事業者(会社)リスト</li>
+    <li>&gt; <a href="{{url('/company/search')}}">事業者検索</a></li>
+    <li>&gt; 事業者リスト</li>
   </ul>
   <!-- /#breadcrumbs -->
   <section>
-  <h2>事業者(会社)リスト</h2>
+  <h2>事業者リスト</h2>
   </section>
   <!-- /検索フォーム -->
   {!! Form::open(['url' => 'company/list', 'method'=>'get','id'=>'search']) !!}

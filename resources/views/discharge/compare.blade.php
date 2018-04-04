@@ -10,7 +10,7 @@
   </ul>
   <!-- /#breadcrumbs -->
   <section>
-  <h2>事業所(工場)比較</h2>
+  <h2>事業所比較</h2>
     <section>
     <div class="display-switch">
       <h3>比較条件</h3>

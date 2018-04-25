@@ -19,4 +19,11 @@ class ChemicalType extends Model
      * @var array
      */
 
+    /**
+     * 薬品種別名を取得
+     */
+    public function chemicals()
+    {
+        return $this->hasOne('App\Chemical');
+    }
 }

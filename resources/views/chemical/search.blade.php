@@ -12,12 +12,12 @@
         <section>
           <h3>検索条件</h3>
           <!-- 検索フォーム -->
-          {!! Form::open(['url' => 'chemical/list', 'id'=>'search']) !!}
+          {!! Form::open(['url' => 'chemical/list', 'method'=>'post', 'id'=>'search']) !!}
             <table class="table table-bordered">
               <tbody>
                 <tr>
                   <th>{!! Form::label('name', '化学物質名') !!}</th>
-                  <td>{!! Form::text('name', null, ['class' => 'form-control']) !!}</td>
+                  <td>{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => '一部でも検索できます。']) !!}</td>
                 </tr>
                 <tr>
                   <th>{!! Form::label('chemical_type', '種別') !!}</th>

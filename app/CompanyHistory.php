@@ -20,4 +20,12 @@ class CompanyHistory extends Model
      */
     //timestamps利用しない
     public $timestamps = false;
+
+    /**
+     * 会社テーブルと関連付け
+     */
+    public function companies()
+    {
+        return $this->belongsTo('App\Company');
+    }
 }

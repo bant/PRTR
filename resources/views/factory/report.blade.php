@@ -39,7 +39,7 @@
           <th>温室効果ガス届出</th>
           <td>
             @if(!empty($prtr_co2))
-              <a href="http://wwww.xxx.cne.jp/company?id={{$prtr_co2->co2_company_id}}">温室効果ガス届出あり</a>
+              <a href="http://co2.all-walkers.com/company/info?id={{$prtr_co2->co2_company_id}}">温室効果ガス届出あり</a>
             @else
               なし
             @endif
@@ -53,7 +53,7 @@
       <tbody>
         <tr>
           <th>事業所名<br>(旧事業所名)</th>
-          <td>{{$factory->name}}</td>
+          <td>{{$factory->name}}<br></td>
         </tr>
         <tr>
           <th>所在地</th>

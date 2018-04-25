@@ -17,7 +17,11 @@
             <tbody>
               <tr>
                 <th>{!! Form::label('company_name', '事業者名') !!}</th>
-                <td>{!! Form::text('company_name', null, ['class' => 'form-control']) !!}</td>
+                <td>{!! Form::text('company_name', null, ['class' => 'form-control', 'placeholder' => '一部でも検索できます。']) !!}</td>
+              </tr>
+              <tr>
+                <th>{!! Form::label('company_old_name', '旧事業者名') !!}</th>
+                <td>{!! Form::text('company_old_name', null, ['class' => 'form-control', 'placeholder' => '一部でも検索できます。']) !!}</td>
               </tr>
               <tr>
                 <th>{!! Form::label('company_pref', '都道府県') !!}</th>
@@ -25,11 +29,11 @@
               </tr>
               <tr>
                 <th>{!! Form::label('company_city', '市区町村') !!}</th>
-                <td>{!! Form::text('company_city', null, ['class' => 'form-control']) !!}</td>
+                <td>{!! Form::text('company_city', null, ['class' => 'form-control', 'placeholder' => '一部でも検索できます。']) !!}</td>
               </tr>
               <tr>
                 <th>{!! Form::label('company_address', '町域') !!}</th>
-                <td>{!! Form::text('company_address', null, ['class' => 'form-control']) !!}</td>
+                <td>{!! Form::text('company_address', null, ['class' => 'form-control', 'placeholder' => '一部でも検索できます。']) !!}</td>
               </tr>
             </tbody>
             <tfoot>

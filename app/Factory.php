@@ -32,28 +32,34 @@ class Factory extends Model
         return mb_strimwidth($value, 0, 128, "..");
     }
 
-    // 親会社は一社だけ
+    /**
+     * 会社テーブルと関連付け
+     */
     public function company()
     {
-        return $this->belongsTo('App\Company','company_id');
+        return $this->belongsTo('App\Company','company_id', 'id');
     }
 
-
+    /**
+     * 都道府県テーブル関連付け
+     */
     public function pref()
     {
-        return $this->belongsTo('App\Pref','pref_id');
+        return $this->hasOne('App\Pref', 'id', 'pref_id');
     }
-
     
+    /**
+     * 年度テーブル関連付け
+     */
     public function regist_year()
     {
-        return $this->belongsTo('App\RegistYear','regist_year_id');
+        return $this->hasOne('App\RegistYear', 'id', 'regist_year_id');
     }
-
 
     public function factory_business_type()
     {
-        return $this->belongsTo('App\FactoryBusinessType', 'id', 'factory_id');
+//        return $this->hasOne('App\FactoryBusinessType', 'factory_id', 'id');
+        return $this->hasOne('App\FactoryBusinessType');
     }
    
     public function factory_history()

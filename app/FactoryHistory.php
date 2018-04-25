@@ -24,7 +24,7 @@ class FactoryHistory extends Model
 
     public function pref()
     {
-        return $this->belongsTo('App\Pref','pref_id');
+        return $this->hasOne('App\Pref');
     }
 
     public function PostNoConvert()

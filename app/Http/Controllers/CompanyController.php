@@ -36,6 +36,7 @@ class CompanyController extends Controller
         $inputs = $request->all();
 
         $company_name = isset($inputs['company_name']) ? $inputs['company_name'] : null;
+        $company_old_name = isset($inputs['company_old_name']) ? $inputs['company_old_name'] : null;
         $company_pref_id = isset($inputs['company_pref_id']) ? $inputs['company_pref_id'] : 0;
         $company_city = isset($inputs['company_city']) ? $inputs['company_city'] : null;
         $company_address = isset($inputs['company_address']) ? $inputs['company_address'] : null;
@@ -49,24 +50,29 @@ class CompanyController extends Controller
 
         // 問い合わせSQLを構築
         $query = Company::query();
+        if (!is_null($company_old_name))
+        {
+            $query->join('ja_company_history','ja_company.id','=','ja_company_history.company_id');
+            $query->where('ja_company_history.name','like', "%$company_old_name%");
+        }
         if (!is_null($company_name))
         {
-            $query->where('name','like', "%$company_name%");
+            $query->where('ja_company.name','like', "%$company_name%");
         }
         if ($company_pref_id != '0')
         {
-            $query->where('pref_id', '=', $company_pref_id);
+            $query->where('ja_company.pref_id', '=', $company_pref_id);
         }
         if (!is_null($company_city))
         {
-            $query->where('city','like', "%$company_city%");
+            $query->where('ja_company.city','like', "%$company_city%");
         }
         if (!is_null($company_address))
         {
-            $query->where('address','like', "%$company_address%");
+            $query->where('ja_company.address','like', "%$company_address%");
         }
-        $query->orderBy('pref_id', 'asc');
-        $query->distinct('name');
+        $query->orderBy('ja_company.pref_id', 'asc');
+        $query->distinct('ja_company.name');
         $company_count = $query->count();
         $companies = $query->paginate(10);
 

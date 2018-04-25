@@ -48,17 +48,17 @@ class Chemical extends Model
      */
     public function chemical_type()
     {
-        return $this->belongsTo('App\ChemicalType','chemical_type_id');
+        return $this->hasOne('App\ChemicalType', 'id', 'chemical_type_id');
     }
 
     public function old_chemical_type()
     {
-        return $this->belongsTo('App\ChemicalType','old_chemical_type_id');
+        return $this->hasOne('App\ChemicalType', 'id', 'old_chemical_type_id');
     }
 
     public function unit()
     {
-        return $this->belongsTo('App\Unit','unit_id');
+        return $this->hasOne('App\Unit' ,'id', 'unit_id');
     }
 
     public function countFactory()

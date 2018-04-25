@@ -19,12 +19,16 @@
       <div class="display">非表示にする</div>
     </div>
 
-    {!! Form::open(['url' => 'factory/list', 'id'=>'search']) !!}
+    {!! Form::open(['url' => 'factory/list', 'method'=>'post', 'id'=>'search']) !!}
       <table class="table table-bordered">
         <tbody>
           <tr>
-            <th>{!! Form::label('factory_name', '事業者名') !!}</th>
-            <td>{!! Form::text('factory_name', null, ['class' => 'form-control']) !!}</td>
+            <th>{!! Form::label('factory_name', '事業所名') !!}</th>
+            <td>{!! Form::text('factory_name', null, ['class' => 'form-control', 'placeholder' => '一部でも検索できます。']) !!}</td>
+          </tr>
+          <tr>
+            <th>{!! Form::label('factory_old_name', '旧事業所名') !!}</th>
+            <td>{!! Form::text('factory_old_name', null, ['class' => 'form-control', 'placeholder' => '一部でも検索できます。']) !!}</td>
           </tr>
           <tr>
             <th>{!! Form::label('factory_business_type', '業種') !!}</th>
@@ -36,11 +40,11 @@
           </tr>
           <tr>
             <th>{!! Form::label('factory_city', '市区町村') !!}</th>
-            <td>{!! Form::text('factory_city', null, ['class' => 'form-control']) !!}</td>
+            <td>{!! Form::text('factory_city', null, ['class' => 'form-control', 'placeholder' => '一部でも検索できます。']) !!}</td>
           </tr>
           <tr>
             <th>{!! Form::label('factory_address', '町域') !!}</th>
-            <td>{!! Form::text('factory_address', null, ['class' => 'form-control']) !!}</td>
+            <td>{!! Form::text('factory_address', null, ['class' => 'form-control', 'placeholder' => '一部でも検索できます。']) !!}</td>
           </tr>
         </tbody>
         <tfoot>

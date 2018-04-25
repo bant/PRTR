@@ -30,17 +30,33 @@ class Company extends Model
         return mb_strimwidth($value, 0, 128, "..");
     }
 
+    /**
+     * 都道府県テーブル関連付け
+     */
     public function pref()
     {
-        return $this->belongsTo('App\Pref','pref_id');
+        return $this->hasOne('App\Pref', 'id', 'pref_id');
     }
 
+    /**
+     * 登録年度テーブル関連付け
+     */
     public function regist_year()
     {
-        return $this->belongsTo('App\RegistYear','regist_year_id');
+        return $this->hasOne('App\RegistYear', 'id', 'regist_year_id');
     }
 
-    public function company_history()
+    /**
+     * 工場テーブル関連付け
+     */
+    public function factories()
+    {
+//        return $this->hasMany('App\Factory','company_id', 'id');
+        return $this->hasMany('App\Factory');
+    }
+    
+//    public function company_history()
+    public function company_historries()
     {
         return $this->hasMany('App\CompanyHistory','company_id');
     }

@@ -40,6 +40,7 @@ class FactoryController extends Controller
         $inputs = $request->all();
        
         $factory_name = isset($inputs['factory_name']) ? $inputs['factory_name'] : null;
+        $factory_old_name = isset($inputs['factory_old_name']) ? $inputs['factory_old_name'] : null;
         $factory_business_type_id = isset($inputs['factory_business_type_id']) ? $inputs['factory_business_type_id'] : 0;
         $factory_pref_id = isset($inputs['factory_pref_id']) ? $inputs['factory_pref_id'] : 0;
         $factory_city = isset($inputs['factory_city']) ? $inputs['factory_city'] : null;
@@ -51,15 +52,20 @@ class FactoryController extends Controller
         $factory_prefs->prepend('全都道府県', 0);           // 最初に追加
 
         $query = Factory::query();
+        if (!is_null($factory_old_name))
+        {
+            $query->join('ja_factory_history','ja_factory.id','=','ja_factory_history.factory_id');
+            $query->where('ja_factory_history.name','like', "%$factory_old_name%");
+        }
         if (!is_null($factory_name))
         {
-            $query->where('name','like', "%$factory_name%");
+            $query->where('ja_factory.name','like', "%$factory_name%");
         }
         
         if ($factory_business_type_id != '0')
         {
             $query->join('ja_factory_business_type','ja_factory_business_type.factory_id','=','ja_factory.id');
-            $query->where('business_type_id', '=',$factory_business_type_id);
+            $query->where('ja_factory_business_type.business_type_id', '=',$factory_business_type_id);
         }
 
         if ($factory_pref_id != '0')
@@ -76,8 +82,8 @@ class FactoryController extends Controller
         {
             $query->where('address', 'like', "%$factory_address%");
         }
-        $query->orderBy('pref_id', 'asc');
-        $query->distinct('name');
+        $query->orderBy('ja_factory.pref_id', 'asc');
+        $query->distinct('ja_factory.name');
         $all_count = $query->count();
         $factories = $query->paginate(10);
 

@@ -1,16 +1,16 @@
 @extends('layouts.prtr')
-@section('title', '事業所比較 | PRTRデータベース by Tウォッチ')
+@section('title', '事業所比較結果リスト | PRTRデータベース by Tウォッチ')
 @section('content')
 <div id="contents">
   <!-- #breadcrumbs -->
   <ul id="breadcrumbs">
     <li><a href="{{url('/')}}">検索メニュー</a></li>
-    <li>&gt; <a href="{{url('/discharge/search')}}">事業所比較検索</a></li>
-    <li>&gt; 比較結果リスト</li>
+    <li>&gt; <a href="{{url('/discharge/search')}}">事業所比較</a></li>
+    <li>&gt; 事業所比較結果リスト</li>
   </ul>
   <!-- /#breadcrumbs -->
   <section>
-  <h2>事業所比較</h2>
+  <h2>事業所比較結果リスト</h2>
     <section>
     <div class="display-switch">
       <h3>比較条件</h3>

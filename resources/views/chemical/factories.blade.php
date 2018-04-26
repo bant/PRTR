@@ -1,17 +1,17 @@
 @extends('layouts.prtr')
-@section('title', '化学物質別届出情報 | PRTRデータベース by Tウォッチ')
+@section('title', '化学物質別事業所別届出情報 | PRTRデータベース by Tウォッチ')
 @section('content')
       <!-- #breadcrumbs -->
       <ul id="breadcrumbs">
         <li><a href="{{url('/')}}">検索メニュー</a></li>
         <li><a href="{{url('/chemical/search')}}">&gt; 化学物質検索<a></li>
         <li><a href="{{url('/chemical/list')}}">&gt; 化学物質リスト</a></li>
-        <li>&gt; 化学物質別届出情報</li>
+        <li>&gt; 化学物質別事業所別情報</li>
       </ul>
       <!-- /#breadcrumbs -->
 
       <section>
-      <h2>化学物質別届出情報</h2>
+      <h2>化学物質別事業所別届出情報</h2>
         <!-- 化学物質情報 -->
         <section>
           <div class="display-switch">
@@ -80,7 +80,7 @@
         <section>
           <hr class="split">
           <div class="display-switch">
-            <h3>届出履歴</h3>
+            <h3>化学物質別届出集計</h3>
             <div class="display">非表示にする</div>
           </div>
           <table id="reportTable" class="table table-bordered table-striped reportHistory" summary="届出履歴">
@@ -113,7 +113,7 @@
         <!-- 届出情報 -->
         <section>
           <hr class="split">
-          <h3 class="result">届出情報</h3>
+          <h3 class="result">化学物質別事業所別届出情報</h3>
           <!-- 絞り込みフォーム -->
           {!! Form::open(['url' => "chemical/factories", 'method'=>'get', 'id'=>'choose']) !!}
             {!! Form::hidden('id', $chemical->id) !!}
@@ -123,15 +123,6 @@
                   '2' => '排出量(昇順)',
                   '3' => '移動量(降順)',
                   '4' => '移動量(昇順)'], 1) !!}
-<!--
-            <select name="sort" id="sort">
-              <option value="EXHAUST_DESC" selected="selected">並び順の選択</option>
-              <option value="EXHAUST_DESC">排出量(降順)</option>1
-              <option value="EXHAUST_ASC">排出量(昇順)</option>2
-              <option value="MOVEMENT_DESC">移動量(降順)</option>3
-              <option value="MOVEMENT_ASC">移動量(昇順)</option>4
-            </select>
--->
             {!! Form::label('regist_year', '届出年度') !!}
             {!! Form::select('regist_year', $regist_years, 1, ['class' => 'form', 'id' => 'regist_year']) !!}
             {!! Form::submit('検 索', ['class' => 'btn btn-warning']) !!}
@@ -146,9 +137,9 @@
             <thead>
               <tr>
                 <th>事業者名<br>事業所名(都道府県)</th>
-                <th>大気<br>[排出]</th>
-                <th>水域<br>[排出]</th>
-                <th>土壌<br>[排出]</th>
+                <th class="tablesorter-header">大気<br>[排出]</th>
+                <th class="tablesorter-header">水域<br>[排出]</th>
+                <th class="tablesorter-header">土壌<br>[排出]</th>
                 <th>埋立<br>[排出]</th>
                 <th>下水<br>[移動]</th>
                 <th>下水以外<br>[移動]</th>

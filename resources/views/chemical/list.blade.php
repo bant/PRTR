@@ -137,7 +137,7 @@
                 @endif 
                 </td>
                 <td>
-                  <a href="/chemical/factories?id={{$chemical->id}}&sort=1" title="工場別へ">{{$chemical->countFactory()}}</a>
+                  <a href="/chemical/factories?id={{$chemical->id}}&sort=1" title="事業所別へ">{{$chemical->countFactory()}}</a>
                 </td>
                 <td>
                   <a href="/chemical/prefectures?id={{$chemical->id}}&sort=1" title="都道府県別集計">都道府県別へ

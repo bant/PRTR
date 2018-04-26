@@ -4,7 +4,7 @@
   <!-- #breadcrumbs -->
   <ul id="breadcrumbs">
     <li><a href="{{url('/')}}">検索メニュー</a></li>
-    <li>&gt; 事業所比較検索</li>
+    <li>&gt; 事業所比較</li>
   </ul>
   <!-- /#breadcrumbs -->
   <section>

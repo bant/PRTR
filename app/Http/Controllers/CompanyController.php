@@ -90,7 +90,7 @@ class CompanyController extends Controller
         // inputs
         $inputs = $request->all();
 
-        $id = isset($inputs['id']) ? $inputs['id'] : 0;     // factory id
+        $id = isset($inputs['id']) ? $inputs['id'] : 0;     // company id
 
         // factory_idが設定されてない場合アボート
         if ($id == 0)

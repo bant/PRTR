@@ -38,6 +38,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="{{url('/js/tools.js')}}"></script>
     <script src="{{url('/js/jquery.prettyPhoto.js')}}"></script>
+    <script src="{{url('/js/jquery.tablesorter.js')}}"></script>
     @yield('add_javascript')
 </body>
 </html>

@@ -5,8 +5,8 @@
   <!-- /#breadcrumbs -->
     <ul id="breadcrumbs">
     <li><a href="{{url('/')}}">検索メニュー</a></li>
-    <li>&gt; <a href="{{url('/company/search')}}">事業所検索</a></li>
-    <li>&gt; <a href="{{url('/')}}/factory/list">事業所リスト</a></li>
+    <li>&gt; <a href="{{url('/factory/search')}}">事業所検索</a></li>
+    <li>&gt; <a href="{{url('/factory/list')}}">事業所リスト</a></li>
     <li>&gt; 事業所届出情報</li>
   </ul>
   <!-- /#breadcrumbs -->
@@ -73,7 +73,7 @@
     <section>
       <hr class="split">
       <div class="display-switch">
-        <h3>届出履歴</h3>
+        <h3>事業所届出履歴</h3>
           <div class="display">非表示にする</div>
         </div>
         <table id="reportTable" class="table table-bordered table-striped reportHistory" summary="届出履歴">
@@ -101,8 +101,7 @@
       <!-- 届出情報 -->
       <section>
         <hr class="split">
-        <h3 class="result">届出情報</h3>
-
+        <h3 class="result">事業所届出情報</h3>
         <!-- 絞り込みフォーム -->
         {!! Form::open(['url' => 'factory/report', 'method'=>'get','id'=>'choose']) !!}
           {!! Form::hidden('id', $factory->id) !!}
@@ -120,16 +119,16 @@
           <thead>
             <tr>
               <th>化学物質名<br>[単位]</th>
-              <th>大気<br>[排出]</th>
-              <th>水域<br>[排出]</th>
-              <th>土壌<br>[排出]</th>
-              <th>埋立<br>[排出]</th>
-              <th>下水<br>[移動]</th>
-              <th>下水以外<br>[移動]</th>
-              <th>総排出量</th>
-              <th>総移動量</th>
-              <th>備考</th>
-              <th>届出年度</th>
+              <th class="tablesorter-header">大気<br>[排出]</th>
+              <th class="tablesorter-header">水域<br>[排出]</th>
+              <th class="tablesorter-header">土壌<br>[排出]</th>
+              <th class="tablesorter-header">埋立<br>[排出]</th>
+              <th class="tablesorter-header">下水<br>[移動]</th>
+              <th class="tablesorter-header">下水以外<br>[移動]</th>
+              <th class="tablesorter-header">総排出量</th>
+              <th class="tablesorter-header">総移動量</th>
+              <th class="tablesorter-header">備考</th>
+              <th class="tablesorter-header">届出年度</th>
             </tr>
          </thead>
         <tbody>

@@ -1,17 +1,17 @@
 @extends('layouts.prtr')
-@section('title', '都道府県別集計 | PRTRデータベース by Tウォッチ')
+@section('title', '化学物質別都道府県別集計 | PRTRデータベース by Tウォッチ')
 @section('content')
       <!-- #breadcrumbs -->
       <ul id="breadcrumbs">
         <li><a href="{{url('/')}}">検索メニュー</a></li>
         <li>&gt; <a href="{{url('/chemical/search')}}">化学物質検索<a></li>
         <li>&gt; <a href="{{url('/chemical/list')}}">化学物質リスト</a></li>
-        <li>&gt; 都道府県別集計</li>
+        <li>&gt; 化学物質別都道府県別集計</li>
       </ul>
       <!-- /#breadcrumbs -->
 
       <section>
-      <h2>都道府県別情報</h2>
+      <h2>化学物質別都道府県別集計</h2>
         <!-- 化学物質情報 -->
         <section>
           <div class="display-switch">
@@ -80,7 +80,7 @@
         <section>
           <hr class="split">
           <div class="display-switch">
-            <h3>届出履歴</h3>
+            <h3>化学物質別届出集計</h3>
             <div class="display">非表示にする</div>
           </div>
           <table id="reportTable" class="table table-bordered table-striped reportHistory" summary="届出履歴">
@@ -113,7 +113,7 @@
         <!-- 届出情報 -->
         <section>
           <hr class="split">
-          <h3 class="result">届出情報</h3>
+          <h3 class="result">化学物質別都道府県別届出集計</h3>
           <!-- 絞り込みフォーム -->
           {!! Form::open(['url' => "chemical/prefectures", 'method'=>'get', 'id'=>'choose']) !!}
             {!! Form::hidden('id', $chemical->id) !!}

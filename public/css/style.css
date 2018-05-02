@@ -251,6 +251,9 @@ hr.split {
 .tablesorter-bootstrap thead .tablesorter-headerAsc, .tablesorter-bootstrap thead .tablesorter-headerDesc {
 	background-color: #FFCC00;
 }
+td a {
+	display: block;
+}
 
 /* 会社情報・工場情報・化学物質情報 */
 .companyTable caption, .chemicalTable caption {
@@ -263,6 +266,9 @@ hr.split {
 }
 .companyTable th, .chemicalTable th, .reportHistory th {
 	background-color: #DDDDDD;
+}
+.companyTable th {
+	width: 40%;
 }
 
 /* エラー表示 */

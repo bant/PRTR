@@ -8,37 +8,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title') | PRTRデータベース by Tウォッチ</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{url('/css/theme.green.css')}}" type="text/css" rel="stylesheet">
     <link href="{{url('/css/style.css')}}" type="text/css" rel="stylesheet">
-    <link href="{{url('/css/prettyPhoto.css')}}" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-<div class="screen"><!----【screen 追加分】----->
-    <!--- ここからヘッダ --->
+<!-- ここからscreen -->
+<div class="screen">
+<!--- ここからヘッダ --->
     <header>
         @include('commons.header')
     </header>
  
     <!--- ここから本文 --->
-    <div class="content">
-        @yield('content')
+    <div id="contents">
+        <section>
+          <h2>@yield('message')</h2>
+          <div id="error-box" class="row">
+            <div class="col-xs-offset-3 col-xs-6" id="error-link">
+                @yield('detail')</br>
+                @yield('link')
+            </div>
+          </div>
+          <!-- #error+box -->
+          </section>
     </div>
 
-    <div id="menus"></div><!----【追加分】----->
+    <!----【追加分】----->
     <!--- ここからフッタ --->
     <footer id="footer">
         @yield('add_footer')
         <address id="address">@include('commons.footer',['year'=>Carbon\Carbon::now()->format('Y')])</address>
     </footer>
+</div>
+<!-- ここまでscreen -->
 
-</div><!-----【screen 追加分】----->
-
-    <!-- 以下、jsの読み込み -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- 以下、jsの読み込み -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="{{url('/js/tools.js')}}"></script>
-    <script src="{{url('/js/jquery.prettyPhoto.js')}}"></script>
-    <script src="{{url('/js/jquery.tablesorter.js')}}"></script>
-    @yield('add_javascript')
+<!-- ここまでjsの読み込み -->
 </body>
 </html>

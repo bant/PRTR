@@ -335,6 +335,16 @@ img{
   font-weight: bold;
 }
 
+/* エラー */
+#error-box {
+	margin: 5em 0;
+}
+#error-link {
+	border: 1px solid #7F6706;
+	padding: 3em 0;
+	text-align: center;
+}
+
 /* 中型ディスプレイ 768px - 1199px以上 
 --------------------------------------------- */
 @media only screen and (min-width: 768px) {

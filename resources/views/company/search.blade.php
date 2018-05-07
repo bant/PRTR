@@ -1,5 +1,5 @@
 @extends('layouts.prtr')
-@section('title', '事業者検索 | PRTRデータベース by Tウォッチ')
+@section('title', '事業者検索')
 @section('content')
       <ul id="breadcrumbs">
         <li><a href="{{url('/')}}">検索メニュー</a></li>

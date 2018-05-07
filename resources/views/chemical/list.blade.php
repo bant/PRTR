@@ -1,5 +1,5 @@
 @extends('layouts.prtr')
-@section('title', '化学物質リスト | PRTRデータベース by Tウォッチ')
+@section('title', '化学物質リスト')
 @section('content')
       <!-- #breadcrumbs -->
       <ul id="breadcrumbs">

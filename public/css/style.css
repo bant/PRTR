@@ -248,11 +248,25 @@ hr.split {
 .companyList td:last-child, .factoryList td:last-child, .factoryList td:nth-child(4), .chemicalList td:nth-child(5) {
 	text-align: right;
 }
+
+/* テーブルソート */
+.tablesorter-header-inner {
+	color: #006600;
+}
 .tablesorter-bootstrap thead .tablesorter-headerAsc, .tablesorter-bootstrap thead .tablesorter-headerDesc {
 	background-color: #FFCC00;
 }
 td a {
 	display: block;
+}
+#result td {
+	text-align: right;
+}
+#result td:nth-child(1) {
+	text-align: left;
+}
+#result td:nth-child(2) {
+	text-align: center;
 }
 
 /* 会社情報・工場情報・化学物質情報 */

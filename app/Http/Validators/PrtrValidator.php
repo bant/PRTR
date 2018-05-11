@@ -7,7 +7,7 @@ class PrtrValidator extends Validator
 {
     /*
     * 
-    *
+    *  空白か数値なら真を返す関数
     */
     public function validateNumeric2($attribute, $value, $parameters)
     {

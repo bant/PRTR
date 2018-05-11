@@ -9,6 +9,7 @@
     <title>@yield('title') | PRTRデータベース by Tウォッチ</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="{{url('/css/theme.green.css')}}" type="text/css" rel="stylesheet">
     <link href="{{url('/css/style.css')}}" type="text/css" rel="stylesheet">
     <link href="{{url('/css/prettyPhoto.css')}}" type="text/css" rel="stylesheet"/>
 </head>

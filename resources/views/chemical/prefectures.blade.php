@@ -129,29 +129,30 @@
           {{ Form::close() }}
           <!-- /絞り込みフォーム -->
           <!-- 化学物質別届出情報 -->
-          <table id="resultTable" class="tablesorter-green table-striped table-bordered chemicalReport">
+          <table id="result" class="c2 tablesorter-green table-striped table-bordered chemicalReport">
             <caption>{{$chemical->name}}
               <span class="plain">({{$chemical->unit->name}}) | 該当件数: {{$pref_discharges_count}}件
               </span>
             </caption>
             <thead>
               <tr>
-                <th>都道府県</th>
-                <th>大気<br>[排出]</th>
-                <th>水域<br>[排出]</th>
-                <th>土壌<br>[排出]</th>
-                <th>埋立<br>[排出]</th>
-                <th>下水<br>[移動]</th>
-                <th>下水以外<br>[移動]</th>
-                <th>総排出量</th>
-                <th>総移動量</th>
-                <th>届出年度</th>
+                <th class="tablesorter-header">都道府県</th>
+                <th class="tablesorter-header">届出年度</th>
+                <th class="tablesorter-header">大気<br>[排出]</th>
+                <th class="tablesorter-header">水域<br>[排出]</th>
+                <th class="tablesorter-header">土壌<br>[排出]</th>
+                <th class="tablesorter-header">埋立<br>[排出]</th>
+                <th class="tablesorter-header">下水<br>[移動]</th>
+                <th class="tablesorter-header">下水以外<br>[移動]</th>
+                <th class="tablesorter-header">総排出量</th>
+                <th class="tablesorter-header">総移動量</th>
               </tr>
             </thead>
             <tbody>
             @foreach ($pref_discharges as $pref_discharge)       
             <tr>
               <td>{{$pref_discharge['PREF']}}</td>
+              <td>{{$pref_discharge['REGIST_YEAR']}}</td>
               <td>{{$pref_discharge['TOTAL_ATMOSPHERE']}}</td>
               <td>{{$pref_discharge['TOTAL_SEA']}}</td>
               <td>{{$pref_discharge['TOTAL_SOIL']}}</td>
@@ -160,7 +161,6 @@
               <td>{{$pref_discharge['TOTAL_OTHER']}}</td>
               <td>{{$pref_discharge['TOTAL_EXHAUST']}}</td>
               <td>{{$pref_discharge['TOTAL_SUM_MOVEMENT']}}</td>
-              <td>{{$pref_discharge['REGIST_YEAR']}}</td>
             </tr>
             @endforeach
             </tbdoy>

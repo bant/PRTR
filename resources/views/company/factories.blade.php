@@ -68,7 +68,7 @@
       @foreach ($factories as  $factory)
       <!-- tw_factory's id is {{$factory->id}} -->
         <tr>
-          <td><a href="/company/factory_report?id={{$factory->id}}" title="{{$factory->name}}の届出情報詳細はこちら">{{$factory->name}}</a><br>({{$factory->getOldName()}})</td>
+          <td><a href="/company/factory_report?id={{$factory->id}}" title="{{$factory->name}}の届出情報詳細はこちら">{{$factory->name}}</a>({{$factory->getOldName()}})</td>
           <td>{{$factory->getBusinessTypeName()}}</td>
           <td>{{$factory->PostNoConvert()}}<br>{{$factory->pref->name}}{{$factory->city}}{{$factory->address}}</td>
           <td>{{$factory->getAverageEmployee()}}</td>

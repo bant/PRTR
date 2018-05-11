@@ -137,8 +137,9 @@
                   <a href="/images/pdf/{{$discharge->chemical->pdf}}" target=”_blank”rel="prettyPhoto" title="{{$discharge->chemical->name}}の詳細PDFはこちら">{{$discharge->chemical->name}}</a>
                 @else 
                   {{$discharge->chemical->name}}
+                  <br>
                 @endif
-                <br>({{$discharge->chemical->unit->name}})
+                ({{$discharge->chemical->unit->name}})
               </td>
               <td>{{$discharge->atmosphere}}</td>
               <td>{{$discharge->sea}}</td>

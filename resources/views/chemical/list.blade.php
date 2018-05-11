@@ -100,8 +100,8 @@
                     <a href="/images/pdf/{{$chemical->pdf}}" target=”_blank”rel="prettyPhoto" title="{{$chemical->name}}の詳細PDFはこちら">{{$chemical->name}}</a>
                   @else 
                     {{$chemical->name}}
+                    <br>
                   @endif
-                  <br>
                   @if(!empty($chemical->alias))
                     ({{$chemical->alias}})
                   @else 

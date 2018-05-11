@@ -38,7 +38,7 @@ class DischargeController extends Controller
         $factory_city = isset($inputs['factory_city']) ? $inputs['factory_city'] : null;
         $factory_address = isset($inputs['factory_address']) ? $inputs['factory_address'] : null;
         $factory_name1 = isset($inputs['factory_name1']) ? $inputs['factory_name1'] : null;
-        $factory_name2 = isset($inputs['factory_name2']) ? $inputs['factory_name2'] : null;
+//        $factory_name2 = isset($inputs['factory_name2']) ? $inputs['factory_name2'] : null;
         $chemical_name = isset($inputs['chemical_name']) ? $inputs['chemical_name'] : null;
         $regist_year = isset($inputs['regist_year']) ? $inputs['regist_year'] : 0;
 
@@ -67,10 +67,12 @@ class DischargeController extends Controller
         {
             $query->where('ja_factory.name','like', "%$factory_name1%");
         }
+/*
         if (!is_null($factory_name2))
         {
             $query->where('ja_factory.name','like', "%$factory_name2%");
         }
+ */
         if (!is_null($chemical_name))
         {
             $query->where('ja_chemical.name','like', "%$chemical_name%"); 

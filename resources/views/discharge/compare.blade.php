@@ -33,13 +33,15 @@
         <td>{!! Form::text('factory_address', null, ['class' => 'form-control']) !!}</td>
       </tr>
       <tr>
-        <th>{!! Form::label('factory_name1', '事業所名(その1)') !!}</th>
+        <th>{!! Form::label('factory_name1', '事業所名') !!}</th>
         <td>{!! Form::text('factory_name1', null, ['class' => 'form-control']) !!}</td>
       </tr>
+<!--
       <tr>
         <th>{!! Form::label('factory_name2', '事業所名(その2)') !!}</th>
         <td>{!! Form::text('factory_name2', null, ['class' => 'form-control']) !!}</td>
       </tr>
+-->
       <tr>
         <th>{!! Form::label('chemical_name', '化学物質名') !!}</th>
         <td>{!! Form::text('chemical_name', null, ['class' => 'form-control']) !!}</td>
@@ -87,8 +89,9 @@
               <a href="/images/pdf/{{$discharge->chemical->pdf}}" target=”_blank”rel="prettyPhoto" title="{{$discharge->chemical->name}}の詳細PDFはこちら">{{$discharge->chemical->name}}</a>
             @else 
               {{$discharge->chemical->name}}
+              <br>
             @endif
-            <br>({{$discharge->chemical->unit->name}})
+            ({{$discharge->chemical->unit->name}})
           </td>
           <td>{{$discharge->sum_exhaust}}</td>
           <td>{{$discharge->sum_movement}}</td>

@@ -28,13 +28,15 @@
         <td>{!! Form::text('factory_address', null, ['class' => 'form-control']) !!}</td>
       </tr>
       <tr>
-        <th>{!! Form::label('factory_name1', '事業所名(その1)') !!}</th>
+        <th>{!! Form::label('factory_name1', '事業所名') !!}</th>
         <td>{!! Form::text('factory_name1', null, ['class' => 'form-control']) !!}</td>
       </tr>
+<!--
       <tr>
         <th>{!! Form::label('factory_name2', '事業所名(その2)') !!}</th>
         <td>{!! Form::text('factory_name2', null, ['class' => 'form-control']) !!}</td>
       </tr>
+-->
       <tr>
         <th>{!! Form::label('chemical_name', '化学物質名') !!}</th>
         <td>{!! Form::text('chemical_name', null, ['class' => 'form-control']) !!}</td>

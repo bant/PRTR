@@ -129,7 +129,7 @@
           {{ Form::close() }}
           <!-- /絞り込みフォーム -->
           <!-- 化学物質別届出情報 -->
-          <table id="resultTable" class="tablesorter-green table-striped table-bordered chemicalReport">
+          <table id="resultTable" class="table-striped table-bordered chemicalReport">
             <caption>{{$chemical->name}}
               <span class="plain">(({{$chemical->unit->name}})) | 該当件数: {{$discharge_count}}件
               </span>

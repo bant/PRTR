@@ -1,5 +1,5 @@
 @extends('layouts.prtr')
-@section('title', '')
+@section('title', '事業所届出情報')
 @section('content')
 <div id="contents">
   <!-- /#breadcrumbs -->

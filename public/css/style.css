@@ -228,7 +228,7 @@ hr.split {
 	caption-side: top;
 	text-align: right;
 }
-.companyList th, .factoryList th, .chemicalList th, .compareList th {
+.companyList th, .factoryList th, .chemicalList th, .compareList th, .chemicalReport th {
 	background-color: #666666;
 	color: #FFFFFF;
 }

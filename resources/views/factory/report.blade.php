@@ -114,7 +114,7 @@
         <!-- /絞り込みフォーム -->
 
         <!-- 化学物質届出情報 -->
-        <table id="resultTable" class="table-striped table-bordered chemicalReport">
+        <table id="resultTable" class="resultTable table-striped table-bordered chemicalReport">
           <caption>該当件数: {{$discharges_count}}</caption>
           <thead>
             <tr>

@@ -129,7 +129,7 @@
           {{ Form::close() }}
           <!-- /絞り込みフォーム -->
           <!-- 化学物質別届出情報 -->
-          <table id="resultTable" class="tablesorter-green table-striped table-bordered chemicalReport">
+          <table id="resultTable" class="table table-striped table-bordered chemicalList">
             <caption>{{$chemical->name}}
               <span class="plain">(({{$chemical->unit->name}})) | 該当件数: {{$discharge_count}}件
               </span>
@@ -137,9 +137,9 @@
             <thead>
               <tr>
                 <th>事業者名<br>事業所名(都道府県)</th>
-                <th class="tablesorter-header">大気<br>[排出]</th>
-                <th class="tablesorter-header">水域<br>[排出]</th>
-                <th class="tablesorter-header">土壌<br>[排出]</th>
+                <th>大気<br>[排出]</th>
+                <th>水域<br>[排出]</th>
+                <th>土壌<br>[排出]</th>
                 <th>埋立<br>[排出]</th>
                 <th>下水<br>[移動]</th>
                 <th>下水以外<br>[移動]</th>

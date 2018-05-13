@@ -111,7 +111,7 @@
       {{ Form::close() }}
       <!-- /絞り込みフォーム -->
       <!-- 化学物質届出情報 -->
-      <table id="resultTable" class="table table-striped table-bordered chemicalList">
+      <table id="resultTable" class="table-striped table-bordered chemicalReport">
         <caption>該当件数: {{$discharge_count}}件</caption>
         <thead>
           <tr>

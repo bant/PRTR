@@ -111,21 +111,21 @@
       {{ Form::close() }}
       <!-- /絞り込みフォーム -->
       <!-- 化学物質届出情報 -->
-      <table id="resultTable" class="tablesorter-green table-striped table-bordered chemicalReport">
+      <table id="resultTable" class="table-striped table-bordered chemicalReport">
         <caption>該当件数: {{$discharge_count}}件</caption>
         <thead>
           <tr>
             <th>化学物質名<br>[単位]</th>
-            <th class="tablesorter-header">大気<br>[排出]</th>
-            <th class="tablesorter-header">水域<br>[排出]</th>
-            <th class="tablesorter-header">土壌<br>[排出]</th>
-            <th class="tablesorter-header">埋立<br>[排出]</th>
-            <th class="tablesorter-header">下水<br>[移動]</th>
-            <th class="tablesorter-header">下水以外<br>[移動]</th>
-            <th class="tablesorter-header">総排出量</th>
-            <th class="tablesorter-header">総移動量</th>
-            <th class="tablesorter-header">備考</th>
-            <th class="tablesorter-header">届出年度</th>
+            <th>大気<br>[排出]</th>
+            <th>水域<br>[排出]</th>
+            <th>土壌<br>[排出]</th>
+            <th>埋立<br>[排出]</th>
+            <th>下水<br>[移動]</th>
+            <th>下水以外<br>[移動]</th>
+            <th>総排出量</th>
+            <th>総移動量</th>
+            <th>備考</th>
+            <th>届出年度</th>
           </tr>
         </thead>
         <tbody>

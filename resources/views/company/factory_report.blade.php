@@ -38,7 +38,7 @@
           <th>温室効果ガス届出</th>
           <td>
           @if(!empty($prtr_co2))
-              <a href="http://co2.toxwatch.net/company/info?id={{$prtr_co2->co2_company_id}}">{{$company->name}}の温室効果ガス情報はこちら</a>
+              <a href="http://co2.toxwatch.net/company/info?id={{$prtr_co2->co2_company_id}}"  target=”_blank”>{{$company->name}}の温室効果ガス情報はこちら</a>
           @else
               なし
           @endif

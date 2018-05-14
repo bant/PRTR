@@ -6,7 +6,6 @@
     <ul id="breadcrumbs">
     <li><a href="{{url('/')}}">検索メニュー</a></li>
     <li>&gt; <a href="{{url('/factory/search')}}">事業所検索</a></li>
-    <li>&gt; <a href="{{url('/factory/list')}}">事業所リスト</a></li>
     <li>&gt; 事業所届出情報</li>
   </ul>
   <!-- /#breadcrumbs -->
@@ -39,7 +38,7 @@
           <th>温室効果ガス届出</th>
           <td>
             @if(!empty($prtr_co2))
-              <a href="https://co2.toxwatch.net/company/info?id={{$prtr_co2->co2_company_id}}">{{$factory->company->name}}の温室効果ガス情報はこちら</a>
+              <a href="https://co2.toxwatch.net/company/info?id={{$prtr_co2->co2_company_id}}"  target=”_blank”>{{$factory->company->name}}の温室効果ガス情報はこちら</a>
             @else
               なし
             @endif

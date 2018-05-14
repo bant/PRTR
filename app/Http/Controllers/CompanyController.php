@@ -124,8 +124,7 @@ class CompanyController extends Controller
         $chemical_name = isset($inputs['chemical_name']) ? $inputs['chemical_name'] : null;
         $regist_year = isset($inputs['regist_year']) ? $inputs['regist_year'] : 0;
 
-        $prtr_co2 = PrtrCo2::where('prtr_company_id', '=', $id)->first();
-
+ 
         // factory_idが設定されてない場合アボート
         if ($id == 0)
         {
@@ -142,6 +141,8 @@ class CompanyController extends Controller
         {
             abort(404);
         }
+
+        $prtr_co2 = PrtrCo2::where('prtr_company_id', '=', $company->id)->first();
 
         $factories_count = Factory::where('company_id', '=',$id)->count();
         $factory_histories = FactoryHistory::where('factory_id', '=', $id)->orderBy('regist_year_id', 'desc')->get();

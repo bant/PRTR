@@ -160,7 +160,9 @@ class CompanyController extends Controller
         }
 
         $discharge_count = $query->count();
-        $discharges = $query->orderBy('regist_year_id', 'desc')->paginate(10);
+        // ★　どうもおかしいらしい(2021)
+        //        $discharges = $query->orderBy('regist_year_id', 'desc')->paginate(10);
+        $discharges = $query->paginate(10);
 
         // 検索用のデータを作成
         $years = RegistYear::select()->orderBy('id', 'desc')->pluck('name','id');
